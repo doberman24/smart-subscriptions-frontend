@@ -1,0 +1,57 @@
+a {
+    text-decoration: none;
+}
+
+.header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
+    font-size: 1.3rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.login {
+    background-color: #5552e8;
+    color: #e9e9f5;
+    padding: 10px 40px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.login:hover {
+    background-color: #615a74;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.3px;
+}
+.login:active {
+    background-color: transparent;
+    outline: 2px #ff3d85 solid;
+    color: #615a74;
+    outline-offset: 2px;
+}
+
+.register {
+    padding: 10px;
+    color: #5552e8;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+.register:hover {
+    color: #615a74;
+    transform: translateY(-1px);
+}
+.register:active {
+    outline: 2px #ff3d85 solid;
+    outline-offset: 2px;
+}

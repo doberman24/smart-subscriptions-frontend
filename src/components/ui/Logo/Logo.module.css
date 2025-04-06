@@ -1,0 +1,33 @@
+.mainLogo {
+    display: flex;
+    position: relative;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    width: fit-content;
+    height: fit-content;
+    pointer-events: none;
+}
+
+.initial {
+    font-size: 80px;
+    line-height: 60px;
+    color: #5552e8;
+}
+
+.logoName {
+    line-height: 32px;
+    font-size: 32px;
+    color: #615a74;
+}
+
+.mainLogo img {
+    position: absolute;
+    right: 0;
+    top: 4px;
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}

@@ -1,0 +1,86 @@
+.landingPage {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    color: #615a74;
+}
+
+.mainBlock {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    max-width: 1200px;
+    padding: 150px;
+    background: radial-gradient(ellipse closest-side, #dddde9 40%, #f2f2f9);
+}
+
+.mainHeader {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    color: #5552e8;
+    text-align: center;
+}
+
+.slogan {
+    font-family: "Jura", sans-serif;
+    margin-top: 50px;
+    font-weight: 700;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.separator {
+    margin: 20px;
+    border: #5552e8 solid 1px;
+    width: 200px;
+}
+
+.privillege {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 150px;
+
+}
+
+.singlePrivillege {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 3 - 50px);
+    background-color: #e5e5f1;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow:  0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.singlePrivillege span {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: "Inter", sans-serif;
+    border-bottom: #5552e8 solid 3px;
+}
+
+.example {
+    margin: 0 auto;
+}
+
+.feedbackBlock {
+    margin: 150px auto;
+}
+
+.feedbackBlock h4 {
+    text-align: center;
+    margin-bottom: 50px;    
+    font-size: 2rem;
+}
+
+.feedback {
+    display: flex;
+    justify-content: space-between;
+}
+  
