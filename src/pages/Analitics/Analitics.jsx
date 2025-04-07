@@ -1,6 +1,10 @@
+import styles from './Analitics.module.css'
+
 const Analitics = () => {
   return (
-    <div>Аналитика подписок</div>
+    <div className={styles.analiticsPage}>
+      <h1>Аналитика подписок</h1>
+    </div>
   )
 }
 

@@ -1,6 +1,10 @@
+import styles from './Subscriptions.module.css';
+
 const Subscriptions = () => {
   return (
-    <div>Подписки</div>
+    <div className={styles.subscriptionsPage}>
+      <h1>Подписки</h1>
+    </div>
   )
 }
 

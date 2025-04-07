@@ -1,6 +1,10 @@
+import styles from './Settings.module.css';
+
 const Settings = () => {
   return (
-    <div>Настройки</div>
+    <div className={styles.settingsPage}>
+      <h1>Настройки</h1>
+    </div>
   )
 }
 

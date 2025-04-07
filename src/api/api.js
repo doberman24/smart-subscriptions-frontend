@@ -1,18 +1,22 @@
 import axios from "axios";
-import { feedbackApi } from "./mockApi";
+import { usersApi } from "./mockApi";
 
 class Api {
     constructor() {
-        this.api = feedbackApi;
+        this.api = usersApi;
     };
 
-    async getFeedbackData() {
+    async getUsersData() {
         try {
-            return await feedbackApi.getFeedback();
+            return await this.api.getUsers();
         } catch (error) {
             console.error('Ошибка загрузки отзывов', error);
             return [];
         }
+    };
+
+    async getUsersById(id) {
+        return (await this.api.getUsers()).filter(user => user.id === id)
     }
 }
 

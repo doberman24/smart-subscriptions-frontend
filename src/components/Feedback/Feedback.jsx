@@ -2,11 +2,11 @@ import styles from './Feedback.module.css';
 import fStar from '@/assets/icons/full-star.svg'
 import eStar from '@/assets/icons/empty-star.svg'
 
-const Feedback = ({feedback}) => {
+const Feedback = ({feedback, userName}) => {
 
   return (
     <li className={styles.singleFeedback}>
-      <h5 className={styles.userNameFeed}>{feedback.userName}</h5>
+      <h5 className={styles.userNameFeed}>{userName}</h5>
       <p className={styles.textBlock}>{feedback.comment}</p>
       <div className={styles.ratingBlock}>
         <span className={styles.rating}>

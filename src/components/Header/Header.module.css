@@ -1,0 +1,55 @@
+.header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #5552e8;
+    font-family: "Montserrat", sans-serif;
+    color: #615a74;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
+    font-size: 1.3rem;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.name {
+    color: #5552e8;
+    text-transform: uppercase;
+}
+
+.settings {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    color: #615a74;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+.settings:hover {
+    color: #5552e8;
+    transform: translateY(-1px);
+}
+.settings:active {
+    outline: 2px #ff3d85 solid;
+    outline-offset: 2px;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('@/assets/icons/settings.svg');
+    background-size: 25px 25px;
+    transition: all 0.2s ease;
+}
+
+.settings:hover .icon {
+    background-image: url('@/assets/icons/settings_1.svg');
+    background-size: 25px 25px;
+}

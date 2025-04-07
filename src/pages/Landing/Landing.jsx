@@ -1,26 +1,27 @@
-import LendingHeader from '@/components/LendingHeader/LendingHeader'
-import LendingFooter from '@/components/LendingFooter/LendingFooter'
-import ButtonElement from '@/components/ui/ButtonElement/ButtonElement'
-import styles from './Landing.module.css'
-import graph from '@/assets/icons/graph.svg'
-import notification from '@/assets/icons/notification.svg'
-import diagramm from '@/assets/icons/diagramm.svg'
-import plug from '@/assets/img/plug.png'
-import Feedback from '@/components/Feedback/Feedback'
-import Api from '@/api/api'
-import { useEffect, useState } from 'react'
+import LendingHeader from '@/components/LendingHeader/LendingHeader';
+import LendingFooter from '@/components/LendingFooter/LendingFooter';
+import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
+import styles from './Landing.module.css';
+import graph from '@/assets/icons/graph.svg';
+import notification from '@/assets/icons/notification.svg';
+import diagramm from '@/assets/icons/diagramm.svg';
+import plug from '@/assets/img/plug.png';
+import Feedback from '@/components/Feedback/Feedback';
+import Api from '@/api/api';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
-  const [feedbacks, setFeedbacks] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const api = new Api();
-    const loadFeedback = async () => {
-      const data = await api.getFeedbackData();
-      setFeedbacks(data);
+    const loadUsers = async () => {
+      const data = await api.getUsersData();
+      setUsers(data);
     }
-    loadFeedback();
-  });
+    loadUsers();
+  }, []);
 
   return (
     
@@ -35,7 +36,9 @@ const Landing = () => {
           <h3>Управляйте всеми своими подписками в одном месте. Получайте напоминания о предстоящих платежах.</h3>
         </div>
         <div className={styles.mainButton}>
-          <ButtonElement>Начать бесплатно</ButtonElement>
+          <Link to='/dashboard'>
+            <ButtonElement>Начать бесплатно</ButtonElement>
+          </Link>
         </div>
       </div>
 
@@ -61,12 +64,9 @@ const Landing = () => {
       <div className={styles.feedbackBlock}>
         <h4>Отзывы пользователей</h4>
         <ul className={styles.feedback}>
-          {feedbacks.map(feedback => (
-            <Feedback feedback={feedback} key={feedback.id} />
+          {users.map(({id, userName, feedback}) => (
+            <Feedback userName={userName} feedback={feedback} key={id} />
           ))}
-          {/* <Feedback />
-          <Feedback />
-          <Feedback /> */}
         </ul>
       </div>
 

@@ -6,7 +6,7 @@ import Landing from '@/pages/Landing/Landing';
 import Login from '@/pages/Login/Login';
 import Settings from '@/pages/Settings/Settings';
 import Subscriptions from '@/pages/Subscriptions/Subscriptions';
-import styles from './App.module.css';
+import HeaderLayout from '@/layouts/HeaderLayout';
 
 
 function App() {
@@ -15,11 +15,13 @@ function App() {
       <main className='container'>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/analitics' element={<Analitics />} />
-          <Route path='/subscriptions' element={<Subscriptions />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/login' element={<Login />} />
+          <Route element={<HeaderLayout />}>
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/analitics' element={<Analitics />} />
+            <Route path='/subscriptions' element={<Subscriptions />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
         </Routes>
       </main>
     </BrowserRouter>
