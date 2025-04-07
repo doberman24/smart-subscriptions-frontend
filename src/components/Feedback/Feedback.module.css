@@ -1,4 +1,6 @@
 .singleFeedback {
+  display: flex;
+  flex-direction: column;
   width: calc(100% / 3 - 20px);
   background-color: #f6f6fa;
   padding: 20px;
@@ -22,7 +24,7 @@
 .ratingBlock {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  margin-top: auto;
 }
 
 .rating {

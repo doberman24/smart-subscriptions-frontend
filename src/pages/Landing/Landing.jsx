@@ -7,7 +7,21 @@ import notification from '@/assets/icons/notification.svg'
 import diagramm from '@/assets/icons/diagramm.svg'
 import plug from '@/assets/img/plug.png'
 import Feedback from '@/components/Feedback/Feedback'
+import Api from '@/api/api'
+import { useEffect, useState } from 'react'
+
 const Landing = () => {
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    const api = new Api();
+    const loadFeedback = async () => {
+      const data = await api.getFeedbackData();
+      setFeedbacks(data);
+    }
+    loadFeedback();
+  });
+
   return (
     
     <div className={styles.landingPage}>
@@ -47,9 +61,12 @@ const Landing = () => {
       <div className={styles.feedbackBlock}>
         <h4>Отзывы пользователей</h4>
         <ul className={styles.feedback}>
+          {feedbacks.map(feedback => (
+            <Feedback feedback={feedback} key={feedback.id} />
+          ))}
+          {/* <Feedback />
           <Feedback />
-          <Feedback />
-          <Feedback />
+          <Feedback /> */}
         </ul>
       </div>
 
