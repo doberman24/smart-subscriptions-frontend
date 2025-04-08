@@ -1,5 +1,5 @@
-export const usersApi = {
-    async getUsers() {
+export const reviewsApi = {
+    async getReviews() {
         return [
             {
                 id: 1,
@@ -33,4 +33,91 @@ export const usersApi = {
             }
         ];
     },
-} 
+};
+
+export const userApi = {
+    async getUser() {
+        return {
+            "user": {
+                "id": "1",
+                "name": "Анатолий",
+                "email": "anatoly@example.com",
+                "currency": "RUB"
+            },
+            "subscriptions": {
+                "summary": {
+                    "activeCount": 5,
+                    "monthlySpending": 2490,
+                    "nextPayment": {
+                        "title": "Netflix",
+                        "amount": 899,
+                        "date": "2025-04-10"
+                    }
+                },
+                "latest": [
+                    {
+                        "id": "sub_101",
+                        "title": "Spotify",
+                        "amount": 269,
+                        "billingDate": "2025-04-08",
+                        "category": "Музыка",
+                        "icon": "spotify.png",
+                        "status": "active"
+                    },
+                    {
+                        "id": "sub_102",
+                        "title": "Netflix",
+                        "amount": 899,
+                        "billingDate": "2025-04-10",
+                        "category": "Развлечения",
+                        "icon": "yandex.png",
+                        "status": "active"
+                    },
+                    {
+                        "id": "sub_103",
+                        "title": "Notion",
+                        "amount": 499,
+                        "billingDate": "2025-04-03",
+                        "category": "Продуктивность",
+                        "icon": "notion.png",
+                        "status": "active"
+                    }
+                ]
+            },
+            "analytics": {
+                "byCategory": [
+                    {
+                        "category": "Развлечения",
+                        "total": 1198
+                    },
+                    {
+                        "category": "Музыка",
+                        "total": 269
+                    },
+                    {
+                        "category": "Продуктивность",
+                        "total": 499
+                    },
+                    {
+                        "category": "Образование",
+                        "total": 524
+                    }
+                ],
+                "topSpending": [
+                    {
+                        "title": "YouTube Premium",
+                        "amount": 799
+                    },
+                    {
+                        "title": "Notion",
+                        "amount": 499
+                    },
+                    {
+                        "title": "Coursera",
+                        "amount": 524
+                    }
+                ],
+            },
+        };
+    },
+};

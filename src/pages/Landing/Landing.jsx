@@ -12,15 +12,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
-  const [users, setUsers] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const api = new Api();
-    const loadUsers = async () => {
-      const data = await api.getUsersData();
-      setUsers(data);
+    const reviewsApi = new Api();
+    const loadReviews = async () => {
+      const data = await reviewsApi.getReviewsData();
+      setReviews(data);
     }
-    loadUsers();
+    loadReviews();
   }, []);
 
   return (
@@ -64,7 +64,7 @@ const Landing = () => {
       <div className={styles.feedbackBlock}>
         <h4>Отзывы пользователей</h4>
         <ul className={styles.feedback}>
-          {users.map(({id, userName, feedback}) => (
+          {reviews.map(({id, userName, feedback}) => (
             <Feedback userName={userName} feedback={feedback} key={id} />
           ))}
         </ul>

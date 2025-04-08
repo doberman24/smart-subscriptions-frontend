@@ -1,22 +1,28 @@
 import axios from "axios";
-import { usersApi } from "./mockApi";
+import { reviewsApi, userApi } from "./mockApi";
 
 class Api {
     constructor() {
-        this.api = usersApi;
+        this.reviewsApi = reviewsApi;
+        this.userApi = userApi;
     };
 
-    async getUsersData() {
+    async getReviewsData() {
         try {
-            return await this.api.getUsers();
+            return await this.reviewsApi.getReviews();
         } catch (error) {
             console.error('Ошибка загрузки отзывов', error);
             return [];
         }
     };
 
-    async getUsersById(id) {
-        return (await this.api.getUsers()).filter(user => user.id === id)
+    async getUserData() {
+        try {
+            return await this.userApi.getUser()
+        } catch (error) {
+            console.error('Ошибка загрузки пользователя', error);
+            return '';
+        }
     }
 }
 

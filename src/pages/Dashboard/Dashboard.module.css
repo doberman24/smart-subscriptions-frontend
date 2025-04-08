@@ -3,5 +3,65 @@
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     color: #615a74;
-    width: 1200px;
+}
+
+.mainStatistics {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 0;
+}
+
+.statistic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 3 - 50px);
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow:  0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.statistic h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "manrope", sans-serif;
+    font-weight: 500;
+}
+
+.mainData {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    color: #ff3d85;
+    font-weight: 700;
+}
+
+.marker {
+    font-style: normal;
+    font-weight: 700;
+    color: #5552e8;
+}
+
+.subscriptionsBlock {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.subscriptionsBlock h2 {
+    text-transform: uppercase;
+    color: #5552e8;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.lastSubscriptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

@@ -11,8 +11,8 @@ const Header = () => {
   useEffect(() => {
     const api = new Api();
     const loadUsers = async () => {
-      const data = await api.getUsersById(1);
-      setUser(data[0].userName);
+      const data = await api.getUserData();
+      setUser(data.user.name);
     }
     loadUsers();
   }, [])
@@ -25,7 +25,6 @@ const Header = () => {
         <nav className={styles.nav}>
           <Link className={styles.settings} to='/settings'>
             <div className={styles.icon}></div>
-            Настройки
           </Link>
         </nav>
     </div>

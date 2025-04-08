@@ -13,7 +13,7 @@ const Feedback = ({feedback, userName}) => {
           {Array.from({length: feedback.goodRate}, (_,i) => (
             <img key={i} src={fStar} height='25px' alt="star" />  
           ))}
-          {Array.from({length: feedback.badRate}, (_,i) => (
+          {Array.from({length: 5 - feedback.goodRate}, (_,i) => (
             <img key={i} src={eStar} height='25px' alt="star" />  
           ))}
         </span>
