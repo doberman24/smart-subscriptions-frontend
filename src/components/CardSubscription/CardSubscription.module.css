@@ -46,3 +46,8 @@
     font-size: 1.3rem;
     font-weight: 500;
 }
+
+.buttonsBlock {
+    display: flex;
+    gap: 20px;
+}

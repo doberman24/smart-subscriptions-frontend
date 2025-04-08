@@ -1,5 +1,6 @@
 import SubscriptionIcon from '@/components/ui/SubscriptionIcon'
 import styles from './CardSubscription.module.css'
+import ButtonElement from '@/components/ui/ButtonElement/ButtonElement'
 
 const CardSubscription = ({cardSub}) => {
     const {title, amount, billingDate, category, status} = cardSub;
@@ -16,6 +17,10 @@ const CardSubscription = ({cardSub}) => {
             <div className={styles.pay}>
                 <h4 className={styles.amount}>{amount}₽</h4>
                 <h4 className={styles.date}>{date}</h4>
+                <div className={styles.buttonsBlock}>
+                    <ButtonElement className={'buttonsCard purpleButton'}>Редактировать</ButtonElement>
+                    <ButtonElement className={'buttonsCard pinkButton'}>Удалить</ButtonElement>
+                </div>
             </div>
         </div>
     )

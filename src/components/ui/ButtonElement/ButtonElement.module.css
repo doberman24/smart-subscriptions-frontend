@@ -1,31 +1,69 @@
 .button {
     font-family: "Montserrat", sans-serif;
-    background-color: #ff3d85;
     border: none;
-    color: #e9e9f5;
-    padding: 10px 50px;
-    border-radius: 8px;
     font-weight: 600;
-    font-size: 2.5rem;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow:
-        0 4px 12px rgba(255, 61, 133, 0.4),
-        0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
 }
 .button:hover {
-    background-color: #ff5993; /* чуть светлее */
-    box-shadow:
-        0 6px 20px rgba(255, 61, 133, 0.5),
-        0 4px 8px rgba(0, 0, 0, 0.12);
-    transform: translateY(-1px); /* небольшой подъем */
+    transform: translateY(-1px);
 }
 .button:active {
     transform: scale(0.97);
+}
+
+.pinkButton {
+    background-color: #ff3d85;
+    color: #e9e9f5;
+    box-shadow:
+        0 4px 12px rgba(255, 61, 133, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.pinkButton:hover {
+    background-color: #ff5993;
+    box-shadow:
+        0 6px 20px rgba(255, 61, 133, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.12);
+}
+.pinkButton:active {
     box-shadow:
         0 2px 6px rgba(255, 61, 133, 0.3),
         0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+
+.purpleButton {
+    background-color: #5552e8;
+    color: #e9e9f5;
+    box-shadow:
+        0 4px 12px rgba(85, 82, 232, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.purpleButton:hover {
+    background-color: #6a67ee;
+    box-shadow:
+        0 6px 20px rgba(85, 82, 232, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.12);
+}
+.purpleButton:active {
+    box-shadow:
+        0 2px 6px rgba(85, 82, 232, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+
+.mainButton {
+    padding: 10px 50px;
+    border-radius: 8px;
+    font-size: 2.5rem;
+}
+
+.buttonsCard {
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
 }

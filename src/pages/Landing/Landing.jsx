@@ -37,7 +37,7 @@ const Landing = () => {
         </div>
         <div className={styles.mainButton}>
           <Link to='/dashboard'>
-            <ButtonElement>Начать бесплатно</ButtonElement>
+            <ButtonElement className={'mainButton pinkButton'}>Начать бесплатно</ButtonElement>
           </Link>
         </div>
       </div>
