@@ -59,7 +59,9 @@ export const userApi = {
                         "id": "sub_101",
                         "title": "Spotify",
                         "amount": 269,
-                        "billingDate": "2025-04-08",
+                        "billingDate": "2025-04-15",
+                        "lastPaymentDate": "2025-03-15",
+                        "isPaid": true,
                         "category": "Музыка",
                         "icon": "spotify.png",
                         "status": "active"
@@ -68,7 +70,9 @@ export const userApi = {
                         "id": "sub_102",
                         "title": "Netflix",
                         "amount": 899,
-                        "billingDate": "2025-04-10",
+                        "billingDate": "2025-04-09",
+                        "lastPaymentDate": "2025-03-09",
+                        "isPaid": false,
                         "category": "Развлечения",
                         "icon": "yandex.png",
                         "status": "active"
@@ -78,6 +82,8 @@ export const userApi = {
                         "title": "Notion",
                         "amount": 499,
                         "billingDate": "2025-04-03",
+                        "lastPaymentDate": "2025-03-03",
+                        "isPaid": true,
                         "category": "Продуктивность",
                         "icon": "notion.png",
                         "status": "active"
@@ -106,7 +112,7 @@ export const userApi = {
                 "topSpending": [
                     {
                         "title": "YouTube Premium",
-                        "amount": 799
+                        "amount": 799,
                     },
                     {
                         "title": "Notion",

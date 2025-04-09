@@ -2,23 +2,27 @@ import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import Api from '@/api/api';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
+import Diagramm from '@/components/ui/Diagramm';
 
 const Dashboard = () => {
   const [subscriptions, setSubscriptions] = useState({});
   const [nextPayment, setNextPayment] = useState('');
   const [cardSub, setCardSub] = useState([])
+  const [diagrammData, setDiagrammData] = useState([]);
 
   useEffect(() => {
     const api = new Api();
     const loadSubscriptions = async () => {
-      const {subscriptions} = await api.getUserData();
-      
+      const {subscriptions, analytics} = await api.getUserData();
+
       setSubscriptions(subscriptions.summary);
+
       const paymentDate = new Date(subscriptions.summary.nextPayment.date);
-      
       setNextPayment(paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'}));
 
       setCardSub(subscriptions.latest);
+
+      setDiagrammData(analytics.topSpending)
     }
 
     loadSubscriptions();
@@ -46,6 +50,13 @@ const Dashboard = () => {
         </div>
         <div className={styles.diagrammBlock}>
           <h2>График расходов</h2>
+          <div className={styles.diagramm}>
+            <div className={styles.sortBy}>
+              <div className={`${styles.tabs} ${styles.active}`}>Категории</div>
+              <div className={styles.tabs}>Максимальная цена</div>
+            </div>
+            <Diagramm diagrammData={diagrammData} />
+          </div>
         </div>
       </div>
     </div>

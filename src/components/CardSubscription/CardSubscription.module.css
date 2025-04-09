@@ -1,8 +1,9 @@
 .card {
     display: grid;
-    grid-template-columns: 1fr 5fr 2fr;
+    grid-template-columns: 1fr 5fr 3fr;
+    row-gap: 10px;
     background-color: #e5e5f1;
-    padding: 30px;
+    padding: 20px 30px 10px 30px;
     border-radius: 12px;
     align-items: center;
     box-shadow:  0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -10,9 +11,13 @@
 
 .icon {
     padding-right: 40px;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .titleBlock {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -29,6 +34,8 @@
 }
 
 .pay {
+    grid-column: 3;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,6 +55,31 @@
 }
 
 .buttonsBlock {
+    grid-column: 3;
+    grid-row: 2;
     display: flex;
     gap: 20px;
+}
+
+.statusSubscription {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    width: fit-content;
+}
+
+.activeStatus {
+    color: white; /* Белый текст */
+    background-color: rgba(46, 125, 50, 0.8); 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.disactiveStatus {
+    color: #888; /* Тёмно-серый текст для неактивного статуса */
+    background-color: rgba(189, 189, 189, 0.8); /* Полупрозрачный серый фон */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
