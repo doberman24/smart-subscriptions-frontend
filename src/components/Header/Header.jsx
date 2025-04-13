@@ -23,8 +23,25 @@ const Header = () => {
         <Link to='/dashboard'><img src={logo} height='50px' alt="logo" /></Link>
         <h2>Привет, <span className={styles.name}>{user}</span>!</h2>
         <nav className={styles.nav}>
-          <Link className={styles.settings} to='/settings'>
-            <div className={styles.icon}></div>
+          <Link className={styles.icon} to='/dashboard'>
+            <div className={styles.dashboard}></div>
+            <p>Дашборд</p>
+          </Link>
+          <Link className={styles.icon} to='/subscriptions'>
+            <div className={styles.subscriptions}></div>
+            <p>Подписки</p>
+          </Link>
+          <Link className={styles.icon} to='/analitics'>
+            <div className={styles.analitics}></div>
+            <p>Аналитика</p>
+          </Link>
+          <Link className={styles.icon} to='/login'>
+            <div className={styles.login}></div>
+            <p>Войти</p>
+          </Link>
+          <Link className={styles.icon} to='/settings'>
+            <div className={styles.settings}></div>
+            <p>Настройки</p>
           </Link>
         </nav>
     </div>

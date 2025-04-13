@@ -1,0 +1,45 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #2b2b2b;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+  }
+  
+  ul {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  li {
+    margin-bottom: 8px;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .date {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+  }
+  

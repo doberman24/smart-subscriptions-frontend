@@ -6,7 +6,7 @@ import Landing from '@/pages/Landing/Landing';
 import Login from '@/pages/Login/Login';
 import Settings from '@/pages/Settings/Settings';
 import Subscriptions from '@/pages/Subscriptions/Subscriptions';
-import HeaderLayout from '@/layouts/HeaderLayout';
+import HeaderFooterLayout from '@/layouts/HeaderFooterLayout';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <main className='container'>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route element={<HeaderLayout />}>
+          <Route element={<HeaderFooterLayout />}>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/analitics' element={<Analitics />} />
             <Route path='/subscriptions' element={<Subscriptions />} />

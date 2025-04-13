@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    color: #a99ec5;
+}
+
+.content {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    padding: 50px 0;
+    border-top: 1px solid rgb(85, 82, 232);
+    justify-content: space-between;
+
+}
+
+.socials {
+    display: flex;
+    gap: 20px;
+}

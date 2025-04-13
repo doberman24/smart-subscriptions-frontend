@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import Api from '@/api/api';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
-import Diagramm from '@/components/ui/Diagramm';
+import Diagramm from '@/components/ui/Diagramm/Diagramm';
 
 const Dashboard = () => {
   const [subscriptions, setSubscriptions] = useState({});
   const [nextPayment, setNextPayment] = useState('');
   const [cardSub, setCardSub] = useState([])
   const [diagrammData, setDiagrammData] = useState([]);
+  const [typeDiagram, setTypeDiagram] = useState('category');
+
+  const api = new Api();
 
   useEffect(() => {
-    const api = new Api();
     const loadSubscriptions = async () => {
       const {subscriptions, analytics} = await api.getUserData();
 
@@ -27,6 +29,15 @@ const Dashboard = () => {
 
     loadSubscriptions();
   }, []);
+
+  useEffect(() => {
+    const loadAnalitics = async () => {
+      const {analytics} = await api.getUserData();
+      setDiagrammData(typeDiagram === 'category' ? analytics.byCategory : analytics.topSpending);
+    }
+    loadAnalitics();
+  }, [typeDiagram])
+
 
   return (
     <div className={styles.dashboardPage}>
@@ -52,10 +63,10 @@ const Dashboard = () => {
           <h2>График расходов</h2>
           <div className={styles.diagramm}>
             <div className={styles.sortBy}>
-              <div className={`${styles.tabs} ${styles.active}`}>Категории</div>
-              <div className={styles.tabs}>Максимальная цена</div>
+              <div onClick={() => setTypeDiagram('category')} className={`${styles.tabs} ${styles.tab} ${typeDiagram === 'category' ? styles.active : ''}`}>Категории</div>
+              <div onClick={() => setTypeDiagram('top')} className={`${styles.tabs} ${styles.tab} ${typeDiagram === 'top' ? styles.active : ''}`}>Максимальная цена</div>
             </div>
-            <Diagramm diagrammData={diagrammData} />
+            <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
           </div>
         </div>
       </div>

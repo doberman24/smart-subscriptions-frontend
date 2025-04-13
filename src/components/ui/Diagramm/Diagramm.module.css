@@ -1,0 +1,31 @@
+.tooltip {
+    color: #f2f2f9;
+    background-color: #696985cc; 
+    padding: 5px;
+    border-radius: 8px; 
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    width: 48%;
+}
+
+.legendBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #dcdce7;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.legendMarker {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
