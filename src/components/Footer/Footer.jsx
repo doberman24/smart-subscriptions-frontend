@@ -3,8 +3,15 @@ import logo from '@/assets/img/logo.svg';
 import vk from '@/assets/icons/vk.svg';
 import telegram from '@/assets/icons/telegram.svg';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+
+  const {loading} = useSelector(state => state.user);
+  if (loading) {
+      return null;
+  }
+
   return (
     <div className={styles.footer}>
         <div className={styles.content}>

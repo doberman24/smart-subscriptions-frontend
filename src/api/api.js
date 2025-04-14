@@ -1,5 +1,5 @@
 import axios from "axios";
-import { reviewsApi, userApi } from "./mockApi";
+import { reviewsApi, userApi, subscriptionsApi } from "./mockApi";
 
 class Api {
     constructor() {
@@ -18,11 +18,16 @@ class Api {
 
     async getUserData() {
         try {
-            return await this.userApi.getUser()
+            // await new Promise(resolve => setTimeout(resolve, 1000));
+            return await this.userApi.getUser();
         } catch (error) {
             console.error('Ошибка загрузки пользователя', error);
             return '';
         }
+    };
+
+    async getSubscriptionsData() {
+        return await this.subscriptionsApi.getSubscriptions();
     }
 }
 

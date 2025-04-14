@@ -1,27 +1,26 @@
 import logo from '@/assets/img/logo.svg';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Api from '@/api/api';
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from '@/redux/user';
 
 const Header = () => {
-  const [user, setUser] = useState('');
 
+  const dispatch = useDispatch();
+  const {user, loading} = useSelector(state => state.user);
   useEffect(() => {
-    const api = new Api();
-    const loadUsers = async () => {
-      const data = await api.getUserData();
-      setUser(data.user.name);
-    }
-    loadUsers();
-  }, [])
+    dispatch(fetchUser());
+  }, [dispatch]);
 
+  if (loading || !user.name) {
+    return null;
+  }
 
   return (
     <div className={styles.header}>
         <Link to='/dashboard'><img src={logo} height='50px' alt="logo" /></Link>
-        <h2>Привет, <span className={styles.name}>{user}</span>!</h2>
+        <h2>Привет, <span className={styles.name}>{user.name}</span>!</h2>
         <nav className={styles.nav}>
           <Link className={styles.icon} to='/dashboard'>
             <div className={styles.dashboard}></div>

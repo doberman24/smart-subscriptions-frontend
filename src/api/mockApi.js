@@ -127,3 +127,140 @@ export const userApi = {
         };
     },
 };
+
+export const subscriptionsApi = {
+    async getSubscriptions() {
+        return [
+            {
+              id: 'sub_001',
+              title: 'Netflix',
+              amount: 999,
+              billingDate: '2025-05-01',
+              recurrence: 'Ежемесячно',
+              category: 'Развлечения',
+              icon: 'netflix.png',
+              paymentMethod: 'Карта Visa',
+              status: 'active',
+              isPaid: true,
+              isNew: false
+            },
+            {
+              id: 'sub_002',
+              title: 'Spotify',
+              amount: 269,
+              billingDate: '2025-04-08',
+              recurrence: 'Ежемесячно',
+              category: 'Музыка',
+              icon: 'spotify.png',
+              paymentMethod: 'СБП',
+              status: 'active',
+              isPaid: false,
+              isNew: true
+            },
+            {
+              id: 'sub_003',
+              title: 'GitHub Copilot',
+              amount: 1000,
+              billingDate: '2025-04-15',
+              recurrence: 'Ежемесячно',
+              category: 'Разработка',
+              icon: 'copilot.png',
+              paymentMethod: 'Карта MasterCard',
+              status: 'inactive',
+              isPaid: false,
+              isNew: false
+            },
+            {
+              id: 'sub_004',
+              title: 'Яндекс Плюс',
+              amount: 299,
+              billingDate: '2025-05-10',
+              recurrence: 'Ежемесячно',
+              category: 'Сервисы',
+              icon: 'yandex.png',
+              paymentMethod: 'Карта Visa',
+              status: 'active',
+              isPaid: true,
+              isNew: false
+            },
+            {
+              id: 'sub_005',
+              title: 'Duolingo Premium',
+              amount: 199,
+              billingDate: '2025-04-18',
+              recurrence: 'Ежемесячно',
+              category: 'Образование',
+              icon: 'duolingo.png',
+              paymentMethod: 'СБП',
+              status: 'active',
+              isPaid: false,
+              isNew: true
+            },
+            {
+              id: 'sub_006',
+              title: 'Adobe Creative Cloud',
+              amount: 2399,
+              billingDate: '2025-04-25',
+              recurrence: 'Ежемесячно',
+              category: 'Работа',
+              icon: 'adobe.png',
+              paymentMethod: 'Карта MasterCard',
+              status: 'active',
+              isPaid: true,
+              isNew: false
+            },
+            {
+              id: 'sub_007',
+              title: 'Zoom Pro',
+              amount: 1199,
+              billingDate: '2025-04-20',
+              recurrence: 'Ежемесячно',
+              category: 'Работа',
+              icon: 'zoom.png',
+              paymentMethod: 'Карта Visa',
+              status: 'inactive',
+              isPaid: false,
+              isNew: false
+            },
+            {
+              id: 'sub_008',
+              title: 'Дом.ru Интернет',
+              amount: 899,
+              billingDate: '2025-04-12',
+              recurrence: 'Ежемесячно',
+              category: 'ЖКХ',
+              icon: 'domru.png',
+              paymentMethod: 'СБП',
+              status: 'active',
+              isPaid: true,
+              isNew: false
+            },
+            {
+              id: 'sub_009',
+              title: 'FitOn Pro',
+              amount: 499,
+              billingDate: '2025-04-22',
+              recurrence: 'Ежемесячно',
+              category: 'Здоровье',
+              icon: 'fiton.png',
+              paymentMethod: 'Карта MasterCard',
+              status: 'active',
+              isPaid: false,
+              isNew: true
+            },
+            {
+              id: 'sub_010',
+              title: 'Xbox Game Pass',
+              amount: 799,
+              billingDate: '2025-04-14',
+              recurrence: 'Ежемесячно',
+              category: 'Игры',
+              icon: 'xbox.png',
+              paymentMethod: 'Карта Visa',
+              status: 'active',
+              isPaid: false,
+              isNew: false
+            }
+        ];
+    },
+};

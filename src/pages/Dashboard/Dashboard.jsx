@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './Dashboard.module.css';
+import loadingStyles from '@/components/ui/Loading.module.css';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSubscriptions } from '@/redux/subscriptions';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const [typeDiagram, setTypeDiagram] = useState('category');
 
-  const dispatch = useDispatch();
-  const {subscriptions, analytics, loading} = useSelector(state => state.subscriptions);
-  useEffect(() => {
-    dispatch(fetchSubscriptions());
-  }, [dispatch]);
+  const {subscriptions, analytics, loading} = useSelector(state => state.user);
 
   if (loading || !subscriptions.summary) {
-    return <div>Загрузка...</div>
+    return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
   const paymentDate = new Date(subscriptions.summary.nextPayment.date);
@@ -27,6 +23,7 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardPage}>
+      <h1>Дашборд</h1>
       <div className={styles.mainStatistics}>
         <div className={styles.statistic}>
           <h3>У вас есть<br /><span className={styles.mainData}>{subscriptions.summary.activeCount}</span><br /><span className={styles.marker}>активных</span> подписок</h3>
