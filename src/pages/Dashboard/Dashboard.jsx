@@ -1,52 +1,38 @@
 import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
-import Api from '@/api/api';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
+import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSubscriptions } from '@/redux/subscriptions';
 
 const Dashboard = () => {
-  const [subscriptions, setSubscriptions] = useState({});
-  const [nextPayment, setNextPayment] = useState('');
-  const [cardSub, setCardSub] = useState([])
-  const [diagrammData, setDiagrammData] = useState([]);
   const [typeDiagram, setTypeDiagram] = useState('category');
 
-  const api = new Api();
-
+  const dispatch = useDispatch();
+  const {subscriptions, analytics, loading} = useSelector(state => state.subscriptions);
   useEffect(() => {
-    const loadSubscriptions = async () => {
-      const {subscriptions, analytics} = await api.getUserData();
+    dispatch(fetchSubscriptions());
+  }, [dispatch]);
 
-      setSubscriptions(subscriptions.summary);
+  if (loading || !subscriptions.summary) {
+    return <div>Загрузка...</div>
+  }
 
-      const paymentDate = new Date(subscriptions.summary.nextPayment.date);
-      setNextPayment(paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'}));
+  const paymentDate = new Date(subscriptions.summary.nextPayment.date);
+  const nextPayment = paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'});
 
-      setCardSub(subscriptions.latest);
-
-      setDiagrammData(analytics.topSpending)
-    }
-
-    loadSubscriptions();
-  }, []);
-
-  useEffect(() => {
-    const loadAnalitics = async () => {
-      const {analytics} = await api.getUserData();
-      setDiagrammData(typeDiagram === 'category' ? analytics.byCategory : analytics.topSpending);
-    }
-    loadAnalitics();
-  }, [typeDiagram])
-
+  const cardSub = subscriptions.latest;
+  const diagrammData = typeDiagram === 'category' ? analytics.byCategory : analytics.topSpending;
 
   return (
     <div className={styles.dashboardPage}>
       <div className={styles.mainStatistics}>
         <div className={styles.statistic}>
-          <h3>У вас есть<br /><span className={styles.mainData}>{subscriptions.activeCount}</span><br /><span className={styles.marker}>активных</span> подписок</h3>
+          <h3>У вас есть<br /><span className={styles.mainData}>{subscriptions.summary.activeCount}</span><br /><span className={styles.marker}>активных</span> подписок</h3>
         </div>
         <div className={styles.statistic}>
-          <h3><span className={styles.mainData}>{subscriptions.monthlySpending}₽<br /></span> было <span className={styles.marker}>потрачено</span> в этом месяце</h3>
+          <h3><span className={styles.mainData}>{subscriptions.summary.monthlySpending}₽<br /></span> было <span className={styles.marker}>потрачено</span> в этом месяце</h3>
         </div>
         <div className={styles.statistic}>
           <h3>Следующий <span className={styles.marker}>платеж<br /></span> <span className={styles.mainData}>{nextPayment}</span></h3>
@@ -69,6 +55,7 @@ const Dashboard = () => {
             <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
           </div>
         </div>
+        <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
       </div>
     </div>
   )

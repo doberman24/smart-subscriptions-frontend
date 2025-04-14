@@ -8,10 +8,10 @@
 
 .content {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
-    padding: 50px 0;
-    border-top: 1px solid rgb(85, 82, 232);
+    padding: 20px 0;
+    border-top: 1px solid #5552e8;
     justify-content: space-between;
 
 }
@@ -19,4 +19,26 @@
 .socials {
     display: flex;
     gap: 20px;
+}
+
+.links {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: left;
+    column-gap: 40px;
+}
+
+.link {
+    color: #615a74;
+    font-family: "Manrope", sans-serif;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+}
+.link:hover {
+    text-decoration: none;
+    transform: translateY(1px);
+    color: #5552e8;
+}
+.link:active {
+     color:  #ff3d85;
 }

@@ -40,6 +40,7 @@
 .icon:hover {
     color: #5552e8;
     transform: translateY(-1px);
+    text-decoration: none;
 }
 .icon:active {
     outline: 2px #ff3d85 solid;

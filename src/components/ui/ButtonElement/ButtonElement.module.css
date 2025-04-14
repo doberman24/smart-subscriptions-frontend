@@ -68,6 +68,13 @@
     font-size: 0.7rem;
 }
 
+.addButton {
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    width: fit-content;
+}
+
 
 /*Не активная кнопка - цвет:
 Цвет фона: #e0e0e0 (светлый серый).

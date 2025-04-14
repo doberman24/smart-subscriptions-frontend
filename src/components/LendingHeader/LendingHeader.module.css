@@ -18,6 +18,9 @@ a {
     font-weight: 500;
     font-style: normal;
 }
+nav a:hover {
+    text-decoration: none;
+}
 
 .login {
     background-color: #5552e8;

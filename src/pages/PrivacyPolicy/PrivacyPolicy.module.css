@@ -4,19 +4,22 @@
     padding: 40px 20px;
     line-height: 1.6;
     font-size: 16px;
-    color: #2b2b2b;
+    color: #615a74;
+    font-family: "Inter", sans-serif;
+
   }
   
   h1 {
     font-size: 28px;
     margin-bottom: 24px;
+    font-family: "Montserrat", sans-serif;
   }
   
   h2 {
     font-size: 20px;
     margin-top: 32px;
     margin-bottom: 12px;
-    color: #1a1a1a;
+    font-family: "Montserrat", sans-serif;
   }
   
   ul {
@@ -26,20 +29,23 @@
   
   li {
     margin-bottom: 8px;
+    list-style: disc;
   }
   
-  a {
-    color: #007bff;
-    text-decoration: none;
+
+  .back {
+    position: absolute;
+    top: 14px;
+    left: 15px;
+    border: 1px solid #615a74;
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background-color: #f2f2f9;
+    cursor: pointer;
   }
-  
-  a:hover {
-    text-decoration: underline;
+
+  .back:active {
+    transform: translateY(1px);
   }
-  
-  .date {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #777;
-  }
-  

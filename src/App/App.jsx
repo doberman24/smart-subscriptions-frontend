@@ -7,6 +7,7 @@ import Login from '@/pages/Login/Login';
 import Settings from '@/pages/Settings/Settings';
 import Subscriptions from '@/pages/Subscriptions/Subscriptions';
 import HeaderFooterLayout from '@/layouts/HeaderFooterLayout';
+import PrivacyPolicy from '@/pages/PrivacyPolicy/PrivacyPolicy';
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
             <Route path='/settings' element={<Settings />} />
             <Route path='/login' element={<Login />} />
           </Route>
-        </Routes>
+          <Route path='/politics' element={<PrivacyPolicy />} />
+          </Routes>
       </main>
     </BrowserRouter>
   )

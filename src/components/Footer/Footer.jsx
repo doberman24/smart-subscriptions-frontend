@@ -13,7 +13,14 @@ const Footer = () => {
                 <Link to='/#'><img src={vk} height="30px" alt="vk" /></Link>
                 <Link to='/#'><img src={telegram} height="30px" alt="telegram" /></Link>
             </div>
-            <p>© 2024 SmartSubscription. All rights reserved.</p>
+            <div className={styles.links}>
+              <Link className={styles.link} to='/dashboard'>Дашборд</Link>
+              <Link className={styles.link} to='/login'>Войти</Link>
+              <Link className={styles.link} to='/subscriptions'>Подписки</Link>
+              <Link className={styles.link} to='/analitics'>Аналитика</Link>
+              <Link className={styles.link} to='/politics'>Политика конфиденциальности</Link>
+              <Link className={styles.link} to='/settings'>Настройки</Link>
+            </div>
         </div>
     </div>
   )
