@@ -1,10 +1,11 @@
 import axios from "axios";
 import { reviewsApi, userApi, subscriptionsApi } from "./mockApi";
 
-class Api {
+export class Api {
     constructor() {
         this.reviewsApi = reviewsApi;
         this.userApi = userApi;
+        this.subscriptionsApi = subscriptionsApi;
     };
 
     async getReviewsData() {
@@ -31,4 +32,4 @@ class Api {
     }
 }
 
-export default Api;
+export default new Api();

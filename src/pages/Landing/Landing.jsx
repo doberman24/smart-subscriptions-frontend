@@ -7,7 +7,7 @@ import notification from '@/assets/icons/notification.svg';
 import diagramm from '@/assets/icons/diagramm.svg';
 import plug from '@/assets/img/plug.png';
 import Feedback from '@/components/Feedback/Feedback';
-import Api from '@/api/api';
+import api from '@/api/api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,9 +15,9 @@ const Landing = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const reviewsApi = new Api();
+    // const reviewsApi = new Api();
     const loadReviews = async () => {
-      const data = await reviewsApi.getReviewsData();
+      const data = await api.getReviewsData();
       setReviews(data);
     }
     loadReviews();

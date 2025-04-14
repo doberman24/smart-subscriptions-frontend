@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Api from "@/api/api";
+import api from "@/api/api";
 
 const initialState = {
     user: {},
@@ -9,7 +9,7 @@ const initialState = {
     error: null,
 }
 
-const api = new Api();
+// const api = new Api();
 
 export const fetchUser = createAsyncThunk(
     'user/fetch',
