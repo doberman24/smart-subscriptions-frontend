@@ -57,10 +57,10 @@ export const userApi = {
                 "latest": [
                     {
                         "id": "sub_101",
-                        "title": "Spotify",
+                        "titleSub": "Spotify",
                         "amount": 269,
-                        "billingDate": "2025-04-15",
-                        "lastPaymentDate": "2025-03-15",
+                        "billingDate": "2025-05-15",
+                        "recurrence": "Ежемесячно",
                         "isPaid": true,
                         "category": "Музыка",
                         "icon": "spotify.png",
@@ -68,10 +68,10 @@ export const userApi = {
                     },
                     {
                         "id": "sub_102",
-                        "title": "Netflix",
+                        "titleSub": "Netflix",
                         "amount": 899,
-                        "billingDate": "2025-04-09",
-                        "lastPaymentDate": "2025-03-09",
+                        "billingDate": "2025-04-15",
+                        "recurrence": "Ежемесячно",
                         "isPaid": false,
                         "category": "Развлечения",
                         "icon": "yandex.png",
@@ -79,10 +79,10 @@ export const userApi = {
                     },
                     {
                         "id": "sub_103",
-                        "title": "Notion",
+                        "titleSub": "Notion",
                         "amount": 499,
-                        "billingDate": "2025-04-03",
-                        "lastPaymentDate": "2025-03-03",
+                        "billingDate": "2025-05-10",
+                        "recurrence": "Ежемесячно",
                         "isPaid": true,
                         "category": "Продуктивность",
                         "icon": "notion.png",
@@ -133,7 +133,7 @@ export const subscriptionsApi = {
         return [
             {
               id: 'sub_001',
-              title: 'Netflix',
+              titleSub: 'Netflix',
               amount: 999,
               billingDate: '2025-05-01',
               recurrence: 'Ежемесячно',
@@ -146,7 +146,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_002',
-              title: 'Spotify',
+              titleSub: 'Spotify',
               amount: 269,
               billingDate: '2025-04-08',
               recurrence: 'Ежемесячно',
@@ -159,7 +159,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_003',
-              title: 'GitHub Copilot',
+              titleSub: 'GitHub Copilot',
               amount: 1000,
               billingDate: '2025-04-15',
               recurrence: 'Ежемесячно',
@@ -172,7 +172,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_004',
-              title: 'Яндекс Плюс',
+              titleSub: 'Яндекс Плюс',
               amount: 299,
               billingDate: '2025-05-10',
               recurrence: 'Ежемесячно',
@@ -185,9 +185,9 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_005',
-              title: 'Duolingo Premium',
+              titleSub: 'Duolingo Premium',
               amount: 199,
-              billingDate: '2025-04-18',
+              billingDate: '2025-04-16',
               recurrence: 'Ежемесячно',
               category: 'Образование',
               icon: 'duolingo.png',
@@ -198,7 +198,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_006',
-              title: 'Adobe Creative Cloud',
+              titleSub: 'Adobe Creative Cloud',
               amount: 2399,
               billingDate: '2025-04-25',
               recurrence: 'Ежемесячно',
@@ -211,7 +211,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_007',
-              title: 'Zoom Pro',
+              titleSub: 'Zoom Pro',
               amount: 1199,
               billingDate: '2025-04-20',
               recurrence: 'Ежемесячно',
@@ -224,7 +224,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_008',
-              title: 'Дом.ru Интернет',
+              titleSub: 'Дом.ru Интернет',
               amount: 899,
               billingDate: '2025-04-12',
               recurrence: 'Ежемесячно',
@@ -237,7 +237,7 @@ export const subscriptionsApi = {
             },
             {
               id: 'sub_009',
-              title: 'FitOn Pro',
+              titleSub: 'FitOn Pro',
               amount: 499,
               billingDate: '2025-04-22',
               recurrence: 'Ежемесячно',
@@ -245,12 +245,12 @@ export const subscriptionsApi = {
               icon: 'fiton.png',
               paymentMethod: 'Карта MasterCard',
               status: 'active',
-              isPaid: false,
+              isPaid: true,
               isNew: true
             },
             {
               id: 'sub_010',
-              title: 'Xbox Game Pass',
+              titleSub: 'Xbox Game Pass',
               amount: 799,
               billingDate: '2025-04-14',
               recurrence: 'Ежемесячно',

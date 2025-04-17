@@ -2,22 +2,24 @@ import { FaAngleDown } from "react-icons/fa6"
 import styles from './Dropdown.module.css'
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({categoryList}) => {
-  const [category, setCategory] = useState(['Все']);
+const Dropdown = ({list, type}) => {
+  const [dataList, setDataList] = useState([]);
   const [showList, setShowList] = useState(false);
+  const [inputData, setInputData] = useState(type === 'sort' ? 'Нет' : 'Все');
   const dropdownElement = useRef(null);
-  
+
   const handleChange = (e) => {
-    setCategory(e.target.value);
+    setInputData(e.target.value);
   }
 
-  const selectCategory = (item) => {
-    setCategory(item);
+  const selectItem = (item) => {
+    setInputData(item);
     setShowList(false);
   }
 
 
   useEffect(() => {
+    type === 'category' ? setDataList(['Все', ...list]) : setDataList([...list]);
     const handleClickOut = (e) => {
       if (dropdownElement.current && !dropdownElement.current.contains(e.target)) {
         setShowList(false);
@@ -33,12 +35,17 @@ const Dropdown = ({categoryList}) => {
         style={{borderColor: showList && '#ff3d85', boxShadow: showList && '0 4px 8px #ff3d854d'}} 
         onFocus={() => setShowList(true)}
       >
-        <input type="text" value={category} onChange={handleChange} />
-        <FaAngleDown style={{cursor: 'pointer'}} onClick={() => setShowList(true)} />
+        <input 
+          type="text" 
+          value={inputData} 
+          onChange={handleChange} 
+          style={{width: type === 'sort' ? '270px' : '130px'}}
+        />
+        <FaAngleDown style={{cursor: 'pointer'}} onClick={() => setShowList(value => !value)} />
       </div>
       <ul className={`${styles.dropdownList} ${showList ? styles.showList : ''}`}>
-        {categoryList.map((item, index) => (
-          <li key={index} onClick={() => selectCategory(item)}>{item}</li>
+        {dataList.map((item, index) => (
+          <li key={index} onClick={() => selectItem(item)}>{item}</li>
         ))}
       </ul>
     </div>

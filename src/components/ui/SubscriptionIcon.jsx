@@ -1,9 +1,19 @@
 import * as simpleIcons from 'simple-icons';
 
 const SubscriptionIcon = ({name, size = 32}) => {
-    const icon = simpleIcons[`si${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`];
+    const format = `si${name.charAt(0).toUpperCase()}${name.slice(1).toLowerCase()}`;
+    const icon = simpleIcons[format.split(' ')[0]];
 
-    if (!icon) return null;
+    if (!icon) return (
+        <div
+            style={{
+                width: size,
+                height: size,
+                border: '3px solid #5552e8',
+                borderRadius: 12,
+            }}
+        />
+    );
     
     return (
         <div

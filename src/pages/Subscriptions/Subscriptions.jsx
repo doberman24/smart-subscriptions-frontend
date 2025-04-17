@@ -6,8 +6,7 @@ import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchSubscriptions } from '@/redux/subscriptions';
-
-
+import CardSubscription from '@/components/CardSubscription/CardSubscription';
 
 const Subscriptions = () => {
 
@@ -21,7 +20,9 @@ const Subscriptions = () => {
   if(loading || !subscriptions.length) {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
+
   const categoryList = subscriptions.map(item => item.category);
+  const sortList = ['Нет', 'Стоимость', 'Дата следующего списания', 'Дата прошлого списания'];
 
   return (
     <div className={styles.subscriptionsPage}>
@@ -30,13 +31,43 @@ const Subscriptions = () => {
         <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
       </div>
       <div className={styles.filtersBlock}>
-        <span className={styles.searchFilter}>
-          <FaSearch />
-          <input type="text" placeholder='Поиск'/>
-        </span>
-        <span className={styles.categoryFilter}>
-          <Dropdown categoryList={categoryList} />
-        </span>
+        <div className={styles.itemBlock}>
+          <h6>Искать:</h6>
+          <span className={`${styles.inputFilter} ${styles.searchFilter}`}>
+            <FaSearch />
+            <input type="text" placeholder='Название подписки'/>
+          </span>
+        </div>
+        <div className={styles.itemBlock}>
+          <h6>Выбрать категорию:</h6>
+          <span className={styles.categoryFilter}>
+            <Dropdown list={categoryList} type={'category'} />
+          </span>
+        </div>
+        <div className={styles.itemBlock}>
+          <h6>Сортировать по:</h6>
+          <span className={styles.categoryFilter}>
+            <Dropdown list={sortList} type={'sort'} />
+          </span>
+        </div>
+        <div className={styles.itemBlock}>
+          <h6>Цена:</h6>
+          <span className={`${styles.inputFilter} ${styles.rangeFilter}`}>
+            <label>от:
+              <input name='from' type='number' />
+              ₽
+            </label>
+            <label>до: 
+              <input name='to' type='number' />
+              ₽
+            </label>
+          </span>
+        </div>
+      </div>
+      <div className={styles.cardsBlock}>
+        {subscriptions.map(card => (
+          <CardSubscription key={card.id} cardSub={card} page={'subscriptions'}/>
+        ))}
       </div>
     </div>
   )

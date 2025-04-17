@@ -39,7 +39,7 @@ const Dashboard = () => {
         <div className={styles.lastSubscriptions}>
           <h2>Ваши подписки</h2>
           {cardSub.map((card) => (
-            <CardSubscription key={card.id} cardSub={card} />
+            <CardSubscription key={card.id} cardSub={card} page={'dashboard'} />
           ))}
         </div>
         <div className={styles.diagrammBlock}>

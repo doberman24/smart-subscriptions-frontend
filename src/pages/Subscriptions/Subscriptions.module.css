@@ -20,24 +20,31 @@
 
 .filtersBlock {
     display: flex;
-    gap: 50px;
+    gap: 30px;
+    justify-content: space-between;
 }
 
-.searchFilter {
+.itemBlock h6 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-family: "Manrope", sans-serif;
+}
+
+.inputFilter {
     display: flex;
     align-items: center;
-    width: 250px;
     border: #5552e8 solid 2px;
     border-radius: 8px;
     padding: 3px 10px;
     gap: 10px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     transition: border 0.2s ease;
     margin-bottom: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.searchFilter input {
+.inputFilter input {
     border: none;
     background-color: transparent;
     height: 100%;
@@ -48,11 +55,38 @@
     font-weight: 600;
     color: #615a74;
 }
-.searchFilter input::placeholder {
+.inputFilter input::placeholder {
     color: #b1aac5;
 }
 
-.searchFilter:focus-within {
+.inputFilter:focus-within {
     border: #ff3d85 solid 2px;
     box-shadow: 0 4px 8px #ff3d854d;
+}
+
+.searchFilter {
+    width: 270px;
+}
+
+.rangeFilter {
+    width: 320px;
+}
+.rangeFilter label {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+.rangeFilter input {
+    margin-left: 5px;
+    font-size: 1.1rem;
+    background-color: #e9e5f5;
+    border-radius: 5px;
+}
+
+.cardsBlock {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    /* grid-auto-flow: row dense; */
 }
