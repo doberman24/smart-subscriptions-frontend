@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
-    color: #615a74;
+    color: #2c2c3e;
 }
 
 .mainBlock {
@@ -12,13 +12,13 @@
     align-items: center;
     max-width: 1200px;
     padding: 150px;
-    background: radial-gradient(ellipse closest-side, #dddde9 40%, #f2f2f9);
+    background: radial-gradient(ellipse closest-side, #e9e9e9 40%, #f5f5f7);
 }
 
 .mainHeader {
     font-size: 3.5rem;
     text-transform: uppercase;
-    color: #5552e8;
+    color: #3c3cf0;
     text-align: center;
 }
 
@@ -35,7 +35,7 @@
 }
 .separator {
     margin: 20px;
-    border: #5552e8 solid 1px;
+    border: #3c3cf0 solid 1px;
     width: 200px;
 }
 
@@ -62,7 +62,7 @@
     text-align: center;
     font-size: 1.4rem;
     font-family: "Inter", sans-serif;
-    border-bottom: #5552e8 solid 3px;
+    border-bottom: #3c3cf0 solid 3px;
 }
 
 .example {

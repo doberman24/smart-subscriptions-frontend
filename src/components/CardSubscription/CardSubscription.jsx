@@ -21,30 +21,28 @@ const CardSubscription = ({cardSub, page}) => {
 
     const checkPayStatus = (lastBilling, nextBilling, isPaid, status) => {
         const currentDate = new Date().toISOString().split('T')[0];
-        if (status !== 'active') return {color: '', statusCard: 'Не активно'};
-        if (currentDate > nextBilling) return { color: '#fde2e2', statusCard: 'Активно'};
-        if (nextBilling === currentDate && !isPaid) return {color: '#fff9db', statusCard: 'Активно'};
-        if (currentDate < nextBilling && currentDate >= lastBilling && isPaid) return {color: '#e3f9e5', statusCard: 'Активно'};
-        return {color: '', statusCard: 'Не определено'};
+        if (status !== 'active') return {statusPayColor: '', statusPay: 'Не определено', statusSubscription: 'Не активно'};
+        if (currentDate > nextBilling) return {statusPayColor: 'statusOverdue', statusPay: 'Не оплачено', statusSubscription: 'Активно'};
+        if (nextBilling === currentDate && !isPaid) return {statusPayColor: 'statusPending', statusPay: 'Ожидает оплаты', statusSubscription: 'Активно'};
+        if (currentDate < nextBilling && currentDate >= lastBilling && isPaid) return {statusPayColor: 'statusPaid', statusPay: 'Оплачено', statusSubscription: 'Активно'};
+        return {statusPayColor: '', statusPay: 'Не определено'};
     }
 
-    const {color, statusCard} = checkPayStatus(lastBillingDate, nextBillingDate, isPaid, status);
+    const {statusPayColor, statusPay, statusSubscription} = checkPayStatus(lastBillingDate, nextBillingDate, isPaid, status);
 
     return (
-        <div className={`${styles.card} ${page === 'subscriptions' ? styles.subscriptions : styles.dashboard}`} 
-            style={{backgroundColor: color, filter: status !== 'active' && 'grayscale(100%)'}}
-        >
+        <div className={`${styles.card} ${page === 'subscriptions' ? styles.subscriptions : styles.dashboard}  ${styles[statusPayColor]}`}>
+            <div className={styles.statusCard} style={{visibility: status !== 'active' && 'hidden'}}>{statusPay}</div>
+            <div className={`${styles.statusSubscription} ${status === 'active' ? styles.activeStatus : styles.disactiveStatus}`}>{statusSubscription}</div>
             <div className={styles.icon}><SubscriptionIcon name={titleSub} size={60} /></div>
             <h3 className={styles.titleSub} ref={titleHeader}>{titleSub}</h3>
             <div className={styles.category}>{category}</div>
             <div className={styles.pay}>
                 <h4 className={styles.amount}>{amount}₽ / мес</h4>
-                <h4 className={styles.date} style={{visibility: status !== 'active' && 'hidden'}}>до {formatBillingDate}</h4>
+                <h4 className={styles.date}>{status === 'active' ? `до ${formatBillingDate}` : 'В архиве'}</h4>
             </div>
-            <div className={styles.statusIcon}></div>
-            <div className={`${styles.statusSubscription} ${status === 'active' ? styles.activeStatus : styles.disactiveStatus}`}>{statusCard}</div>
             <div className={styles.buttonsBlock}>
-                    <ButtonElement className={'buttonsCard purpleButton'}>Изменить</ButtonElement>
+                    <ButtonElement className={'buttonsCard purpleButtonOnDark'}>Изменить</ButtonElement>
                     <ButtonElement className={'buttonsCard pinkButton'}>Удалить</ButtonElement>
             </div>
         </div>

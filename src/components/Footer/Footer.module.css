@@ -4,7 +4,7 @@
     justify-content: center;
     text-align: center;
     font-family: "Inter", sans-serif;
-    color: #a99ec5;
+    color: #d1d1d3;
     bottom: 0;
     width: 100%;
 }
@@ -14,7 +14,7 @@
     align-items: center;
     width: 100%;
     padding: 20px 0;
-    border-top: 1px solid #5552e8;
+    border-top: 1px solid #3c3cf0;
     justify-content: space-between;
 
 }
@@ -32,7 +32,7 @@
 }
 
 .link {
-    color: #615a74;
+    color: #2c2c3e;
     font-family: "Manrope", sans-serif;
     transition: all 0.2s ease;
     margin-bottom: 2px;
@@ -40,7 +40,7 @@
 .link:hover {
     text-decoration: none;
     transform: translateY(1px);
-    color: #5552e8;
+    color: #3c3cf0;
 }
 .link:active {
      color:  #ff3d85;

@@ -4,9 +4,9 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 2px solid #5552e8;
+    border-bottom: 2px solid #3c3cf0;
     font-family: "Montserrat", sans-serif;
-    color: #615a74;
+    color: #2c2c3e;
 }
 
 .nav {
@@ -19,7 +19,7 @@
 }
 
 .name {
-    color: #5552e8;
+    color: #3c3cf0;
     text-transform: uppercase;
 }
 
@@ -29,7 +29,7 @@
     align-items: center;
     gap: 5px;
     padding: 10px;
-    color: #615a74;
+    color: #2c2c3e;
     border-radius: 8px;
     transition: all 0.2s ease;
     overflow: hidden;
@@ -38,12 +38,12 @@
     font-size: 0.7rem;
 }
 .icon:hover {
-    color: #5552e8;
+    color: #3c3cf0;
     transform: translateY(-1px);
     text-decoration: none;
 }
 .icon:active {
-    outline: 2px #ff3d85 solid;
+    outline: 2px #ff3366 solid;
     outline-offset: 2px;
 }
 

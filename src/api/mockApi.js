@@ -187,7 +187,7 @@ export const subscriptionsApi = {
               id: 'sub_005',
               titleSub: 'Duolingo Premium',
               amount: 199,
-              billingDate: '2025-04-16',
+              billingDate: '2025-04-17',
               recurrence: 'Ежемесячно',
               category: 'Образование',
               icon: 'duolingo.png',

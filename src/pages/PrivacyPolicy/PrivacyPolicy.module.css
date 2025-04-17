@@ -4,7 +4,7 @@
     padding: 40px 20px;
     line-height: 1.6;
     font-size: 16px;
-    color: #615a74;
+    color: #2c2c3e;
     font-family: "Inter", sans-serif;
 
   }
@@ -37,12 +37,12 @@
     position: absolute;
     top: 14px;
     left: 15px;
-    border: 1px solid #615a74;
+    border: 1px solid #2c2c3e;
     padding: 5px;
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     border-radius: 4px;
-    background-color: #f2f2f9;
+    background-color: #f5f5f7;
     cursor: pointer;
   }
 

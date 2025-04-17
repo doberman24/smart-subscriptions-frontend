@@ -32,7 +32,7 @@ const Dropdown = ({list, type}) => {
   return (
     <div className={styles.dropdownBlock} ref={dropdownElement}>
       <div className={styles.inputDropdown} 
-        style={{borderColor: showList && '#ff3d85', boxShadow: showList && '0 4px 8px #ff3d854d'}} 
+        style={{borderColor: showList && '#ff3366', boxShadow: showList && '0 4px 8px #ff3d854d'}} 
         onFocus={() => setShowList(true)}
       >
         <input 

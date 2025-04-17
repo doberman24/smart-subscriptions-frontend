@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
-    color: #615a74;
+    color: #2c2c3e;
     width: 1200px;
 }
 
@@ -14,14 +14,22 @@
 
 .headerBlock h1 {
     margin: 0;
-    font-size: 2.7rem;
+    font-size: 2.4rem;
     font-family: "Montserrat", sans-serif;
 }
 
 .filtersBlock {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     justify-content: space-between;
+    background: linear-gradient(145deg, #2f2f44, #262634);
+    padding: 24px 24px;
+    margin-bottom: 50px;
+    color: #ffffff;
+    border-radius: 16px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(255, 255, 255, 0.05) inset;
 }
 
 .itemBlock h6 {
@@ -34,13 +42,12 @@
 .inputFilter {
     display: flex;
     align-items: center;
-    border: #5552e8 solid 2px;
+    border: #3c3cf0 solid 2px;
     border-radius: 8px;
     padding: 3px 10px;
     gap: 10px;
     font-size: 1.2rem;
     transition: border 0.2s ease;
-    margin-bottom: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -53,14 +60,14 @@
     font-size: 1.3rem;
     font-family: "Jura", sans-serif;
     font-weight: 600;
-    color: #615a74;
+    color: #2c2c3e;
 }
 .inputFilter input::placeholder {
-    color: #b1aac5;
+    color: #b5b5b6;
 }
 
 .inputFilter:focus-within {
-    border: #ff3d85 solid 2px;
+    border: #ff3366 solid 2px;
     box-shadow: 0 4px 8px #ff3d854d;
 }
 
@@ -80,7 +87,7 @@
 .rangeFilter input {
     margin-left: 5px;
     font-size: 1.1rem;
-    background-color: #e9e5f5;
+    background-color: #3f3f57;
     border-radius: 5px;
 }
 
@@ -88,5 +95,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
+    margin-bottom: 100px;
     /* grid-auto-flow: row dense; */
 }
