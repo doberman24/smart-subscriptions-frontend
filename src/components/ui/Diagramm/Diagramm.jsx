@@ -4,17 +4,17 @@ import styles from './Diagramm.module.css';
 
 const Diagramm = ({diagrammData, typeDiagram}) => {
 
-  const COLORS = ['#a1a1f5', '#ff3d85', '#5552e8', '#ff8ab5', '#b5b5cb'];
+  const COLORS = ['#4f46e5', '#10b981','#f59e0b', '#ef4444', '#6366f1', '#14b8a6', '#e0e3ee'];
 
   return (
-    <PieChart width={430} height={380}>
+    <PieChart width={430} height={370}>
       <Pie 
         data={diagrammData} 
         dataKey={typeDiagram === 'category' ? 'total' : 'amount'} 
         nameKey={typeDiagram === 'category' ? 'category' : 'title'} 
         cx='50%' 
         cy='50%' 
-        outerRadius={130} 
+        outerRadius={120} 
         innerRadius={0}
         padding={5}
         animationDuration={150}

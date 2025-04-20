@@ -3,68 +3,66 @@
 .card {
     position: relative;
     display: grid;
-    background-color: #2c2c3e;
     border-radius: 12px;
     align-items: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    color: #ffffff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: linear-gradient(
-    to right,
-    #c5c5c5 0px,
-    #c5c5c5 6px,
-    #2c2c3e 6px,
-    #2c2c3e 100%
-  );
-}
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    color: #1e1e2f;
+    transition: all 0.2s ease-in-out;
+    background: linear-gradient(to right, #c5c5c5 0px,  #c5c5c5 8px,  #ffffff 8px,  #ffffff 100%);
 }
 .card.statusPaid {
-    background: linear-gradient(to right, #3bb273 0px, #3bb273 8px, #2c2c3e 8px, #2c2c3e 100%);
+    background: linear-gradient(to right, #3bb273 0px, #3bb273 8px, #ffffff 8px, #ffffff 100%);
 }
 .card.statusPending {
-    background: linear-gradient(to right, #f4c430 0px, #f4c430 8px, #2c2c3e 8px, #2c2c3e 100%);
+    background: linear-gradient(to right, #f4c430 0px, #f4c430 8px, #ffffff 8px, #ffffff 100%);
 
 }
 .card.statusOverdue {
-    background: linear-gradient(to right, #ff6b6b 0px, #ff6b6b 8px, #2c2c3e 8px, #2c2c3e 100%);
+    background: linear-gradient(to right, #ff6b6b 0px, #ff6b6b 8px, #ffffff 8px, #ffffff 100%);
+}
+
+.card:hover {
+    filter: brightness(0.97);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+.clickCard {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .titleSub {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    color: #ffffff;
-    font-size: 1.5rem;
+    color: #1e1e2f;
+    font-size: 16px;
 }
 
 .category {
     text-transform: uppercase;
-    font-size: 14px;
-    margin-bottom: 12px;
-    color: #d1d1e0;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #6c6f81;
 }
 
 .amount {
-    /* font-family: "Inter", sans-serif; */
-    font-size: 16px;
-    font-weight: 500;
-    color: #ff3366;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4f46e5;
 }
 
 .date {
-    color: #7070f8;
-    font-size: 14px;
+    color: #1e1e2f;
+    font-size: 13px;
     font-weight: 500;
-    text-shadow: 0 0 6px rgba(108, 108, 255, 0.5);
 }
 
 .statusCard {
-    color: #d1d1e0;
-    letter-spacing: 0.5px;
-    font-size: 0.75rem;
+    color: #4f46e5;
     text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 12px;
 }
 
 /* .statusIndicator {
@@ -83,19 +81,26 @@
     font-weight: 500;
     text-transform: uppercase;
     border-radius: 8px;
-    padding: 3px 8px 2px;
+    padding: 4px 10px;
+    align-self: end;
 }
 
 .activeStatus {
-    color: #ffffff;
-    background-color: #5fb4e6; 
-    box-shadow: 0 0 6px rgba(108, 108, 255, 0.5);
-
+    color: #16a34a;
+    background-color: #dcfce7; 
 }
 
 .disactiveStatus {
-    color: #ffffff;
-    background-color: #6e6e7e;
+    color: #6b7280;
+    background-color: #f3f4f6;
+}
+
+.notActive {
+    filter: grayscale(100%);
+    opacity: 0.8;
+}
+.notActive:hover {
+    filter: grayscale(100%) brightness(0.97);
 }
 
 
@@ -103,13 +108,13 @@
 /* Стили дашборда */
 
 .card.dashboard {
-    grid-template-columns: 1fr 5fr 3fr;
-    row-gap: 10px;
-    padding: 10px 30px;
+    grid-template-columns: min-content 5fr 3fr;
+    /* row-gap: 10px; */
+    padding: 12px 18px;
 }
 
 .dashboard .icon {
-    padding-right: 40px;
+    padding: 0 16px 0 20px;
     grid-column: 1;
     grid-row: 2 / 4;
 }
@@ -118,6 +123,7 @@
     grid-column: 2;
     grid-row: 2;
     align-self: normal;
+    margin-top: 10px;
 }
 
 .dashboard .category {
@@ -134,15 +140,16 @@
     gap: 8px;
     margin-bottom: 10px;
 }
-.dashboard .amount {
+/* .dashboard .amount {
     font-size: 1.3rem;
-}
+} */
 
 .dashboard .buttonsBlock {
+    justify-self: center;
     grid-column: 3;
     grid-row: 4;
     display: flex;
-    gap: 20px;
+    gap: 12px;
 }
 
 .dashboard .statusCard {

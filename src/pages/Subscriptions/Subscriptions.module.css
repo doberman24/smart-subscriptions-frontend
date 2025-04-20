@@ -4,6 +4,8 @@
     font-family: "Montserrat", sans-serif;
     color: #2c2c3e;
     width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 115px;
 }
 
 .headerBlock {

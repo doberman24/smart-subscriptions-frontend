@@ -18,8 +18,9 @@ const Header = () => {
   }
 
   return (
-    <div className={styles.header}>
-        <Link to='/dashboard'><img src={logo} height='50px' alt="logo" /></Link>
+    <div className={styles.headerContainer}>
+      <div className={styles.header}>
+        <Link to='/dashboard'><img src={logo} height='40px' alt="logo" /></Link>
         <h2>Привет, <span className={styles.name}>{user.name}</span>!</h2>
         <nav className={styles.nav}>
           <Link className={styles.icon} to='/dashboard'>
@@ -34,15 +35,12 @@ const Header = () => {
             <div className={styles.analitics}></div>
             <p>Аналитика</p>
           </Link>
-          <Link className={styles.icon} to='/login'>
-            <div className={styles.login}></div>
-            <p>Войти</p>
-          </Link>
           <Link className={styles.icon} to='/settings'>
             <div className={styles.settings}></div>
             <p>Настройки</p>
           </Link>
         </nav>
+      </div>
     </div>
   )
 }

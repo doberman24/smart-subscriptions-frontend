@@ -68,12 +68,12 @@ export const userApi = {
                     },
                     {
                         "id": "sub_102",
-                        "titleSub": "Netflix",
+                        "titleSub": "Adobe Creative Cloud",
                         "amount": 899,
                         "billingDate": "2025-04-15",
                         "recurrence": "Ежемесячно",
                         "isPaid": false,
-                        "category": "Развлечения",
+                        "category": "Работа",
                         "icon": "yandex.png",
                         "status": "active"
                     },
@@ -86,7 +86,7 @@ export const userApi = {
                         "isPaid": true,
                         "category": "Продуктивность",
                         "icon": "notion.png",
-                        "status": "active"
+                        "status": "inactive"
                     }
                 ]
             },

@@ -1,6 +1,5 @@
 import styles from './Feedback.module.css';
-import fStar from '@/assets/icons/full-star.svg'
-import eStar from '@/assets/icons/empty-star.svg'
+import { FaStar } from 'react-icons/fa';
 
 const Feedback = ({feedback, userName}) => {
 
@@ -11,10 +10,10 @@ const Feedback = ({feedback, userName}) => {
       <div className={styles.ratingBlock}>
         <span className={styles.rating}>
           {Array.from({length: feedback.goodRate}, (_,i) => (
-            <img key={i} src={fStar} height='25px' alt="star" />  
+            <FaStar key={i} fill='#facc15' />
           ))}
           {Array.from({length: 5 - feedback.goodRate}, (_,i) => (
-            <img key={i} src={eStar} height='25px' alt="star" />  
+            <FaStar key={i} fill='#d1d5db'/>
           ))}
         </span>
         <span className={styles.publicDate}>{feedback.createdData}</span>

@@ -1,10 +1,10 @@
 import styles from './ButtonElement.module.css'
 
-const ButtonElement = ({children, className = ''}) => {
+const ButtonElement = ({children, onMouseDown, className = ''}) => {
   const newClassName = className.split(' ').map(item => styles[item]).filter(Boolean).join(' ');
 
   return (
-    <button className={`${styles.button} ${newClassName}`}>{children}</button>
+    <button onMouseDown={onMouseDown} className={`${styles.button} ${newClassName}`}>{children}</button>
   )
 }
 
