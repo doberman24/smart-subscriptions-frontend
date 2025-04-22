@@ -1,8 +1,17 @@
 .tooltip {
-    color: #f2f2f9;
-    background-color: rgba(105, 105, 133, 0.8); 
+    background-color: #fff; 
     padding: 5px;
     border-radius: 8px; 
+    box-shadow: 2px 6px rgba(0, 0, 0, 0.1)
+}
+.tooltip h6 {
+    font-size: 14px;
+    font-weight: 800;
+}
+.tooltip p {
+    font-size: 13px;
+    color: #4f46e5;
+    font-weight: 600;
 }
 
 .legendItem {
@@ -13,8 +22,6 @@
     font-size: 14px;
     color: #6c6f81;
     font-weight: 500;
-    line-height: 1.5;
-
 }
 
 .legendBlock {
@@ -26,6 +33,7 @@
     padding: 10px;
     gap: 8px;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .legendMarker {

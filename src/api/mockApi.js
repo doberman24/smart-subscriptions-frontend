@@ -291,11 +291,11 @@ export const analiticsApi = {
                 { "date": "2025-04-15", "amount": 1640 }
             ],
             "categoryBreakdown": [
-                { "category": "ЖКХ", "amount": 2600, "color": "#3b82f6" },
-                { "category": "Развлечения", "amount": 1800, "color": "#10b981" },
-                { "category": "Транспорт", "amount": 1200, "color": "#f59e0b" },
-                { "category": "Образование", "amount": 1600, "color": "#8b5cf6" },
-                { "category": "Прочее", "amount": 1440, "color": "#ef4444" }
+                { "category": "ЖКХ", "total": 2600, "color": "#3b82f6" },
+                { "category": "Развлечения", "total": 1800, "color": "#10b981" },
+                { "category": "Транспорт", "total": 1200, "color": "#f59e0b" },
+                { "category": "Образование", "total": 1600, "color": "#8b5cf6" },
+                { "category": "Прочее", "total": 1440, "color": "#ef4444" }
             ],
             "topSubscriptions": [
                 {

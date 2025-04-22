@@ -9,6 +9,7 @@
     color: #1e1e2f;
     transition: all 0.2s ease-in-out;
     background: linear-gradient(to right, #c5c5c5 0px,  #c5c5c5 8px,  #ffffff 8px,  #ffffff 100%);
+    border: 1px solid #e5e7eb;
 }
 .card.statusPaid {
     background: linear-gradient(to right, #3bb273 0px, #3bb273 8px, #ffffff 8px, #ffffff 100%);

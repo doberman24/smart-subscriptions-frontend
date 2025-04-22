@@ -52,8 +52,8 @@ const Dashboard = () => {
             <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
           </div>
         </div>
-        <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
       </div>
+      <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
     </div>
   )
 }

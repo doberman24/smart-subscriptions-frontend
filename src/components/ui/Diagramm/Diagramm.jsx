@@ -19,6 +19,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
         padding={5}
         animationDuration={150}
         animationBegin={0}
+        margin={{top: 40, right: 50, left: 0, bottom: 20}}
       >
         {diagrammData.map((entry, index) => (
           <Cell 
@@ -30,11 +31,12 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
         ))}
       </Pie>
       <Tooltip 
+        isAnimationActive={false}
         content={(tooltip) => {
           if (tooltip.payload && tooltip.payload[0]) {
             return (
               <div className={styles.tooltip}>
-                <p>{tooltip.payload[0].name}</p>
+                <h6>{tooltip.payload[0].name}</h6>
                 <p>{tooltip.payload[0].value}₽</p>
               </div>
             );
