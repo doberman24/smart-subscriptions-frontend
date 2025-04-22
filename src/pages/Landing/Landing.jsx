@@ -15,7 +15,6 @@ const Landing = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // const reviewsApi = new Api();
     const loadReviews = async () => {
       const data = await api.getReviewsData();
       setReviews(data);

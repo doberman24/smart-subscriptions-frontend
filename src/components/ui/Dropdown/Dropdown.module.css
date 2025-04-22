@@ -1,19 +1,18 @@
 .dropdownBlock {
   position: relative;
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1rem;
+  color: #1e1e2f;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  
 }
 
 .inputDropdown {
   display: flex;
   align-items: center;
-  border: #3c3cf0 solid 2px;
+  border: #d1d5db solid 1px;
   border-radius: 8px;
-  padding: 3px 10px;
-  /* gap: 10px; */
+  padding: 8px 12px;
   transition: border 0.2s ease;
-  /* margin-bottom: 50px; */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .inputDropdown input {
@@ -22,10 +21,10 @@
   height: 100%;
   width: 100%;
   outline: none;
-  font-size: 1.2rem;
-  font-family: "Jura", sans-serif;
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  color: #fff;
+  color: #1e1e2f;
   transition: all 0.3s ease;
 }
 
@@ -38,17 +37,18 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(-20px);
-  font-family: "Jura", sans-serif;
+  transform: translateY(-40px);
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  background-color: #2c2c3e;
+  background-color: #ffffff;
   position: absolute;
-  top: 30px;
-  padding: 1px;
+  top: 40px;
+  padding: 0;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: transform 0.1s ease, opacity 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1;
+  margin: 0;
 }
 
 .showList {
@@ -56,19 +56,22 @@
   opacity: 1;
   overflow: auto;
   transform: translateY(0);
+  padding: 1px;
 }
 
 .dropdownList li:hover {
-  outline: 1px solid #3c3cf0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e0e7ff;
 }
+.dropdownList li:active {
+  color: #f3f4f6;
+}
+
 
 .dropdownList li {
   list-style: none;
   padding: 3px 10px;
-  cursor:context-menu;
-  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
   margin: 0;
-  transition: all 0.3s ease;
-  outline: 1px solid transparent;
+  transition: all 0.1s ease;
 }

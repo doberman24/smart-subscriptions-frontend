@@ -2,13 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* color: rgb(97, 90, 116); */
-  /* font-family: "Inter", sans-serif; */
 }
 
 a {
   text-decoration: none;
-  /* line-height: 0.6em; */
 }
 
 li {
@@ -30,9 +27,6 @@ body {
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 
 /* .jura-<uniquifier> { 

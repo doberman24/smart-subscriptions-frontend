@@ -2,55 +2,50 @@
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
-    color: #2c2c3e;
+    color: #1e1e2f;
     width: 1200px;
     margin: 0 auto;
-    padding-bottom: 115px;
+    padding: 60px 0 130px;
 }
 
 .headerBlock {
     display: flex;
     justify-content: space-between;
-    margin: 50px 0;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .headerBlock h1 {
     margin: 0;
-    font-size: 2.4rem;
-    font-family: "Montserrat", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .filtersBlock {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     justify-content: space-between;
-    background: linear-gradient(145deg, #2f2f44, #262634);
-    padding: 24px 24px;
-    margin-bottom: 50px;
-    color: #ffffff;
-    border-radius: 16px;
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        0 1px 2px rgba(255, 255, 255, 0.05) inset;
+    margin-bottom: 40px;
 }
 
 .itemBlock h6 {
     font-size: 1rem;
     font-weight: 400;
     margin-bottom: 5px;
-    font-family: "Manrope", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .inputFilter {
     display: flex;
     align-items: center;
-    border: #3c3cf0 solid 2px;
+    border: #d1d5db solid 1px;
     border-radius: 8px;
-    padding: 3px 10px;
+    padding: 8px 12px;
     gap: 10px;
-    font-size: 1.2rem;
-    transition: border 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    color: #1e1e2f;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .inputFilter input {
@@ -59,18 +54,21 @@
     height: 100%;
     width: 100%;
     outline: none;
-    font-size: 1.3rem;
-    font-family: "Jura", sans-serif;
+    font-size: 0.9rem;
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    color: #2c2c3e;
+    color: #1e1e2f;
 }
 .inputFilter input::placeholder {
     color: #b5b5b6;
 }
 
 .inputFilter:focus-within {
-    border: #ff3366 solid 2px;
-    box-shadow: 0 4px 8px #ff3d854d;
+    border: #6366f1 solid 1px;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+.inputFilter:hover {
+    border-color: #9ca3af;
 }
 
 .searchFilter {
@@ -83,20 +81,18 @@
 .rangeFilter label {
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     white-space: nowrap;
 }
 .rangeFilter input {
     margin-left: 5px;
-    font-size: 1.1rem;
-    background-color: #3f3f57;
+    font-size: 0.9rem;
     border-radius: 5px;
+    background-color: #ffffff;
 }
 
 .cardsBlock {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-bottom: 100px;
-    /* grid-auto-flow: row dense; */
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 30px;
 }

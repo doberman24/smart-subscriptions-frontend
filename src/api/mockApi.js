@@ -264,3 +264,112 @@ export const subscriptionsApi = {
         ];
     },
 };
+
+export const analiticsApi = {
+    async getAnalitics() {
+        return {
+            "filters": {
+                "selectedPeriod": "Последние 30 дней",
+                "subscriptionType": "Все"
+            },
+            "overview": {
+                "totalSpent": 8640,
+                "activeSubscriptions": 7,
+                "averageMonthly": 8800,
+                "trend": {
+                    "direction": "down",
+                    "percent": 12.5
+                }
+            },
+            "spendingOverTime": [
+                { "date": "2025-03-20", "amount": 300 },
+                { "date": "2025-03-22", "amount": 1200 },
+                { "date": "2025-03-28", "amount": 600 },
+                { "date": "2025-04-01", "amount": 2400 },
+                { "date": "2025-04-05", "amount": 1600 },
+                { "date": "2025-04-10", "amount": 900 },
+                { "date": "2025-04-15", "amount": 1640 }
+            ],
+            "categoryBreakdown": [
+                { "category": "ЖКХ", "amount": 2600, "color": "#3b82f6" },
+                { "category": "Развлечения", "amount": 1800, "color": "#10b981" },
+                { "category": "Транспорт", "amount": 1200, "color": "#f59e0b" },
+                { "category": "Образование", "amount": 1600, "color": "#8b5cf6" },
+                { "category": "Прочее", "amount": 1440, "color": "#ef4444" }
+            ],
+            "topSubscriptions": [
+                {
+                    "name": "Netflix",
+                    "logo": "netflix.svg",
+                    "amount": 999,
+                    "category": "Развлечения"
+                },
+                {
+                    "name": "Яндекс Плюс",
+                    "logo": "yandex.svg",
+                    "amount": 599,
+                    "category": "Развлечения"
+                },
+                {
+                    "name": "Городской ЖКХ",
+                    "logo": "utilities.svg",
+                    "amount": 2600,
+                    "category": "ЖКХ"
+                },
+                {
+                    "name": "Coursera",
+                    "logo": "coursera.svg",
+                    "amount": 1600,
+                    "category": "Образование"
+                },
+                {
+                    "name": "Spotify",
+                    "logo": "spotify.svg",
+                    "amount": 899,
+                    "category": "Развлечения"
+                }
+            ],
+            "recurringPayments": [
+                {
+                    "name": "Netflix",
+                    "interval": "ежемесячно",
+                    "nextPayment": "2025-05-01"
+                },
+                {
+                    "name": "ЖКХ: вода, свет",
+                    "interval": "ежемесячно",
+                    "nextPayment": "2025-05-05"
+                },
+                {
+                    "name": "Coursera Plus",
+                    "interval": "раз в год",
+                    "nextPayment": "2026-03-15"
+                },
+                {
+                    "name": "Spotify",
+                    "interval": "ежемесячно",
+                    "nextPayment": "2025-04-28"
+                },
+                {
+                    "name": "Google Drive",
+                    "interval": "ежемесячно",
+                    "nextPayment": "2025-04-20"
+                }
+            ],
+            "recommendations": [
+                {
+                    "type": "inactive",
+                    "message": "Вы не использовали подписку 'Coursera Plus' более 3 месяцев"
+                },
+                {
+                    "type": "price_increase",
+                    "message": "Подписка 'Netflix' подорожала на 20%"
+                },
+                {
+                    "type": "high_spending",
+                    "message": "Вы тратите более 2500 ₽ на категорию 'ЖКХ' в месяц"
+                }
+            ]
+        };
+    },
+};

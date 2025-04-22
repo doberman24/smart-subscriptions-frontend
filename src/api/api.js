@@ -1,5 +1,5 @@
 import axios from "axios";
-import { reviewsApi, userApi, subscriptionsApi } from "./mockApi";
+import { reviewsApi, userApi, subscriptionsApi, analiticsApi } from "./mockApi";
 
 export class Api {
     constructor() {
@@ -29,6 +29,15 @@ export class Api {
 
     async getSubscriptionsData() {
         return await this.subscriptionsApi.getSubscriptions();
+    }
+
+    async getAnaliticsData() {
+        try {
+            return await analiticsApi.getAnalitics();
+        } catch (error) {
+            console.error('Ошибка загрузки отзывов', error);
+            return {};
+        }
     }
 }
 
