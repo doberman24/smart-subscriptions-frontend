@@ -39,6 +39,61 @@ export const userApi = {
     async getUser() {
         return {
             "user": {
+                "id": "u_291849",
+                "name": "Анатолий",
+                "email": "anatoliy@example.com",
+                "avatarUrl": "https://cdn.example.com/avatar/u_291849.png",
+                "timezone": "Europe/Moscow",
+                "language": "ru",
+                "currency": "RUB"
+            },
+            "notifications": {
+                "emailReminders": true,
+                "smsReminders": false,
+                "reminderDaysBefore": 3,
+                "preferredHour": "10:00"
+            },
+            "localization": {
+                "language": "ru",
+                "timezone": "Europe/Moscow",
+                "currency": "RUB"
+            },
+            "familyAccess": {
+                "enabled": true,
+                "members": [
+                {
+                    "id": "u_20211",
+                    "name": "Екатерина",
+                    "email": "katya@example.com",
+                    "role": "editor"
+                },
+                {
+                    "id": "u_20212",
+                    "name": "Иван",
+                    "email": "ivan@example.com",
+                    "role": "viewer"
+                }
+                ],
+                "pendingInvites": [
+                {
+                    "email": "maria@example.com",
+                    "status": "pending",
+                    "invitedAt": "2025-04-10T14:30:00Z"
+                }
+                ]
+            },
+            "security": {
+                "twoFactorAuth": true,
+                "lastPasswordChange": "2025-02-01T11:45:00Z"
+            }
+        }
+    }
+};
+
+export const summaryApi = {
+    async getSummaryInfo() {
+        return {
+            "user": {
                 "id": "1",
                 "name": "Анатолий",
                 "email": "anatoly@example.com",

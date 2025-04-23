@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSummary } from '@/redux/summaryInfo';
 
 const Dashboard = () => {
   const [typeDiagram, setTypeDiagram] = useState('category');
-
-  const {subscriptions, analytics, loading} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const {subscriptions, analytics, loading} = useSelector(state => state.summaryInfo);
+  useEffect(() => {
+    dispatch(fetchSummary());
+  }, [dispatch])
 
   if (loading || !subscriptions.summary) {
     return <div className={loadingStyles.loading}>Загрузка...</div>

@@ -2,46 +2,45 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/api/api";
 
 const initialState = {
-    user: {},
     subscriptions: {},
     analytics: {},
     loading: false,
     error: null,
 }
 
-export const fetchUser = createAsyncThunk(
-    'user/fetch',
+export const fetchSummary = createAsyncThunk(
+    'summaryInfo/fetch',
     async (_, { rejectWithValue }) => {
         try {
-            const user = await api.getUserData();
-            return user;
+            const data = await api.getSummaryData();
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
 );
 
-const userSlice = createSlice({
-    name: 'user',
+const summarySlice = createSlice({
+    name: 'summaryInfo',
     initialState,
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(fetchUser.pending, state => {
+            .addCase(fetchSummary.pending, state => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchUser.fulfilled, (state, action) => {
+            .addCase(fetchSummary.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload.user;
                 state.subscriptions = action.payload.subscriptions;
                 state.analytics = action.payload.analytics;
             })
-            .addCase(fetchUser.rejected, (state, action) => {
+            .addCase(fetchSummary.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });
     },
 });
 
-export default userSlice.reducer;
+export default summarySlice.reducer;

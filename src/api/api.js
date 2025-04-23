@@ -1,11 +1,12 @@
 import axios from "axios";
-import { reviewsApi, userApi, subscriptionsApi, analiticsApi } from "./mockApi";
+import { reviewsApi, userApi, summaryApi, subscriptionsApi, analiticsApi } from "./mockApi";
 
 export class Api {
     constructor() {
         this.reviewsApi = reviewsApi;
         this.userApi = userApi;
         this.subscriptionsApi = subscriptionsApi;
+        this.summaryApi = summaryApi;
     };
 
     async getReviewsData() {
@@ -18,13 +19,11 @@ export class Api {
     };
 
     async getUserData() {
-        try {
-            // await new Promise(resolve => setTimeout(resolve, 1000));
-            return await this.userApi.getUser();
-        } catch (error) {
-            console.error('Ошибка загрузки пользователя', error);
-            return '';
-        }
+        return await this.userApi.getUser();
+    };
+
+    async getSummaryData() {
+        return await this.summaryApi.getSummaryInfo();
     };
 
     async getSubscriptionsData() {
