@@ -1,7 +1,7 @@
 import SubscriptionIcon from '@/components/ui/SubscriptionIcon'
 import styles from './CardSubscription.module.css'
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement'
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 const CardSubscription = ({cardSub, page}) => {
     const {titleSub, amount, billingDate, recurrence, isPaid, category, status} = cardSub;
@@ -50,8 +50,8 @@ const CardSubscription = ({cardSub, page}) => {
                 <h4 className={styles.date}>{status === 'active' ? `до ${formatBillingDate}` : 'В архиве'}</h4>
             </div>
             <div className={styles.buttonsBlock}>
-                    <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton addButton'}>Изменить</ButtonElement>
-                    <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton delButtonCard'}>Удалить</ButtonElement>
+                <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton addButton'}>Изменить</ButtonElement>
+                <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton delButtonCard'}>Удалить</ButtonElement>
             </div>
         </div>
     )

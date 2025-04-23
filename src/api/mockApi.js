@@ -299,31 +299,36 @@ export const analiticsApi = {
             ],
             "topSubscriptions": [
                 {
-                    "name": "Netflix",
+                    "id": "sub_001",
+                    "titleSub": "Netflix",
                     "logo": "netflix.svg",
                     "amount": 999,
                     "category": "Развлечения"
                 },
                 {
-                    "name": "Яндекс Плюс",
+                    "id": "sub_002",
+                    "titleSub": "Яндекс Плюс",
                     "logo": "yandex.svg",
                     "amount": 599,
                     "category": "Развлечения"
                 },
                 {
-                    "name": "Городской ЖКХ",
+                    "id": "sub_003",
+                    "titleSub": "Городской ЖКХ",
                     "logo": "utilities.svg",
                     "amount": 2600,
                     "category": "ЖКХ"
                 },
                 {
-                    "name": "Coursera",
+                    "id": "sub_004",
+                    "titleSub": "Coursera",
                     "logo": "coursera.svg",
                     "amount": 1600,
                     "category": "Образование"
                 },
                 {
-                    "name": "Spotify",
+                    "id": "sub_005",
+                    "titleSub": "Spotify",
                     "logo": "spotify.svg",
                     "amount": 899,
                     "category": "Развлечения"
@@ -331,42 +336,53 @@ export const analiticsApi = {
             ],
             "recurringPayments": [
                 {
-                    "name": "Netflix",
+                    "id": "sub_001",
+                    "titleSub": "Netflix",
                     "interval": "ежемесячно",
                     "nextPayment": "2025-05-01"
                 },
                 {
-                    "name": "ЖКХ: вода, свет",
+                    "id": "sub_002",
+                    "titleSub": "ЖКХ: вода, свет",
                     "interval": "ежемесячно",
                     "nextPayment": "2025-05-05"
                 },
                 {
-                    "name": "Coursera Plus",
+                    "id": "sub_003",
+                    "titleSub": "Coursera Plus",
                     "interval": "раз в год",
                     "nextPayment": "2026-03-15"
                 },
                 {
-                    "name": "Spotify",
+                    "id": "sub_004",
+                    "titleSub": "Spotify",
                     "interval": "ежемесячно",
                     "nextPayment": "2025-04-28"
                 },
                 {
-                    "name": "Google Drive",
+                    "id": "sub_005",
+                    "titleSub": "Google Drive",
                     "interval": "ежемесячно",
                     "nextPayment": "2025-04-20"
                 }
             ],
             "recommendations": [
                 {
-                    "type": "inactive",
+                    "id": "rec_001",
+                    "type": "info",
+                    "header": "Включите или удалите неиспользуемые подписки",
                     "message": "Вы не использовали подписку 'Coursera Plus' более 3 месяцев"
                 },
                 {
-                    "type": "price_increase",
+                    "id": "rec_002",
+                    "type": "warning",
+                    "header": "Увеличение стоимости",
                     "message": "Подписка 'Netflix' подорожала на 20%"
                 },
                 {
-                    "type": "high_spending",
+                    "id": "rec_003",
+                    "type": "warning",
+                    "header": "Высокая стоимость",
                     "message": "Вы тратите более 2500 ₽ на категорию 'ЖКХ' в месяц"
                 }
             ]

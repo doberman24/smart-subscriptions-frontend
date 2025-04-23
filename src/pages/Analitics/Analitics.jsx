@@ -5,6 +5,10 @@ import api from '@/api/api';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import Graph from '@/components/ui/Diagramm/Graph';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
+import AnaliticsCard from '@/components/CardSubscription/AnaliticsCard';
+import { MdInfoOutline, MdWarningAmber } from 'react-icons/md';
+import { FaRubleSign } from 'react-icons/fa';
+import { IoMdCheckboxOutline } from 'react-icons/io';
 
 const Analitics = () => {
 
@@ -66,6 +70,30 @@ const Analitics = () => {
           <div className={styles.diagramm}>
             <Diagramm diagrammData={categoryBreakdown} typeDiagram={'category'} />
           </div>
+        </div>
+      </div>
+      <div className={styles.cardsBlock}>
+        <h2>Top 5 самых дорогих подписок</h2>
+        {topSubscriptions.map(card => (
+          <AnaliticsCard key={card.id} cardSub={card} />
+        ))}
+      </div>
+      <div className={styles.cardsBlock}>
+        <h2>Повторяющияся расходы</h2>
+        {recurringPayments.map(card => (
+          <AnaliticsCard key={card.id} cardSub={card} />
+        ))}
+      </div>
+      <div className={styles.cardsBlock}>
+        <h2>Рекомендации</h2>
+        <div className={styles.recommendations}>
+          {recommendations.map(({id, header, message, type}) => (
+            <div className={styles.recommendate} key={id}>
+              <div className={`${styles.flag} ${styles[type]}`}></div>
+              <h5 className={styles.recommHead}>{header}</h5>
+              <p className={styles.messageRecomm}>{message}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

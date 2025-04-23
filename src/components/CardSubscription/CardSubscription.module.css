@@ -217,3 +217,44 @@
     display: flex;
     gap: 10px;
 }
+
+
+/* Стили карт в аналитике */
+
+.analitics {
+    display: grid;
+    grid-template-columns: min-content repeat(4, 1fr);
+    padding: 30px 24px;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.analitics .icon {
+    margin-right: 30px;
+}
+
+.analitics .category {
+    margin: 0;
+}
+
+.analitics .amount {
+    justify-self: center;
+}
+
+.analitics .buttonsBlock {
+    justify-self: center;
+}
+
+.analitics .date {
+    justify-self: center;
+    font-size: 0.95rem;
+    color: #059669;
+}
+.analitics .date span {
+    color: #6c6f81; 
+}
+
+.interval {
+    font-size: 14px;
+    color: #6c6f81; 
+}
