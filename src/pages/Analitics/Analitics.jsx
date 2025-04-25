@@ -6,13 +6,11 @@ import loadingStyles from '@/components/ui/Loading.module.css';
 import Graph from '@/components/ui/Diagramm/Graph';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import AnaliticsCard from '@/components/CardSubscription/AnaliticsCard';
-import { MdInfoOutline, MdWarningAmber } from 'react-icons/md';
-import { FaRubleSign } from 'react-icons/fa';
-import { IoMdCheckboxOutline } from 'react-icons/io';
+
 
 const Analitics = () => {
 
-  const [analiticData, setAnaliticData] = useState({});
+  const [analiticData, setAnaliticData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +19,8 @@ const Analitics = () => {
     };
     getData();
   }, [])
-  if (!analiticData.topSubscriptions) {
+
+  if (!analiticData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
@@ -43,8 +42,8 @@ const Analitics = () => {
       <div className={styles.headerBlock}>
         <h1>Аналитика</h1>
         <div className={styles.filtersBlock}>
-          <Dropdown list={rangeDate} />
-          <Dropdown list={category} type={'category'} />
+          <Dropdown list={rangeDate} defaultSelect={filters.selectedPeriod}/>
+          <Dropdown list={category} defaultSelect={filters.subscriptionType} addDefault={true}/>
         </div>
       </div>
       <div className={styles.expensesBlock}>

@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/api/api";
 
 const initialState = {
-    user: {},
-    subscriptions: {},
-    analytics: {},
+    user: null,
+    notifications: null, 
+    localization: null, 
+    familyAccess: null, 
+    security: null,
     loading: false,
     error: null,
 }
@@ -24,7 +26,11 @@ export const fetchUser = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        changeDataUser: (state, action) => {
+            state.user.name += action.payload;
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchUser.pending, state => {
@@ -34,8 +40,10 @@ const userSlice = createSlice({
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload.user;
-                state.subscriptions = action.payload.subscriptions;
-                state.analytics = action.payload.analytics;
+                state.notifications = action.payload.notifications;
+                state.localization = action.payload.localization;
+                state.familyAccess = action.payload.familyAccess;
+                state.security = action.payload.security;
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.loading = false;
@@ -44,4 +52,5 @@ const userSlice = createSlice({
     },
 });
 
+export const { changeDataUser } = userSlice.actions;
 export default userSlice.reducer;

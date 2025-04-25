@@ -2,6 +2,7 @@ import LendingHeader from '@/components/LendingHeader/LendingHeader';
 import LendingFooter from '@/components/LendingFooter/LendingFooter';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './Landing.module.css';
+import loadingStyles from '@/components/ui/Loading.module.css';
 import graph from '@/assets/icons/graph.svg';
 import notification from '@/assets/icons/notification.svg';
 import diagramm from '@/assets/icons/diagramm.svg';
@@ -12,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -21,6 +22,10 @@ const Landing = () => {
     }
     loadReviews();
   }, []);
+
+  if (!reviews) {
+    return <div className={loadingStyles.loading}>Загрузка...</div>
+  }
 
   return (
     

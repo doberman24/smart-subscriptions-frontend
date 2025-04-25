@@ -2,10 +2,10 @@ import { FaAngleDown } from "react-icons/fa6"
 import styles from './Dropdown.module.css'
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({list, type = ''}) => {
+const Dropdown = ({list, defaultSelect = '', addDefault = false}) => {
   const [dataList, setDataList] = useState([]);
   const [showList, setShowList] = useState(false);
-  const [inputData, setInputData] = useState('');
+  const [inputData, setInputData] = useState(defaultSelect);
   const dropdownElement = useRef(null);
 
   const handleChange = (e) => {
@@ -17,14 +17,8 @@ const Dropdown = ({list, type = ''}) => {
     setShowList(false);
   }
 
-
   useEffect(() => {
-    if (type) {
-      setInputData(type === 'sort' ? 'Нет' : 'Все');
-    } else {
-      setInputData(list[0]);
-    }
-    type === 'category' ? setDataList(['Все', ...list]) : setDataList([...list]);
+    addDefault ? setDataList([defaultSelect, ...list]) : setDataList([...list]);
     const handleClickOut = (e) => {
       if (dropdownElement.current && !dropdownElement.current.contains(e.target)) {
         setShowList(false);

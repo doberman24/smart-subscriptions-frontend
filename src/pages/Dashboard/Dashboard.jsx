@@ -15,7 +15,7 @@ const Dashboard = () => {
     dispatch(fetchSummary());
   }, [dispatch])
 
-  if (loading || !subscriptions.summary) {
+  if (loading || !subscriptions) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 

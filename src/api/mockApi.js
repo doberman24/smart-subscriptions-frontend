@@ -40,14 +40,16 @@ export const userApi = {
         return {
             "user": {
                 "id": "u_291849",
+                "login": "anatoly43",
                 "name": "Анатолий",
-                "email": "anatoliy@example.com",
+                "email": "anatoliy43@example.com",
                 "avatarUrl": "https://cdn.example.com/avatar/u_291849.png",
                 "timezone": "Europe/Moscow",
                 "language": "ru",
                 "currency": "RUB"
             },
             "notifications": {
+                "reminders": true,
                 "emailReminders": true,
                 "smsReminders": false,
                 "reminderDaysBefore": 3,
@@ -84,7 +86,7 @@ export const userApi = {
             },
             "security": {
                 "twoFactorAuth": true,
-                "lastPasswordChange": "2025-02-01T11:45:00Z"
+                "lastPasswordChange": "2025-02-01T11:45:24Z"
             }
         }
     }

@@ -2,7 +2,172 @@
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
-    color: #615a74;
-    width: 1200px;
-    padding-bottom: 115px;
+    color: #1e1e2f;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0 110px;
+}
+
+.settingsPage h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.userProfile,
+.securityBlock {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+    padding: 24px 24px 32px;
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 20px
+}
+
+.settingsPage h2,
+.securityBlock h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.userPhoto {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+}
+
+/* .userLogin {
+    grid-column: 1;
+}
+
+.userName {
+    grid-column: 1;
+}
+
+.userEmail {
+    grid-column: 1;
+} */
+
+.userProfile label {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    font-size: 1rem;
+}
+
+.userProfile input {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    max-width: 360px;
+    outline: none;
+    font-size: 0.9rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #1e1e2f;
+    border: #d1d5db solid 1px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    gap: 10px;
+    font-size: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+}
+.userProfile input:focus {
+    border: #6366f1 solid 1px;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+.userProfile input:not(:disabled):hover {
+    border-color: #9ca3af;
+}
+.userProfile input:read-only {
+    background-color: #f3f4f6;
+    color: #6c6f81;
+    cursor: not-allowed;
+}
+
+.notifyBlock {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+    padding: 24px 24px 32px;
+    margin-bottom: 2rem;
+    gap: 20px;
+}
+
+.notify {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.notify.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+    filter: grayscale(0.2);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.toggles {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.mainToggle {
+    background-color: #f8f9fc;
+    padding: 12px 16px;
+    border-radius: 10px;
+}
+
+.toggleNotify {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+.emailToggle {
+    margin-bottom: 12px;
+}
+.smsToggle {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+}
+
+.selectParams {
+    max-width: 470px;
+    display: flex;
+    gap: 24px;
+}
+
+.selectParams h6 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.passChange {
+    display: flex;
+    align-items: center;
+}
+
+.lastDate {
+    font-size: 0.875rem;
+    color: #6c6f81;
+    font-style: italic;
+    margin-left: 30px;
+    max-width: 300px;
+}
+
+.saveButton {
+    text-align: end;
 }

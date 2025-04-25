@@ -16,7 +16,7 @@ export const fetchSubscriptions = createAsyncThunk(
 const subscriptionsSlice = createSlice({
   name: 'subscriptions',
   initialState: {
-    subscriptions: [],
+    subscriptions: null,
     loading: false,
     error: null,
   },

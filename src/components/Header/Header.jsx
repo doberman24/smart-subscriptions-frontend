@@ -13,7 +13,7 @@ const Header = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (loading || !user.name) {
+  if (loading || !user) {
     return null;
   }
 

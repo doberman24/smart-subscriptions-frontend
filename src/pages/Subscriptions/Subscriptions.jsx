@@ -17,7 +17,7 @@ const Subscriptions = () => {
     dispatch(fetchSubscriptions());
   }, [dispatch]);
 
-  if(loading || !subscriptions.length) {
+  if(loading || !subscriptions) {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
 
@@ -41,13 +41,13 @@ const Subscriptions = () => {
         <div className={styles.itemBlock}>
           <h6>Выбрать категорию:</h6>
           <span className={styles.categoryFilter}>
-            <Dropdown list={categoryList} type={'category'} />
+            <Dropdown list={categoryList} type={'category'} defaultSelect={'Все'} addDefault={true} />
           </span>
         </div>
         <div className={styles.itemBlock}>
           <h6>Сортировать по:</h6>
           <span className={styles.sortFilter}>
-            <Dropdown list={sortList} type={'sort'} />
+            <Dropdown list={sortList} defaultSelect={sortList[0]} />
           </span>
         </div>
         <div className={styles.itemBlock}>

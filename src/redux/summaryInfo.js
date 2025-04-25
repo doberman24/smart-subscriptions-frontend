@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/api/api";
 
 const initialState = {
-    subscriptions: {},
-    analytics: {},
+    subscriptions: null,
+    analytics: null,
     loading: false,
     error: null,
 }
