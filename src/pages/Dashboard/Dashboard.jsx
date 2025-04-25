@@ -57,7 +57,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+      <div>
+        <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+      </div>
     </div>
   )
 }

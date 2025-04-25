@@ -21,8 +21,8 @@ function App() {
             <Route path='/analitics' element={<Analitics />} />
             <Route path='/subscriptions' element={<Subscriptions />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/login' element={<Login />} />
           </Route>
+          <Route path='/login' element={<Login />} />
           <Route path='/politics' element={<PrivacyPolicy />} />
           </Routes>
       </main>

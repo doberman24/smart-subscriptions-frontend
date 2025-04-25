@@ -1,8 +1,66 @@
 .loginPage {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     font-family: "Montserrat", sans-serif;
-    color: #615a74;
-    width: 1200px;
+    color: #1e1e2f;
+    max-width: 1200px;
+    height: 100vh;
     padding-bottom: 115px;
+}
+
+.mainForm {
+    width: 450px;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 18px;
+}
+
+.mainForm label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #6c6f81;
+}
+
+.mainForm input {
+    border: none;
+    background-color: #f9fafb;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #1e1e2f;
+    border: #d1d5db solid 1px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    gap: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+}
+
+.mainForm input:focus {
+    border: #6366f1 solid 1px;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+.mainForm input:not(:disabled):hover {
+    border-color: #9ca3af;
+}
+
+.mainForm input::placeholder {
+    color: #b5b5b6;
+    font-weight: 400;
+}
+
+.button {
+    margin-top: 10px;
 }
