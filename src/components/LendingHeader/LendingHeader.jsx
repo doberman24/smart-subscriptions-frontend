@@ -9,8 +9,8 @@ const Header = () => {
       <div className={styles.header}>
         <img src={logo} height='40px' alt="logo" />
         <nav className={styles.nav}>
-          <Link className={styles.login} to='/login'>Войти</Link>
-          <Link className={styles.register} to='/login'>Регистрация</Link>
+          <Link className={styles.login} to='/login' state={{ tab: 'login' }}>Войти</Link>
+          <Link className={styles.register} to='/login' state={{ tab: 'reg' }}>Регистрация</Link>
         </nav>
       </div>
     </div>
