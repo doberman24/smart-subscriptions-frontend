@@ -1,9 +1,9 @@
 .loading {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  color: #2c2c3e;
-  width: 1200px;
-  margin: 100px 0;
-  height: 90vh;
+  color: #1e1e2f;
+  max-width: 1200px;
+  margin: 100px auto;
+  height: 100%;
   font-size: 2.7rem;
 }

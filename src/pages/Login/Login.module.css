@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 40px 40px;
-    gap: 18px;
+    /* gap: 18px; */
 }
 
 .mainForm label {
@@ -64,6 +64,7 @@
     flex-direction: column;
     font-size: 0.9rem;
     color: #6c6f81;
+    margin-top: 18px;
 }
 
 .mainForm input {
@@ -98,15 +99,28 @@
 }
 
 
-.confirmPass {
+.mainForm .confirmPass,
+.mainForm .loginLabel {
     height: 0;
     opacity: 0;
     transform: translateY(-8px);
-    transition: opacity 0.25s ease-out, height 0.25s ease-out, transform 0.25s ease-out;
+    transition: all 0.25s ease-out;
 }
-.activeConfirmPass {
+.mainForm .loginLabel {
+    margin-top: 0;
+    transform: translateY(8px);
+}
+.mainForm .activeField {
     height: 83px;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.25s ease-in, height 0.25s ease-in, transform 0.25s ease-in;
+    transition: all 0.25s ease-in;
+}
+.loginLabel.activeField {
+    height: 63px;
+    margin-top: 18px;
+}
+
+.emailLabel {
+    z-index: 1;
 }

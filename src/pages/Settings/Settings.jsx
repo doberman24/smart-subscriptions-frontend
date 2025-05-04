@@ -1,21 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeDataUser } from '@/redux/user';
+import { getUser } from '@/redux/user';
 import styles from './Settings.module.css';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import ToggleSwitch from '@/components/ui/toggleSwitch/ToggleSwitch';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
   const {
     user, 
     notifications, 
     security, 
-    loading
-  } = useSelector(state => state.user);
-
+  } = useSelector(state => state.user.userData);
+ 
+  const {loading, error} = useSelector(state => state.user);
+  const {token} = useSelector(state => state.token);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [toggleCheck, setToggleCheck] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -23,18 +26,28 @@ const Settings = () => {
   const dayAfter = [1, 2, 3, 4, 5, 6, 7];
 
   useEffect(() => {
+    dispatch(getUser(token));
+
+  }, [token, dispatch]);
+
+  useEffect(() => {
+    if (error) navigate('/login');
     if (user) {
       setToggleCheck(notifications);
       setUserData(user);
     }
-  }, [user, notifications]);
+  }, [user, notifications, error]);
 
   if (loading || !userData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
-  const lastPassDate = new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'});
-  // console.log(lastPassDate);
+  const lastPassDate = security.lastPasswordChange ? new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}) : 'Не менялся';
+  // console.log(security.lastPasswordChange);
+
+  const saveChange = () => {
+    console.log(userData, toggleCheck);
+  };
 
   return (
     <div className={styles.settingsPage}>
@@ -115,7 +128,7 @@ const Settings = () => {
         </div>
       </div>
       <div className={styles.saveButton}>
-        <ButtonElement className={'addButton'}>Сохранить настройки</ButtonElement>
+        <ButtonElement onClick={saveChange} className={'addButton'}>Сохранить настройки</ButtonElement>
       </div>
     </div>
   )

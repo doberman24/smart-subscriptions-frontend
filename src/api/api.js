@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { reviewsApi, userApi, summaryApi, subscriptionsApi, analiticsApi } from "./mockApi";
 
 export class Api {
@@ -9,6 +10,52 @@ export class Api {
         this.summaryApi = summaryApi;
     };
 
+    async authorization(formValue, activeTab) {
+        const authUrl = activeTab === 'reg' ? '/auth/register' : '/auth/login';
+        try {
+            const response = await axios({
+                method: 'post',
+                url: `${import.meta.env.VITE_API_URL}${authUrl}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: formValue,
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Ошибка подключения', error);
+            return null;
+        }
+    };
+
+    async getUserData(token) {
+        const response = await axios({
+            method: 'post',
+            url: `${import.meta.env.VITE_API_URL}/settings`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response.data;
+    };
+
+    async saveData(userData) {
+        try {
+            const response = await axios({
+                method: 'put',
+                url: `${import.meta.env.VITE_API_URL}/settings/`,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                userData
+            });
+            return response;
+        } catch (error) {
+            console.error('Ошибка подключения', error);
+            return null;
+        }
+    }
+
     async getReviewsData() {
         try {
             return await this.reviewsApi.getReviews();
@@ -16,10 +63,6 @@ export class Api {
             console.error('Ошибка загрузки отзывов', error);
             return [];
         }
-    };
-
-    async getUserData() {
-        return await this.userApi.getUser();
     };
 
     async getSummaryData() {

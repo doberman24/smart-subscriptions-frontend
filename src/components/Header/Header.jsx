@@ -3,15 +3,18 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '@/redux/user';
+import { getUser } from '@/redux/user';
 
 const Header = () => {
 
   const dispatch = useDispatch();
-  const {user, loading} = useSelector(state => state.user);
+  const {user} = useSelector(state => state.user.userData);
+  const {loading} = useSelector(state => state.user);
+  const {token} = useSelector(state => state.token);
+
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+    dispatch(getUser(token));
+  }, [token, dispatch]);
 
   if (loading || !user) {
     return null;
