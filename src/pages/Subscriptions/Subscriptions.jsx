@@ -41,13 +41,20 @@ const Subscriptions = () => {
         <div className={styles.itemBlock}>
           <h6>Выбрать категорию:</h6>
           <span className={styles.categoryFilter}>
-            <Dropdown list={categoryList} type={'category'} defaultSelect={'Все'} addDefault={true} />
+            <Dropdown 
+              list={categoryList} 
+              value={'Все'}
+              addDefault={true} 
+            />
           </span>
         </div>
         <div className={styles.itemBlock}>
           <h6>Сортировать по:</h6>
           <span className={styles.sortFilter}>
-            <Dropdown list={sortList} defaultSelect={sortList[0]} />
+            <Dropdown 
+              list={sortList} 
+              value={sortList[0]} 
+            />
           </span>
         </div>
         <div className={styles.itemBlock}>

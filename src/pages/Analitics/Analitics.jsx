@@ -42,8 +42,17 @@ const Analitics = () => {
       <div className={styles.headerBlock}>
         <h1>Аналитика</h1>
         <div className={styles.filtersBlock}>
-          <Dropdown list={rangeDate} defaultSelect={filters.selectedPeriod}/>
-          <Dropdown list={category} defaultSelect={filters.subscriptionType} addDefault={true}/>
+          <Dropdown 
+            list={rangeDate} 
+            value={filters.selectedPeriod}
+            onChange={(value) => setToggleCheck(item => ({...item, selectedPeriod: value}))}
+          />
+          <Dropdown 
+            list={category} 
+            value={filters.subscriptionType}
+            onChange={(value) => setToggleCheck(item => ({...item, subscriptionType: value}))}
+            addDefault={true}
+          />
         </div>
       </div>
       <div className={styles.expensesBlock}>

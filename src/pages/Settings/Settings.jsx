@@ -7,6 +7,8 @@ import ToggleSwitch from '@/components/ui/toggleSwitch/ToggleSwitch';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '@/api/api';
+import { updateDataUser } from '@/redux/user';
 
 const Settings = () => {
   const {
@@ -45,8 +47,19 @@ const Settings = () => {
   const lastPassDate = security.lastPasswordChange ? new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}) : 'Не менялся';
   // console.log(security.lastPasswordChange);
 
-  const saveChange = () => {
-    console.log(userData, toggleCheck);
+  const saveChange = async () => {
+    const newUserData = {...userData, ...toggleCheck};
+    const oldUserData = {...user, ...notifications, ...security}
+    const modifiedUserData = Object.entries(newUserData).reduce((item, [key, value]) => {
+      if (key !== 'lastPasswordChange' && value !== oldUserData[key]) {
+        item[key] = value;
+      }
+      return item;
+    }, {});
+    const saveData = await api.saveData(modifiedUserData, token);
+    if (saveData.data.user) {
+      dispatch(updateDataUser(saveData.data));
+    }
   };
 
   return (
@@ -111,11 +124,19 @@ const Settings = () => {
           <div className={styles.selectParams}>
             <span>
               <h6>Время напоминания</h6>
-              <Dropdown list={timeNotify} defaultSelect={toggleCheck.preferredHour} /> 
+              <Dropdown 
+                list={timeNotify} 
+                value={toggleCheck.preferredHour} 
+                onChange={(value) => setToggleCheck(item => ({...item, preferredHour: value}))}
+              /> 
             </span>
             <span>
               <h6>За сколько дней до списания</h6>
-              <Dropdown list={dayAfter} defaultSelect={toggleCheck.reminderDaysBefore} />
+              <Dropdown 
+                list={dayAfter} 
+                value={toggleCheck.reminderDaysBefore} 
+                onChange={(value) => setToggleCheck(item => ({...item, reminderDaysBefore: value}))}
+              />
             </span>
           </div>
         </div>

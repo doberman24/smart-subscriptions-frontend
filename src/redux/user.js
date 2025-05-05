@@ -12,7 +12,6 @@ export const getUser = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const user = await api.getUserData(token);
-      // console.log(user);
       return user;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -23,7 +22,11 @@ export const getUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers:{},
+  reducers: {
+    updateDataUser: (state, action) => {
+      state.userData = action.payload
+    },
+  },
   extraReducers: builder => {
     builder
     .addCase(getUser.pending, state => {
@@ -35,11 +38,11 @@ const userSlice = createSlice({
       state.userData = action.payload;
     })
     .addCase(getUser.rejected, (state, action) => {
-      // console.log(action.error);
       state.loading = false;
       state.error = action.error;
     });
   },
 });
 
+export const { updateDataUser } = userSlice.actions;
 export default userSlice.reducer;

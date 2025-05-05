@@ -30,7 +30,7 @@ export class Api {
 
     async getUserData(token) {
         const response = await axios({
-            method: 'post',
+            method: 'get',
             url: `${import.meta.env.VITE_API_URL}/settings`,
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -39,15 +39,15 @@ export class Api {
         return response.data;
     };
 
-    async saveData(userData) {
+    async saveData(userData, token) {
         try {
             const response = await axios({
-                method: 'put',
+                method: 'patch',
                 url: `${import.meta.env.VITE_API_URL}/settings/`,
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
-                userData
+                data: userData,
             });
             return response;
         } catch (error) {
