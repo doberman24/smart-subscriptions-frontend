@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '@/api/api';
 import { updateDataUser } from '@/redux/user';
+import { resetData } from '@/redux/user';
 
 const Settings = () => {
   const {
@@ -33,18 +34,22 @@ const Settings = () => {
   }, [token, dispatch]);
 
   useEffect(() => {
-    if (error) navigate('/login');
+    if (error) {
+      dispatch(resetData()); 
+      navigate('/login');
+    }
     if (user) {
       setToggleCheck(notifications);
       setUserData(user);
     }
-  }, [user, notifications, error]);
+  }, [user, notifications, error, dispatch]);
 
   if (loading || !userData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
-  const lastPassDate = security.lastPasswordChange ? new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}) : 'Не менялся';
+
+  const lastPassDate = security && security.lastPasswordChange ? new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}) : 'Не менялся';
   // console.log(security.lastPasswordChange);
 
   const saveChange = async () => {
@@ -60,7 +65,13 @@ const Settings = () => {
     if (saveData.data.user) {
       dispatch(updateDataUser(saveData.data));
     }
+    console.log(saveData.data?.message);
   };
+
+  const exitUser = () => {
+    dispatch(resetData());
+    navigate('/login'); 
+  }
 
   return (
     <div className={styles.settingsPage}>
@@ -148,8 +159,10 @@ const Settings = () => {
           <p className={styles.lastDate}>Последняя смена пароля<br />{lastPassDate}</p>
         </div>
       </div>
-      <div className={styles.saveButton}>
+      <div className={styles.buttonsBlock}>
         <ButtonElement onClick={saveChange} className={'addButton'}>Сохранить настройки</ButtonElement>
+        <ButtonElement onClick={exitUser} className={'exitButton'}>Выйти</ButtonElement>
+        <ButtonElement className={'delButton'}>Удалить аккаунт</ButtonElement>
       </div>
     </div>
   )

@@ -156,6 +156,10 @@
     max-width: 300px;
 }
 
-.saveButton {
-    text-align: end;
+.buttonsBlock {
+    padding-top: 2rem;
+    border-top: 1px solid #e0e3ee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px
 }
