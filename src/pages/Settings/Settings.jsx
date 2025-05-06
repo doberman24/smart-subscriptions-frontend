@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import api from '@/api/api';
 import { updateDataUser } from '@/redux/user';
 import { resetData } from '@/redux/user';
+import Modal from '@/components/ui/Modal/Modal';
+import { toggleModal } from '@/redux/showModal';
 
 const Settings = () => {
   const {
@@ -17,6 +19,7 @@ const Settings = () => {
     notifications, 
     security, 
   } = useSelector(state => state.user.userData);
+  const isModal = useSelector(state => state.showModal.isShow);
  
   const {loading, error} = useSelector(state => state.user);
   const {token} = useSelector(state => state.token);
@@ -36,7 +39,7 @@ const Settings = () => {
   useEffect(() => {
     if (error) {
       dispatch(resetData()); 
-      navigate('/login');
+      navigate('/login', {state: {fromApp: true}});
     }
     if (user) {
       setToggleCheck(notifications);
@@ -70,11 +73,16 @@ const Settings = () => {
 
   const exitUser = () => {
     dispatch(resetData());
-    navigate('/login'); 
+    navigate('/login', {state: {fromApp: true}}); 
+  };
+
+  const deleteUser = async () => {
+    dispatch(toggleModal(true));
   }
 
   return (
     <div className={styles.settingsPage}>
+      {isModal && <Modal>Удаление аккаунта</Modal>}
       <h1>Настройки</h1>
       <div className={styles.userProfile}>
         <h2>Личные данные</h2>
@@ -162,7 +170,7 @@ const Settings = () => {
       <div className={styles.buttonsBlock}>
         <ButtonElement onClick={saveChange} className={'addButton'}>Сохранить настройки</ButtonElement>
         <ButtonElement onClick={exitUser} className={'exitButton'}>Выйти</ButtonElement>
-        <ButtonElement className={'delButton'}>Удалить аккаунт</ButtonElement>
+        <ButtonElement onClick={deleteUser} className={'delButton'}>Удалить аккаунт</ButtonElement>
       </div>
     </div>
   )

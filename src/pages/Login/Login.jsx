@@ -1,11 +1,12 @@
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './Login.module.css'
 import logo from '@/assets/img/logo.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import api from '@/api/api';
 import { useDispatch } from 'react-redux';
 import { getToken } from '@/redux/getToken';
+import Modal from '@/components/ui/Modal/Modal';
 
 const Login = () => {
   const location = useLocation();
@@ -20,6 +21,12 @@ const Login = () => {
     password: '',
     confirmPass: '',
   })
+
+  useEffect(() => {
+    if (location.state?.fromApp){
+      dispatch(getToken(null));
+    }
+  },[]);
 
   const clickTab = (currentTab) => {
     setActiveTab(currentTab);

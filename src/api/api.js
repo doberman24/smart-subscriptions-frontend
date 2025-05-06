@@ -28,7 +28,7 @@ export class Api {
         }
     };
 
-    async getUserData(token) {
+    async getData(token) {
         const response = await axios({
             method: 'get',
             url: `${import.meta.env.VITE_API_URL}/settings`,
@@ -54,6 +54,17 @@ export class Api {
             console.error('Ошибка подключения', error);
             return null;
         }
+    }
+
+    async deleteUserData(token) {
+        const response = await axios({
+            method: 'delete',
+            url: `${import.meta.env.VITE_API_URL}/settings`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response.data;
     }
 
     async getReviewsData() {

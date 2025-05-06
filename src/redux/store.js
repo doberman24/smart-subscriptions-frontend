@@ -3,6 +3,7 @@ import tokenReduser from "./getToken";
 import userReduser from './user';
 import subscriptionsReduser from './subscriptions';
 import summaryReduser from './summaryInfo';
+import showModalReduser from './showModal';
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         user: userReduser,
         subscriptions: subscriptionsReduser,
         summaryInfo: summaryReduser,
+        showModal: showModalReduser,
     }
 });
 

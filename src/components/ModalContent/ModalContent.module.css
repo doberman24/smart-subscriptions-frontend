@@ -1,0 +1,17 @@
+.contentBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.contentBlock p {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.buttonsBlock {
+    display: flex;
+    gap: 24px;
+}
