@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const showModalSlice = createSlice({
     name: 'showModal',
     initialState: {
-        isShow: false,
+        isDeleteModal: false,
+        isExitModal: false,
+        isSaveModal: false,
     },
     reducers: {
         toggleModal: (state, action) => {
-            state.isShow = action.payload;
+            state.isDeleteModal = action.payload.isDeleteModal;
+            state.isExitModal = action.payload.isExitModal;
+            state.isSaveModal = action.payload.isSaveModal;
         }
     }
 });

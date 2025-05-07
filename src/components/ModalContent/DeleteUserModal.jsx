@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '@/redux/showModal';
 import api from '@/api/api';
 import { useNavigate } from 'react-router-dom';
+import Modal from '@/components/ui/Modal/Modal';
 
-const DeleteUserModal = ({children}) => {
+const DeleteUserModal = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -14,18 +15,21 @@ const DeleteUserModal = ({children}) => {
     const deleteUser = async () => {
         const deletedData = await api.deleteUserData(token);
         console.log(deletedData);
-        dispatch(toggleModal(false));
+        dispatch(toggleModal({isDeleteModal: false}));
         navigate('/login', {state: {fromApp: true}}); 
       }
 
     return (
-        <div className={styles.contentBlock}>
-            <p className={styles.content}>{children}</p>
-            <div className={styles.buttonsBlock}>
-                <ButtonElement onClick={() => dispatch(toggleModal(false))} className={'exitButton modalButton'}>Отмена</ButtonElement>
-                <ButtonElement onClick={deleteUser} className={'delButton modalButton'}>Удалить аккаунт</ButtonElement>
+        <Modal>
+            <div className={styles.contentBlock}>
+                <h3>Удаление аккаунта</h3>
+                <p className={styles.content}>Вы уверены, что хотите удалить аккаунт? Это действие необратимо.</p>
+                <div className={styles.buttonsBlock}>
+                    <ButtonElement onClick={() => dispatch(toggleModal({isDeleteModal: false}))} className={'exitButton modalButton'}>Отмена</ButtonElement>
+                    <ButtonElement onClick={deleteUser} className={'delButton modalButton'}>Удалить аккаунт</ButtonElement>
+                </div>
             </div>
-        </div>
+        </Modal>
     )
 };
 
