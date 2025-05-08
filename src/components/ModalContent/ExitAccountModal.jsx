@@ -5,24 +5,30 @@ import { useNavigate } from 'react-router-dom';
 import { toggleModal } from '@/redux/showModal';
 import { resetData } from '@/redux/user';
 import Modal from '@/components/ui/Modal/Modal';
+import { useCloseModal } from './useCloseModal';
 
 const ExitAccountModal = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const {vision, close} = useCloseModal();
+    const closeModal = () => {
+        close(() => dispatch(toggleModal(false)));
+    }
+
     const exitUser = () => {
     dispatch(resetData());
-    dispatch(toggleModal({isExitModal: false}));
+    closeModal();
     navigate('/login', {state: {fromApp: true}}); 
     };
 
     return (
-        <Modal>
+        <Modal vision={vision} closeModal={closeModal}>
             <div className={styles.contentBlock}>
                 <h3>Выход из аккаунта</h3>
                 <p className={styles.content}>Вы уверены, что хотите выйти?</p>
                 <div className={styles.buttonsBlock}>
-                    <ButtonElement onClick={() => dispatch(toggleModal({isExitModal: false}))} className={'exitButton modalButton'}>Отмена</ButtonElement>
+                    <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
                     <ButtonElement onClick={exitUser} className={'addButton modalButton'}>Выйти</ButtonElement>
                 </div>
             </div>

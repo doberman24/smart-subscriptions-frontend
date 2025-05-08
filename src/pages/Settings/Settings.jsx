@@ -33,6 +33,7 @@ const Settings = () => {
   const timeNotify = ['10:00', '12:00', '15:00', '18:00', '20:00'];
   const dayAfter = [1, 2, 3, 4, 5, 6, 7];
 
+
   useEffect(() => {
     dispatch(getUser(token));
 
@@ -67,29 +68,21 @@ const Settings = () => {
       return item;
     }, {});
     const saveData = await api.saveData(modifiedUserData, token);
-    if (saveData.data.user) {
+    if (saveData.data?.user) {
       dispatch(updateDataUser(saveData.data));
     }
     console.log(saveData.data?.message);
-    dispatch(toggleModal({isSaveModal: false}));
   };
 
-  const saveChange = () => {
-    dispatch(toggleModal({isSaveModal: true}));
+  const showClickModal = (actionModal) => {
+    dispatch(toggleModal({[actionModal]: true}));
   }
 
-  const exitUser = () => {
-    dispatch(toggleModal({isExitModal: true}));
-  };
-
-  const deleteUser = async () => {
-    dispatch(toggleModal({isDeleteModal: true}));
-  }
 
   return (
     <div className={styles.settingsPage}>
-      {isDeleteModal && <DeleteUserModal/>}
-      {isExitModal && <ExitAccountModal/>}
+      {isDeleteModal && <DeleteUserModal />}
+      {isExitModal && <ExitAccountModal />}
       {isSaveModal && <SaveDataModal onSaveChange={onSaveChange} />}
       <h1>Настройки</h1>
       <div className={styles.userProfile}>
@@ -176,9 +169,9 @@ const Settings = () => {
         </div>
       </div>
       <div className={styles.buttonsBlock}>
-        <ButtonElement onClick={saveChange} className={'addButton'}>Сохранить настройки</ButtonElement>
-        <ButtonElement onClick={exitUser} className={'exitButton'}>Выйти</ButtonElement>
-        <ButtonElement onClick={deleteUser} className={'delButton'}>Удалить аккаунт</ButtonElement>
+        <ButtonElement onClick={() => showClickModal('isSaveModal')} className={'addButton'}>Сохранить настройки</ButtonElement>
+        <ButtonElement onClick={() => showClickModal('isExitModal')} className={'exitButton'}>Выйти</ButtonElement>
+        <ButtonElement onClick={() => showClickModal('isDeleteModal')} className={'delButton'}>Удалить аккаунт</ButtonElement>
       </div>
     </div>
   )

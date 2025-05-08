@@ -1,21 +1,31 @@
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './ModalContent.module.css';
 import { useDispatch } from 'react-redux';
-import { updateDataUser } from '@/redux/user';
 import { toggleModal } from '@/redux/showModal';
 import Modal from '@/components/ui/Modal/Modal';
-import api from '@/api/api';
+import { useCloseModal } from './useCloseModal';
 
 const ExitAccountModal = ({onSaveChange}) => {
+    const dispatch = useDispatch();
+
+    const {vision, close} = useCloseModal();
+    const closeModal = () => {
+        close(() => dispatch(toggleModal(false)));
+    }
+
+    const saveChange = () => {
+        onSaveChange();
+        closeModal();
+    }
 
     return (
-        <Modal>
+        <Modal vision={vision} closeModal={closeModal}>
             <div className={styles.contentBlock}>
                 <h3>Сохранение...</h3>
                 <p className={styles.content}>Применить изменения?</p>
                 <div className={styles.buttonsBlock}>
-                    <ButtonElement onClick={() => dispatch(toggleModal({isSaveModal: false}))} className={'exitButton modalButton'}>Отмена</ButtonElement>
-                    <ButtonElement onClick={onSaveChange} className={'addButton modalButton'}>Сохранить</ButtonElement>
+                    <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
+                    <ButtonElement onClick={() => saveChange()} className={'addButton modalButton'}>Сохранить</ButtonElement>
                 </div>
             </div>
         </Modal>
