@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { toggleModal } from '@/redux/showModal';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { MdInfoOutline } from 'react-icons/md';
 
-const ExitAccountModal = ({onSaveChange}) => {
+const InfoModal = ({message}) => {
     const dispatch = useDispatch();
 
     const {vision, close} = useCloseModal();
@@ -14,26 +14,20 @@ const ExitAccountModal = ({onSaveChange}) => {
         close(() => dispatch(toggleModal(false)));
     }
 
-    const saveChange = () => {
-        onSaveChange();
-        closeModal();
-    }
-
     return (
         <Modal vision={vision} closeModal={closeModal}>
             <div className={styles.contentBlock}>
                 <div className={styles.headModal}>
-                    <AiOutlineQuestionCircle className={`${styles.iconQuestion} ${styles.icon}`} />
-                    <h3>Подтверждение</h3>
+                    <MdInfoOutline className={`${styles.iconInfo} ${styles.icon}`} />
+                    <h3>Информация</h3>
                 </div>
-                <p className={styles.content}>Применить изменения?</p>
+                <p className={styles.content}>{message}</p>
                 <div className={styles.buttonsBlock}>
-                    <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
-                    <ButtonElement onClick={saveChange} className={'addButton modalButton'}>Сохранить</ButtonElement>
+                    <ButtonElement onClick={closeModal} className={'addButton modalButton'}>OK</ButtonElement>
                 </div>
             </div>
         </Modal>
     )
 };
 
-export default ExitAccountModal;
+export default InfoModal;

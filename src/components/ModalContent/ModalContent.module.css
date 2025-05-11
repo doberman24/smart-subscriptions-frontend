@@ -1,23 +1,52 @@
 .contentBlock {
     font-family: "Montserrat", sans-serif;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 }
 
-.modal h3 {
+.headModal {
+    position: relative;
+    width: 100%;
+}
+.icon {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    position: absolute;
+    font-size: 2rem;
+}
+.iconInfo {
+    color: #2196f3;
+}
+.iconQuestion {
+    color: #607d8b;
+}
+.iconWarning {
+    color: #ff9800;
+}
+
+.headModal h3 {
+    padding: 8px 0;
     font-size: 1.25rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .contentBlock p {
     font-size: 1rem;
     font-weight: 400;
     text-align: center;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 0;
+    width: 100%;
 }
 
 .buttonsBlock {
+    padding-top: 8px;
     display: flex;
     gap: 24px;
 }

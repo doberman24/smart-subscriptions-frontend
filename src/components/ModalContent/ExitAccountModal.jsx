@@ -6,6 +6,7 @@ import { toggleModal } from '@/redux/showModal';
 import { resetData } from '@/redux/user';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 const ExitAccountModal = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const ExitAccountModal = () => {
     return (
         <Modal vision={vision} closeModal={closeModal}>
             <div className={styles.contentBlock}>
-                <h3>Выход из аккаунта</h3>
+                <div className={styles.headModal}>
+                    <AiOutlineQuestionCircle className={`${styles.iconQuestion} ${styles.icon}`} />
+                    <h3>Подтверждение</h3>
+                </div>
                 <p className={styles.content}>Вы уверены, что хотите выйти?</p>
                 <div className={styles.buttonsBlock}>
                     <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>

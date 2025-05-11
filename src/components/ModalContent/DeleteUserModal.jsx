@@ -6,6 +6,7 @@ import api from '@/api/api';
 import { useNavigate } from 'react-router-dom';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
+import { MdWarningAmber } from 'react-icons/md';
 
 const DeleteUserModal = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,10 @@ const DeleteUserModal = () => {
     return (
         <Modal vision={vision} closeModal={closeModal}> 
             <div className={styles.contentBlock}>
-                <h3>Удаление аккаунта</h3>
+                <div className={styles.headModal}>
+                    <MdWarningAmber className={`${styles.iconWarning} ${styles.icon}`} />
+                    <h3>Удаление аккаунта</h3>
+                </div>
                 <p className={styles.content}>Вы уверены, что хотите удалить аккаунт? Это действие необратимо.</p>
                 <div className={styles.buttonsBlock}>
                     <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>

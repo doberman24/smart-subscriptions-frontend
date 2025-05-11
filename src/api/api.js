@@ -24,7 +24,7 @@ export class Api {
             return response.data;
         } catch (error) {
             console.error('Ошибка подключения', error);
-            return null;
+            return error;
         }
     };
 
@@ -36,24 +36,19 @@ export class Api {
                 'Authorization': `Bearer ${token}`,
             },
         });
-        return response.data;
+        return response;
     };
 
     async saveData(userData, token) {
-        try {
-            const response = await axios({
-                method: 'patch',
-                url: `${import.meta.env.VITE_API_URL}/settings/`,
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                data: userData,
-            });
-            return response;
-        } catch (error) {
-            console.error('Ошибка подключения', error);
-            return null;
-        }
+        const response = await axios({
+            method: 'patch',
+            url: `${import.meta.env.VITE_API_URL}/settings/`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            data: userData,
+        });
+        return response;
     }
 
     async deleteUserData(token) {

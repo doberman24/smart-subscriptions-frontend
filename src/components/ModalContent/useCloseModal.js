@@ -12,7 +12,7 @@ export const useCloseModal = (defaultValue = false) => {
         setTimeout(() => {
             if (closeModal)
             closeModal();
-        }, 300);
+        }, 100);
     }
 
     return {vision, setVision, close};

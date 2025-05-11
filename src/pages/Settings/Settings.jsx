@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '@/redux/user';
+import { getUser, saveUserData } from '@/redux/user';
 import styles from './Settings.module.css';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
@@ -14,6 +14,7 @@ import { toggleModal } from '@/redux/showModal';
 import DeleteUserModal from '@/components/ModalContent/DeleteUserModal';
 import ExitAccountModal from '@/components/ModalContent/ExitAccountModal';
 import SaveDataModal from '@/components/ModalContent/SaveDataModal';
+import InfoModal from '@/components/ModalContent/InfoModal';
 
 const Settings = () => {
   const {
@@ -21,9 +22,9 @@ const Settings = () => {
     notifications, 
     security, 
   } = useSelector(state => state.user.userData);
-  const {isDeleteModal, isExitModal, isSaveModal} = useSelector(state => state.showModal);
+  const isModal = useSelector(state => state.showModal);
  
-  const {loading, error} = useSelector(state => state.user);
+  const {loading, error, message} = useSelector(state => state.user);
   const {token} = useSelector(state => state.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Settings = () => {
       setToggleCheck(notifications);
       setUserData(user);
     }
-  }, [user, notifications, error, dispatch]);
+  }, [user, notifications, error, dispatch, message]);
 
   if (loading || !userData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
@@ -67,11 +68,15 @@ const Settings = () => {
       }
       return item;
     }, {});
-    const saveData = await api.saveData(modifiedUserData, token);
-    if (saveData.data?.user) {
-      dispatch(updateDataUser(saveData.data));
+    const result = await dispatch(saveUserData({userData: modifiedUserData, token}));
+    if (saveUserData.fulfilled.match(result)) {
+      setTimeout(() => showClickModal('isInfoModal'), 100);
     }
-    console.log(saveData.data?.message);
+    if (saveUserData.rejected.match(result)) {
+      console.log(error);
+      dispatch(resetData());
+      navigate('/login', {state: {fromApp: true}});
+    }
   };
 
   const showClickModal = (actionModal) => {
@@ -81,9 +86,10 @@ const Settings = () => {
 
   return (
     <div className={styles.settingsPage}>
-      {isDeleteModal && <DeleteUserModal />}
-      {isExitModal && <ExitAccountModal />}
-      {isSaveModal && <SaveDataModal onSaveChange={onSaveChange} />}
+      {isModal.isDeleteModal && <DeleteUserModal />}
+      {isModal.isExitModal && <ExitAccountModal />}
+      {isModal.isSaveModal && <SaveDataModal  onSaveChange={onSaveChange} />}
+      {isModal.isInfoModal && <InfoModal message={message} />}
       <h1>Настройки</h1>
       <div className={styles.userProfile}>
         <h2>Личные данные</h2>
