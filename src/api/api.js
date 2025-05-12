@@ -12,20 +12,15 @@ export class Api {
 
     async authorization(formValue, activeTab) {
         const authUrl = activeTab === 'reg' ? '/auth/register' : '/auth/login';
-        try {
-            const response = await axios({
-                method: 'post',
-                url: `${import.meta.env.VITE_API_URL}${authUrl}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                data: formValue,
-            });
-            return response.data;
-        } catch (error) {
-            console.error('Ошибка подключения', error);
-            return error;
-        }
+        const response = await axios({
+            method: 'post',
+            url: `${import.meta.env.VITE_API_URL}${authUrl}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: formValue,
+        });
+        return response.data;
     };
 
     async getData(token) {

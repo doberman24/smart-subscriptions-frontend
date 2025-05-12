@@ -7,8 +7,6 @@ import ToggleSwitch from '@/components/ui/toggleSwitch/ToggleSwitch';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '@/api/api';
-import { updateDataUser } from '@/redux/user';
 import { resetData } from '@/redux/user';
 import { toggleModal } from '@/redux/showModal';
 import DeleteUserModal from '@/components/ModalContent/DeleteUserModal';
@@ -29,6 +27,7 @@ const Settings = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [infoTypeModal, setInfoTypeModal] = useState('');
   const [toggleCheck, setToggleCheck] = useState(null);
   const [userData, setUserData] = useState(null);
   const timeNotify = ['10:00', '12:00', '15:00', '18:00', '20:00'];
@@ -70,6 +69,7 @@ const Settings = () => {
     }, {});
     const result = await dispatch(saveUserData({userData: modifiedUserData, token}));
     if (saveUserData.fulfilled.match(result)) {
+      setInfoTypeModal('info');
       setTimeout(() => showClickModal('isInfoModal'), 100);
     }
     if (saveUserData.rejected.match(result)) {
@@ -89,7 +89,7 @@ const Settings = () => {
       {isModal.isDeleteModal && <DeleteUserModal />}
       {isModal.isExitModal && <ExitAccountModal />}
       {isModal.isSaveModal && <SaveDataModal  onSaveChange={onSaveChange} />}
-      {isModal.isInfoModal && <InfoModal message={message} />}
+      {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal}/>}
       <h1>Настройки</h1>
       <div className={styles.userProfile}>
         <h2>Личные данные</h2>

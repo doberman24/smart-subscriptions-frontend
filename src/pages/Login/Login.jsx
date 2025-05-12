@@ -3,16 +3,18 @@ import styles from './Login.module.css'
 import logo from '@/assets/img/logo.svg';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import api from '@/api/api';
-import { useDispatch } from 'react-redux';
-import { getToken } from '@/redux/getToken';
-import Modal from '@/components/ui/Modal/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { cleanToken, getToken } from '@/redux/getToken';
+import InfoModal from '@/components/ModalContent/InfoModal';
+import { toggleModal } from '@/redux/showModal';
 
 const Login = () => {
   const location = useLocation();
   const tab = location.state?.tab;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { message } = useSelector(state => state.token);
+  const isModal = useSelector(state => state.showModal);
 
   const [activeTab, setActiveTab] = useState(tab);
   const [formValue, setFormValue] = useState({
@@ -22,9 +24,11 @@ const Login = () => {
     confirmPass: '',
   })
 
+  const [infoTypeModal, setInfoTypeModal] = useState('');
+
   useEffect(() => {
     if (location.state?.fromApp){
-      dispatch(getToken(null));
+      dispatch(cleanToken());
     }
   },[]);
 
@@ -35,12 +39,14 @@ const Login = () => {
 
   const handleSubmit = async (e, activeTab) => {
     e.preventDefault();
-    dispatch(getToken(null));
-    const data = await api.authorization(formValue, activeTab);
-    // console.log(data);
-    if (data) {
-      dispatch(getToken(data.token));
+    dispatch(cleanToken());
+    const data = await dispatch(getToken({formValue, activeTab}));
+    if (getToken.fulfilled.match(data)) {
       navigate('/settings', {replace: true});
+    }
+    if (getToken.rejected.match(data)) {
+      dispatch(toggleModal({isInfoModal: true}));
+      setInfoTypeModal('error');
     }
   }
 
@@ -53,6 +59,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginPage}>
+      {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal} />}
       <Link to='/'><img src={logo} height='60px' alt='logo' /></Link>
       <h1 className={styles.login}>Добро пожаловать!</h1>
       <form className={styles.mainForm} onSubmit={(e) => handleSubmit(e, activeTab)}>

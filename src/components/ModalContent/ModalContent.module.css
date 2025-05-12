@@ -27,6 +27,9 @@
 .iconWarning {
     color: #ff9800;
 }
+.iconError {
+    color: #f44336;
+}
 
 .headModal h3 {
     padding: 8px 0;

@@ -15,7 +15,11 @@ export const getUser = createAsyncThunk(
       const user = await api.getData(token);
       return user.data;
     } catch (error) {
-      return rejectWithValue(error.response);
+      return rejectWithValue({
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
     }
   } 
 );
@@ -27,7 +31,11 @@ export const saveUserData = createAsyncThunk(
       const user = await api.saveData(userData, token);
       return user.data;
     } catch (error) {
-      return rejectWithValue(error.response);
+      return rejectWithValue({
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
     }
   } 
 );
@@ -37,15 +45,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    updateDataUser: (state, action) => {
-      state.userData = action.payload.userData;
-      state.message = action.payload.message;
-      console.log(action.payload);
-      // if (action.payload.status !== 200) {
-      //   state.error = {status: action.payload.status, error: action.payload.statusText};
-      //   state.message = action.payload.data?.error;
-      // }
-    },
     resetData: (state) => {
       state.userData = {};
       state.loading = false;
@@ -69,7 +68,7 @@ const userSlice = createSlice({
       state.error = action.payload 
         ? {status: action.payload.status, error: action.payload.statusText}
         : {status: 500, error: 'Неизвестная ошибка'};
-      state.message = action.payload?.data?.error || 'Ошибка при сохранении данных';
+      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
     })
     
     .addCase(saveUserData.pending, state => {
