@@ -13,6 +13,7 @@ import DeleteUserModal from '@/components/ModalContent/DeleteUserModal';
 import ExitAccountModal from '@/components/ModalContent/ExitAccountModal';
 import SaveDataModal from '@/components/ModalContent/SaveDataModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
+import ChangePassModal from '@/components/ModalContent/ChangePassModal';
 
 const Settings = () => {
   const {
@@ -79,6 +80,15 @@ const Settings = () => {
     }
   };
 
+  const onChangePassword = async (formValue) => {
+    const result = await dispatch(saveUserData({userData: formValue, token}));
+    if (saveUserData.fulfilled.match(result)) {
+      setInfoTypeModal('info');
+      setTimeout(() => showClickModal('isInfoModal'), 100);
+    }
+    console.log(result)
+  }
+
   const showClickModal = (actionModal) => {
     dispatch(toggleModal({[actionModal]: true}));
   }
@@ -88,8 +98,9 @@ const Settings = () => {
     <div className={styles.settingsPage}>
       {isModal.isDeleteModal && <DeleteUserModal />}
       {isModal.isExitModal && <ExitAccountModal />}
-      {isModal.isSaveModal && <SaveDataModal  onSaveChange={onSaveChange} />}
+      {isModal.isSaveModal && <SaveDataModal onSaveChange={onSaveChange} />}
       {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal}/>}
+      {isModal.isChangePass && <ChangePassModal onChangePassword={onChangePassword} />}
       <h1>Настройки</h1>
       <div className={styles.userProfile}>
         <h2>Личные данные</h2>
@@ -170,7 +181,7 @@ const Settings = () => {
       <div className={styles.securityBlock}>
         <h2>Безопасность</h2>
         <div className={styles.passChange}>
-          <ButtonElement className={'settingsButton'}>Сменить пароль</ButtonElement>
+          <ButtonElement onClick={() => showClickModal('isChangePass')} className={'settingsButton'}>Сменить пароль</ButtonElement>
           <p className={styles.lastDate}>Последняя смена пароля<br />{lastPassDate}</p>
         </div>
       </div>

@@ -60,6 +60,7 @@
     color: #1e1e2f;
 }
 .inputFilter input::placeholder {
+    font-weight: 400;
     color: #b5b5b6;
 }
 

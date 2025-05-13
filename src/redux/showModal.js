@@ -7,6 +7,7 @@ const showModalSlice = createSlice({
         isExitModal: false,
         isSaveModal: false,
         isInfoModal: false,
+        isChangePass: false,
     },
     reducers: {
         toggleModal: (state, action) => {
@@ -14,6 +15,7 @@ const showModalSlice = createSlice({
             state.isExitModal = action.payload.isExitModal;
             state.isSaveModal = action.payload.isSaveModal;
             state.isInfoModal = action.payload.isInfoModal;
+            state.isChangePass = action.payload.isChangePass;
         }
     }
 });
