@@ -13,7 +13,10 @@
   border: #d1d5db solid 1px;
   border-radius: 8px;
   padding: 8px 12px;
-  transition: border 0.2s ease;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.inputDropdown:hover {
+    border-color: #9ca3af;
 }
 
 .inputDropdown input {

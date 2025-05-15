@@ -1,9 +1,7 @@
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './ModalContent.module.css';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { toggleModal } from '@/redux/showModal';
-import { resetData } from '@/redux/user';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
@@ -13,9 +11,9 @@ const ChangePassModal = ({onChangePassword}) => {
     const dispatch = useDispatch();
 
     const [formValue, setFormValue] = useState({
-        password: '111',
-        passwordNew: '222',
-        confirmPass: '333',
+        password: '',
+        passwordNew: '',
+        confirmPass: '',
     })
 
     const {vision, close} = useCloseModal();
@@ -53,7 +51,7 @@ const ChangePassModal = ({onChangePassword}) => {
                             value={formValue.password} 
                             onChange={handleChange} 
                             placeholder='Введите старый пароль'
-                            // required={true}
+                            required={true}
                         />
                     </label>
                     <label className={styles.passLabel}>
@@ -64,7 +62,7 @@ const ChangePassModal = ({onChangePassword}) => {
                             value={formValue.passwordNew} 
                             onChange={handleChange} 
                             placeholder='Введите новый пароль'
-                            // required={true}
+                            required={true}
                         />
                     </label>
                     <label className={styles.passLabel}>
@@ -75,11 +73,11 @@ const ChangePassModal = ({onChangePassword}) => {
                             value={formValue.confirmPass} 
                             onChange={handleChange} 
                             placeholder='Подтвердите новый пароль'
-                            // required={true}
+                            required={true}
                         />
                     </label>
                     <div className={styles.buttonsBlock}>
-                        <ButtonElement onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
+                        <ButtonElement type={'button'} onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
                         <ButtonElement className={'addButton modalButton'}>Сменить пароль</ButtonElement>
                     </div>
                 </form>

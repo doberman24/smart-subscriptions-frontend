@@ -77,7 +77,7 @@
 }
 
 .categoryFilter {
-    width: 170px;
+    width: 310px;
 }
 
 .searchFilter {
@@ -85,7 +85,7 @@
 }
 
 .rangeFilter {
-    width: 320px;
+    width: 280px;
 }
 .rangeFilter label {
     display: flex;

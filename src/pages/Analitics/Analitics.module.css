@@ -22,9 +22,9 @@
 }
 
 .filtersBlock {
-    max-width: 400px;
+    max-width: 540px;
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 3fr;
     gap: 12px;
 }
 

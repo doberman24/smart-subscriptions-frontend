@@ -14,6 +14,7 @@ import ExitAccountModal from '@/components/ModalContent/ExitAccountModal';
 import SaveDataModal from '@/components/ModalContent/SaveDataModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import ChangePassModal from '@/components/ModalContent/ChangePassModal';
+import { preferredHourOptions, reminderDaysBeforeOptions } from '@/constants/options';
 
 const Settings = () => {
   const {
@@ -31,9 +32,6 @@ const Settings = () => {
   const [infoTypeModal, setInfoTypeModal] = useState('');
   const [toggleCheck, setToggleCheck] = useState(null);
   const [userData, setUserData] = useState(null);
-  const timeNotify = ['10:00', '12:00', '15:00', '18:00', '20:00'];
-  const dayAfter = [1, 2, 3, 4, 5, 6, 7];
-
 
   useEffect(() => {
     dispatch(getUser(token));
@@ -162,17 +160,17 @@ const Settings = () => {
             <span>
               <h6>Время напоминания</h6>
               <Dropdown 
-                list={timeNotify} 
-                value={toggleCheck.preferredHour} 
-                onChange={(value) => setToggleCheck(item => ({...item, preferredHour: value}))}
+                list={preferredHourOptions} 
+                value={preferredHourOptions.find(item => item.value === toggleCheck.preferredHour)} 
+                onChange={({value}) => setToggleCheck(item => ({...item, preferredHour: value}))}
               /> 
             </span>
             <span>
               <h6>За сколько дней до списания</h6>
               <Dropdown 
-                list={dayAfter} 
-                value={toggleCheck.reminderDaysBefore} 
-                onChange={(value) => setToggleCheck(item => ({...item, reminderDaysBefore: value}))}
+                list={reminderDaysBeforeOptions} 
+                value={reminderDaysBeforeOptions.find(item => item.value === toggleCheck.reminderDaysBefore)} 
+                onChange={({value}) => setToggleCheck(item => ({...item, reminderDaysBefore: value}))}
               />
             </span>
           </div>

@@ -326,8 +326,8 @@ export const analiticsApi = {
     async getAnalitics() {
         return {
             "filters": {
-                "selectedPeriod": "Последние 30 дней",
-                "subscriptionType": "Все"
+                "selectedPeriod": "month",
+                "subscriptionType": "all"
             },
             "overview": {
                 "totalSpent": 8640,

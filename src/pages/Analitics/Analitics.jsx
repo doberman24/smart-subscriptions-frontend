@@ -6,6 +6,7 @@ import loadingStyles from '@/components/ui/Loading.module.css';
 import Graph from '@/components/ui/Diagramm/Graph';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import AnaliticsCard from '@/components/CardSubscription/AnaliticsCard';
+import { categoryOptions, sortDateRangeAnaliticsOptions } from '@/constants/options';
 
 
 const Analitics = () => {
@@ -34,24 +35,21 @@ const Analitics = () => {
     recommendations
   } = analiticData;
 
-  const rangeDate = ['Последние 30 дней', '3 месяца', '6 месяцев', 'Год', 'Все'];
-  const category = categoryBreakdown.map(item => item.category);
-
   return (
     <div className={styles.analiticsPage}>
       <div className={styles.headerBlock}>
         <h1>Аналитика</h1>
         <div className={styles.filtersBlock}>
           <Dropdown 
-            list={rangeDate} 
-            value={filters.selectedPeriod}
-            onChange={(value) => setToggleCheck(item => ({...item, selectedPeriod: value}))}
+            list={sortDateRangeAnaliticsOptions} 
+            value={sortDateRangeAnaliticsOptions.find(item => item.label === filters.selectedPeriod)}
+            // onChange={(value) => setToggleCheck(item => ({...item, selectedPeriod: value}))}
           />
           <Dropdown 
-            list={category} 
-            value={filters.subscriptionType}
-            onChange={(value) => setToggleCheck(item => ({...item, subscriptionType: value}))}
-            addDefault={true}
+            list={categoryOptions} 
+            value={filters.subscriptionType === 'all' ? {label: 'all', value: 'Все'} : categoryOptions.find(item => item.label === filters.subscriptionType)}
+            // onChange={(value) => setToggleCheck(item => ({...item, subscriptionType: value}))}
+            addDefault={filters.subscriptionType === 'all'}
           />
         </div>
       </div>

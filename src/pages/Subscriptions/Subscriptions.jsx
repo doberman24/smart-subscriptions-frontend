@@ -7,11 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchSubscriptions } from '@/redux/subscriptions';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
+import AddSubscriptionModal from '@/components/ModalContent/AddSubscriptionModal';
+import { toggleModal } from '@/redux/showModal';
+import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
 
 const Subscriptions = () => {
 
   const dispatch = useDispatch();
   const {subscriptions, loading} = useSelector(state => state.subscriptions);
+  const isModal = useSelector(state => state.showModal);
 
   useEffect(() => {
     dispatch(fetchSubscriptions());
@@ -21,14 +25,16 @@ const Subscriptions = () => {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
 
-  const categoryList = subscriptions.map(item => item.category);
-  const sortList = ['Нет', 'Стоимость', 'Дата следующего списания', 'Дата прошлого списания'];
+  const showClickModal = (actionModal) => {
+    dispatch(toggleModal({[actionModal]: true}));
+  }
 
   return (
     <div className={styles.subscriptionsPage}>
+      {isModal.addSubscriptionModal && <AddSubscriptionModal />}
       <div className={styles.headerBlock}>
       <h1>Мои подписки</h1>
-        <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+        <ButtonElement onClick={() => showClickModal('addSubscriptionModal')} className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
       </div>
       <div className={styles.filtersBlock}>
         <div className={styles.itemBlock}>
@@ -41,9 +47,9 @@ const Subscriptions = () => {
         <div className={styles.itemBlock}>
           <h6>Выбрать категорию:</h6>
           <span className={styles.categoryFilter}>
-            <Dropdown 
-              list={categoryList} 
-              value={'Все'}
+            <Dropdown
+              list={categoryOptions} 
+              value={{label: 'all', value: 'Все'}}
               addDefault={true} 
             />
           </span>
@@ -51,9 +57,9 @@ const Subscriptions = () => {
         <div className={styles.itemBlock}>
           <h6>Сортировать по:</h6>
           <span className={styles.sortFilter}>
-            <Dropdown 
-              list={sortList} 
-              value={sortList[0]} 
+            <Dropdown
+              list={sortSubscriptionsOptions} 
+              value={sortSubscriptionsOptions[0]} 
             />
           </span>
         </div>
