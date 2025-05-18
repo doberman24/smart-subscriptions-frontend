@@ -1,25 +1,27 @@
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './ModalContent.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '@/redux/showModal';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { useState } from 'react';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
-import { recurrenceOptions, categoryOptions, paidStatusOptions, statusOptions } from '@/constants/options';
+import { recurrenceOptions, categoryOptions, paidStatusOptions, activityStatusOptions } from '@/constants/options';
+import api from '@/api/api';
 
-const AddSubscriptionModal = () => {
+const AddSubscriptionModal = ({onCreateSubscriptions}) => {
   const dispatch = useDispatch();
+  const {token} = useSelector(state => state.token);
 
   const [formValue, setFormValue] = useState({
-    titleSub: '',
+    name: '',
     amount: '',
-    billingDate: '',
+    nextPaymentDate: '',
     recurrence: '',
     category: '',
-    status: '',
-    isPaid: '',
+    activityStatus: false,
+    paidStatus: false,
   })
 
   const {vision, close} = useCloseModal();
@@ -27,9 +29,9 @@ const AddSubscriptionModal = () => {
     close(() => dispatch(toggleModal(false)));
   }
 
-  const addSubscription = (e, formValue) => {
+  const addSubscription = async (e, formValue) => {
     e.preventDefault();
-    console.log(formValue);
+    await onCreateSubscriptions(formValue);
     close(() => dispatch(toggleModal(false)));
   }
 
@@ -51,9 +53,9 @@ const AddSubscriptionModal = () => {
           <label>
           Название
           <input 
-              name='titleSub'
+              name='name'
               type='text'
-              value={formValue.titleSub} 
+              value={formValue.name} 
               onChange={handleChange} 
               placeholder='Например, Netflix'
               // required={true}
@@ -82,9 +84,9 @@ const AddSubscriptionModal = () => {
           <label className={styles.dateLabel}>
           Дата оплаты
           <input 
-              name='billingDate' 
+              name='nextPaymentDate' 
               type='date'
-              value={formValue.billingDate} 
+              value={formValue.nextPaymentDate} 
               onChange={handleChange} 
               placeholder='Введите дату'
               // required={true}
@@ -103,22 +105,22 @@ const AddSubscriptionModal = () => {
             <Dropdown 
               list={paidStatusOptions}
               value={paidStatusOptions[0]} 
-              onChange={({label}) => setFormValue(item => ({...item, isPaid: label}))} 
+              onChange={({label}) => setFormValue(item => ({...item, paidStatus: label}))} 
               placeholder={'Выберите статус'}
             />
           </div>
           <div className={styles.dropdownLabel}>
             <h6>Статус подписки</h6>
             <Dropdown 
-              list={statusOptions}
-              value={statusOptions[0]} 
-              onChange={({label}) => setFormValue(item => ({...item, status: label}))} 
+              list={activityStatusOptions}
+              value={activityStatusOptions[0]} 
+              onChange={({label}) => setFormValue(item => ({...item, activityStatus: label}))} 
               placeholder={'Выберите статус'}
             />
           </div>
           <div className={styles.buttonsBlock}>
             <ButtonElement type={'button'} onClick={closeModal} className={'exitButton modalButton'}>Отмена</ButtonElement>
-            <ButtonElement className={'addButton modalButton'}>Сменить пароль</ButtonElement>
+            <ButtonElement className={'addButton modalButton'}>Добавить</ButtonElement>
           </div>
         </form>
       </div>

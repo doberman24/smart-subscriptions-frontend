@@ -55,7 +55,43 @@ export class Api {
             },
         });
         return response.data;
-    }
+    };
+
+    async createSubscription(token, formValue) {
+        const response = await axios({
+            method: 'post',
+            url: `${import.meta.env.VITE_API_URL}/subscriptions`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            data: formValue,
+        });
+        return response;
+    };
+
+    async getSubscriptionsData(token) {
+        const response = await axios({
+            method: 'get',
+            url: `${import.meta.env.VITE_API_URL}/subscriptions`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response;
+    };
+
+    async deleteSubscriptionData(token, id) {
+        const response = await axios({
+            method: 'delete',
+            url: `${import.meta.env.VITE_API_URL}/subscriptions/${id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response;
+    };
+
+
 
     async getReviewsData() {
         try {
@@ -69,10 +105,6 @@ export class Api {
     async getSummaryData() {
         return await this.summaryApi.getSummaryInfo();
     };
-
-    async getSubscriptionsData() {
-        return await this.subscriptionsApi.getSubscriptions();
-    }
 
     async getAnaliticsData() {
         try {

@@ -18,7 +18,7 @@ export const recurrenceOptions = [
   { label: 'yearly', value: 'Раз в год' },
 ];
 
-export const statusOptions = [
+export const activityStatusOptions = [
   { label: true, value: 'Активно' },
   { label: false, value: 'Не активно' },
 ];
