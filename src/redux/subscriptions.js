@@ -56,17 +56,20 @@ export const deleteSubscription = createAsyncThunk(
   } 
 );
 
-
-export const fetchSubscriptions = createAsyncThunk(
-  'subscriptions/fetch',
-  async (_, { rejectWithValue }) => {
+export const updateSubscription = createAsyncThunk(
+  'subscriptions/updateSubscription',
+ async ({formData, token}, { rejectWithValue }) => {
     try {
-      const data = await api.getSubscriptionsData();
-      return data;      
+      const subscriptions = await api.updateSubscriptionData(token, formData);
+      return subscriptions.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue({
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
     }
-  },
+  } 
 );
 
 const subscriptionsSlice = createSlice({
@@ -75,19 +78,6 @@ const subscriptionsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-    .addCase(fetchSubscriptions.pending, state => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(fetchSubscriptions.fulfilled, (state, action) => {
-      state.loading = false;
-      state.subscriptionsList = action.payload;
-    })
-    .addCase(fetchSubscriptions.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
-
     .addCase(getSubscriptions.pending, state => {
       state.loading = true;
       state.error = null;
@@ -113,6 +103,20 @@ const subscriptionsSlice = createSlice({
       state.message = action.payload.message;
     })
     .addCase(addNewSubscription.rejected, (state, action) => {
+       state.error = action.payload 
+        ? {status: action.payload.status, error: action.payload.statusText}
+        : {status: 500, error: 'Неизвестная ошибка'};
+      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
+    })
+
+    .addCase(updateSubscription.pending, state => {
+      state.error = null;
+    })
+    .addCase(updateSubscription.fulfilled, (state, action) => {
+      state.subscriptionsList = action.payload.subscriptionsData;
+      state.message = action.payload.message;
+    })
+    .addCase(updateSubscription.rejected, (state, action) => {
        state.error = action.payload 
         ? {status: action.payload.status, error: action.payload.statusText}
         : {status: 500, error: 'Неизвестная ошибка'};

@@ -10,6 +10,8 @@ export class Api {
         this.summaryApi = summaryApi;
     };
 
+
+    //Авторизация и регистрация
     async authorization(formValue, activeTab) {
         const authUrl = activeTab === 'reg' ? '/auth/register' : '/auth/login';
         const response = await axios({
@@ -23,6 +25,8 @@ export class Api {
         return response.data;
     };
 
+
+    //Данные ползователя
     async getData(token) {
         const response = await axios({
             method: 'get',
@@ -57,6 +61,7 @@ export class Api {
         return response.data;
     };
 
+    //Данные подисок
     async createSubscription(token, formValue) {
         const response = await axios({
             method: 'post',
@@ -90,6 +95,18 @@ export class Api {
         });
         return response;
     };
+
+    async updateSubscriptionData(token, formValue) {
+        const response = await axios({
+            method: 'put',
+            url: `${import.meta.env.VITE_API_URL}/subscriptions/${formValue.id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            data: formValue,
+        });
+        return response;
+    }
 
 
 

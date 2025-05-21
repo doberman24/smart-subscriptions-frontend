@@ -2,9 +2,9 @@ import SubscriptionIcon from '@/components/ui/SubscriptionIcon'
 import styles from './CardSubscription.module.css'
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement'
 import { useRef, useState } from 'react';
-import { categoryOptions } from '../../constants/options';
+import { categoryOptions } from '@/constants/options';
 
-const CardSubscription = ({cardSub, page, onDeleteClick}) => {
+const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal}) => {
 
     const {id, name, amount, nextPaymentDate, recurrence, paidStatus, category, activityStatus} = cardSub;
 
@@ -34,9 +34,14 @@ const CardSubscription = ({cardSub, page, onDeleteClick}) => {
 
     const {statusPayColor, statusPay, statusSubscription} = checkPayStatus(lastBillingDate, nextBillingDate, paidStatus, activityStatus);
 
-    const changeCard = (e, idCard = null) => {
+    const deleteCard = (e, idCard) => {
         e.stopPropagation();
-        if (idCard) onDeleteClick(idCard);
+        onDeleteShowModal(idCard);
+    }
+
+    const changeCard = (e, idCard) => {
+        e.stopPropagation();
+        onChangeShowModal(idCard);
     }
 
     return (
@@ -55,8 +60,8 @@ const CardSubscription = ({cardSub, page, onDeleteClick}) => {
                 <h4 className={styles.date}>{activityStatus ? `до ${formatBillingDate}` : 'В архиве'}</h4>
             </div>
             <div className={styles.buttonsBlock}>
-                <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton addButton'}>Изменить</ButtonElement>
-                <ButtonElement onMouseDown={(e) => changeCard(e, id)} className={'buttonsCard purpleButton delButtonCard'}>Удалить</ButtonElement>
+                <ButtonElement onMouseDown={(e) => changeCard(e, id)} className={'buttonsCard purpleButton addButton'}>Изменить</ButtonElement>
+                <ButtonElement onMouseDown={(e) => deleteCard(e, id)} className={'buttonsCard purpleButton delButtonCard'}>Удалить</ButtonElement>
             </div>
         </div>
     )

@@ -8,10 +8,9 @@ const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholde
   const [inputData, setInputData] = useState(value.value);
   const dropdownElement = useRef(null);
 
-  const handleChange = (e) => {
-    setInputData(e.target.value);
-    onChange?.(e.target.value);
-  }
+  useEffect(() => {
+    setInputData(value.value || '');
+  }, [value])
 
   const selectItem = (item) => {
     setInputData(item.value);
@@ -20,7 +19,6 @@ const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholde
   }
 
   useEffect(() => {
-    onChange?.(value);
     addDefault ? setDataList([value, ...list]) : setDataList([...list]);
     const handleClickOut = (e) => {
       if (dropdownElement.current && !dropdownElement.current.contains(e.target)) {
@@ -29,21 +27,36 @@ const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholde
     };
     document.addEventListener('click', handleClickOut);
     return () => document.removeEventListener('click', handleClickOut);
-  }, []);
+  }, [list, value, addDefault]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Tab' || e.key === 'Escape') {
+      setShowList(false);
+    }
+  }
 
   return (
     <div className={styles.dropdownBlock} ref={dropdownElement}>
       <div className={styles.inputDropdown} 
         style={{borderColor: showList && '#6366f1', boxShadow: showList && '0 0 0 3px rgba(99, 102, 241, 0.2)'}} 
         onFocus={() => setShowList(true)}
+        onKeyDown={handleKeyDown}
       >
         <input 
           type="text" 
           value={inputData} 
-          onChange={handleChange} 
           placeholder={placeholder}
+          onFocus={() => setShowList(true)}
+          onKeyDown={handleKeyDown}
+          onClick={() => setShowList(true)}
+          readOnly
         />
-        <FaAngleDown style={{cursor: 'pointer'}} onClick={() => setShowList(value => !value)} />
+        <FaAngleDown 
+          tabIndex={-1} 
+          style={{cursor: 'pointer', outline: 'none'}}
+          onMouseDown={() => setShowList(value => !value)} 
+          onKeyDown={handleKeyDown} 
+        />
       </div>
       <ul className={`${styles.dropdownList} ${showList ? styles.showList : ''}`}>
         {dataList.map((item, index) => (

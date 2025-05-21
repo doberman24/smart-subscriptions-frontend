@@ -1,6 +1,6 @@
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './ModalContent.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleModal } from '@/redux/showModal';
 import Modal from '@/components/ui/Modal/Modal';
 import { useCloseModal } from './useCloseModal';
@@ -9,8 +9,6 @@ import { MdWarningAmber } from 'react-icons/md';
 const DeleteSubscriptionModal = ({onDeleteSubscription}) => {
     const dispatch = useDispatch();
 
-    // const {token} = useSelector(state => state.token);
-    
     const {vision, close} = useCloseModal();
     const closeModal = () => {
         close(() => dispatch(toggleModal(false)));
