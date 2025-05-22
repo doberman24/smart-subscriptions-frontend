@@ -9,11 +9,10 @@ import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import AddSubscriptionModal from '@/components/ModalContent/AddSubscriptionModal';
 import { toggleModal } from '@/redux/showModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
-import { getSubscriptions, addNewSubscription, deleteSubscription, updateSubscription } from '@/redux/subscriptions';
+import { getSubscriptions, addNewSubscription, deleteSubscription, updateSubscription, resetData } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
-import { resetData } from '@/redux/user';
 
 const Subscriptions = () => {
 

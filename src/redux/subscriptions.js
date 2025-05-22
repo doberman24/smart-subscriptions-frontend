@@ -75,7 +75,14 @@ export const updateSubscription = createAsyncThunk(
 const subscriptionsSlice = createSlice({
   name: 'subscriptions',
   initialState,
-  reducers: {},
+  reducers: {
+    resetData: (state) => {
+      state.subscriptionsList = [];
+      state.loading = false;
+      state.error = null;
+      state.message = null;
+    }
+  },
   extraReducers: builder => {
     builder
     .addCase(getSubscriptions.pending, state => {
@@ -139,4 +146,5 @@ const subscriptionsSlice = createSlice({
   },
 })
 
+export const { resetData } = subscriptionsSlice.actions;
 export default subscriptionsSlice.reducer;
