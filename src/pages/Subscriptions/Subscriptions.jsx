@@ -4,7 +4,7 @@ import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import { FaSearch } from 'react-icons/fa';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import AddSubscriptionModal from '@/components/ModalContent/AddSubscriptionModal';
 import { toggleModal } from '@/redux/showModal';
@@ -27,7 +27,8 @@ const Subscriptions = () => {
 
   const [findName, setFindName] = useState('');
   const [sortCategory, setSortCategory] = useState({label: 'all', value: 'Все'});
-  // const [sortCoast, setSortCoast] = useState(sortSubscriptionsOptions[0])
+  const [sortCoast, setSortCoast] = useState(sortSubscriptionsOptions[0]);
+  const [sortPrice, setSortPrice] = useState({from: '', to: ''});
   const [sortSubscriptions, setSortSubscriptions] = useState(subscriptionsList);
 
   useEffect(() => {
@@ -49,8 +50,15 @@ const Subscriptions = () => {
     if (sortCategory.label !== 'all') {
       filtered = filtered.filter(item => item.category.toLowerCase().includes(sortCategory.label));
     }
+    if (sortCoast.label !== 'no') {
+      sortCoast.label === 'cost' && filtered.sort((a, b) => a.amount - b.amount);
+      sortCoast.label === 'nextPaymentDay' && filtered.sort((a, b) => new Date(a.nextPaymentDate) - new Date(b.nextPaymentDate));
+    }
+    if (sortPrice.from || sortPrice.to) {
+      filtered = filtered.filter(item => sortPrice.to ? item.amount >= sortPrice.from && item.amount <= sortPrice.to : item.amount >= sortPrice.from);
+    }
     setSortSubscriptions(filtered);
-  }, [findName, sortCategory, subscriptionsList]);
+  }, [findName, sortCategory, sortCoast, sortPrice, subscriptionsList]);
 
   if(loading || !subscriptionsList) {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
@@ -95,10 +103,6 @@ const Subscriptions = () => {
     dispatch(toggleModal({[actionModal]: true}));
   }
 
-    const sortCoast = (item) => {
-    console.log(item);
-  }
-
   return (
     <div className={styles.subscriptionsPage}>
       {isModal.addSubscriptionModal && 
@@ -139,8 +143,8 @@ const Subscriptions = () => {
           <span className={styles.sortFilter}>
             <Dropdown
               list={sortSubscriptionsOptions} 
-              value={sortSubscriptionsOptions[0]} 
-              onChange={({label}) => sortCoast(label)}
+              value={sortCoast} 
+              onChange={(label) => setSortCoast(label)}
             />
           </span>
         </div>
@@ -148,11 +152,11 @@ const Subscriptions = () => {
           <h6>Цена:</h6>
           <span className={`${styles.inputFilter} ${styles.rangeFilter}`}>
             <label>от:
-              <input name='from' type='number' />
+              <input name='from' type='number' min='0' value={sortPrice.from} onChange={(e) => setSortPrice(item => ({...item, from: e.target.value}))} />
               ₽
             </label>
             <label>до: 
-              <input name='to' type='number' />
+              <input name='to' type='number' min='0' value={sortPrice.to} onChange={(e) => setSortPrice(item => ({...item, to: e.target.value}))} />
               ₽
             </label>
           </span>
