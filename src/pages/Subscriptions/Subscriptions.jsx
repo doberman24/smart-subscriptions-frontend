@@ -9,7 +9,7 @@ import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import AddSubscriptionModal from '@/components/ModalContent/AddSubscriptionModal';
 import { toggleModal } from '@/redux/showModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
-import { getSubscriptions, addNewSubscription, deleteSubscription, updateSubscription, resetData } from '@/redux/subscriptions';
+import { getSubscriptions, addNewSubscription, deleteSubscription, updateSubscription, resetDataSubscription } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +37,7 @@ const Subscriptions = () => {
 
   useEffect(() => {
     if (error?.status) {
-      dispatch(resetData()); 
+      dispatch(resetDataSubscription()); 
       navigate('/login', {state: {fromApp: true}});
     }
   }, [error, dispatch]);
@@ -106,9 +106,9 @@ const Subscriptions = () => {
     <div className={styles.subscriptionsPage}>
       {isModal.addSubscriptionModal && 
         <AddSubscriptionModal 
-        onCreateSubscription={onCreateSubscription} 
-        onChangeSubscription={onChangeSubscription}
-        data={idCard && subscriptionsList.find(item => item.id === idCard)}
+          onCreateSubscription={onCreateSubscription} 
+          onChangeSubscription={onChangeSubscription}
+          data={idCard && subscriptionsList.find(item => item.id === idCard)}
       />}
       {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal}/>}
       {isModal.isDeleteSubscriptionModal && <DeleteSubscriptionModal onDeleteSubscription={onDeleteSubscription}/>}

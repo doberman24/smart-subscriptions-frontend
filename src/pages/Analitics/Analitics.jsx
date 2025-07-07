@@ -7,11 +7,27 @@ import Graph from '@/components/ui/Diagramm/Graph';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import AnaliticsCard from '@/components/CardSubscription/AnaliticsCard';
 import { categoryOptions, sortDateRangeAnaliticsOptions } from '@/constants/options';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAnalytics } from '@/redux/analytics';
+import { resetDataAnalitics } from '@/redux/analytics';
+import { useNavigate } from 'react-router-dom';
 
 
 const Analitics = () => {
 
   const [analiticData, setAnaliticData] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {loading, summaryData, message, error} = useSelector(state => state.analitycsData);
+  const {token} = useSelector(state => state.token);
+
+  useEffect(() => {
+      if (error?.status) {
+        dispatch(resetDataAnalitics());
+        navigate('/login', {state: {fromApp: true}});
+      }
+    }, [error, dispatch]);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,10 +35,16 @@ const Analitics = () => {
       setAnaliticData(data);
     };
     getData();
-  }, [])
+    dispatch(getAnalytics({token, filter: null}));
+  }, [dispatch])
 
-  if (!analiticData) {
+
+  if (loading || !summaryData.filters || !analiticData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
+  }
+
+  const handleFilterChange = (label) => {
+    dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}))
   }
 
   const {
@@ -42,14 +64,16 @@ const Analitics = () => {
         <div className={styles.filtersBlock}>
           <Dropdown 
             list={sortDateRangeAnaliticsOptions} 
-            value={sortDateRangeAnaliticsOptions.find(item => item.label === filters.selectedPeriod)}
-            // onChange={(value) => setToggleCheck(item => ({...item, selectedPeriod: value}))}
+            value={sortDateRangeAnaliticsOptions.find(item => item.label === summaryData.filters.period)}
+            onChange={({label}) => handleFilterChange({period: label})}
           />
           <Dropdown 
-            list={categoryOptions} 
-            value={filters.subscriptionType === 'all' ? {label: 'all', value: 'Все'} : categoryOptions.find(item => item.label === filters.subscriptionType)}
-            // onChange={(value) => setToggleCheck(item => ({...item, subscriptionType: value}))}
-            addDefault={filters.subscriptionType === 'all'}
+            list={[
+                {label: 'all', value: 'Все'}, 
+                ...categoryOptions,
+              ]} 
+            value={summaryData.filters.category === 'all' ? {label: 'all', value: 'Все'} : categoryOptions.find(item => item.label === summaryData.filters.category)}
+            onChange={({label}) => handleFilterChange({category: label})}
           />
         </div>
       </div>

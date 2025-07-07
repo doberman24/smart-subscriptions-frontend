@@ -19,7 +19,8 @@ const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholde
   }
 
   useEffect(() => {
-    addDefault ? setDataList([value, ...list]) : setDataList([...list]);
+    // onChange?.(value);
+    setDataList([...list]);
     const handleClickOut = (e) => {
       if (dropdownElement.current && !dropdownElement.current.contains(e.target)) {
         setShowList(false);
@@ -27,7 +28,7 @@ const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholde
     };
     document.addEventListener('click', handleClickOut);
     return () => document.removeEventListener('click', handleClickOut);
-  }, [list, value, addDefault]);
+  }, [list, value]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Tab' || e.key === 'Escape') {

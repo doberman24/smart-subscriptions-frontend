@@ -8,6 +8,12 @@ const initialState = {
   message: null
 };
 
+const handleError = (error) => ({
+  status: error.response?.status,
+  statusText: error.response?.statusText,
+  data: error.response?.data
+})
+
 export const getSubscriptions = createAsyncThunk(
   'subscriptions/getSubscriptions',
   async (token, { rejectWithValue }) => {
@@ -15,11 +21,7 @@ export const getSubscriptions = createAsyncThunk(
       const subscriptions = await api.getSubscriptionsData(token);
       return subscriptions.data;
     } catch (error) {
-      return rejectWithValue({
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   } 
 );
@@ -31,11 +33,7 @@ export const addNewSubscription = createAsyncThunk(
       const subscriptions = await api.createSubscription(token, formData);
       return subscriptions.data;
     } catch (error) {
-      return rejectWithValue({
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   } 
 );
@@ -47,11 +45,7 @@ export const deleteSubscription = createAsyncThunk(
       const subscriptions = await api.deleteSubscriptionData(token, idCard);
       return subscriptions.data;
     } catch (error) {
-      return rejectWithValue({
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   } 
 );
@@ -63,11 +57,7 @@ export const updateSubscription = createAsyncThunk(
       const subscriptions = await api.updateSubscriptionData(token, formData);
       return subscriptions.data;
     } catch (error) {
-      return rejectWithValue({
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   } 
 );
@@ -76,75 +66,40 @@ const subscriptionsSlice = createSlice({
   name: 'subscriptions',
   initialState,
   reducers: {
-    resetData: (state) => {
-      state.subscriptionsList = [];
-      state.loading = false;
-      state.error = null;
-      state.message = null;
+    resetDataSubscription: (state) => {
+      Object.assign(state, initialState)
     }
   },
   extraReducers: builder => {
-    builder
-    .addCase(getSubscriptions.pending, state => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(getSubscriptions.fulfilled, (state, action) => {
-      state.loading = false;
-      state.subscriptionsList = action.payload.subscriptionsData;
-      state.message = action.payload.message;
-    })
-    .addCase(getSubscriptions.rejected, (state, action) => {
-      state.loading = false;
-       state.error = action.payload 
-        ? {status: action.payload.status, error: action.payload.statusText}
-        : {status: 500, error: 'Неизвестная ошибка'};
-      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
-    })
+    const asyncThunks = [
+      getSubscriptions,
+      addNewSubscription,
+      updateSubscription,
+      deleteSubscription,
+    ];
 
-    .addCase(addNewSubscription.pending, state => {
-      state.error = null;
-    })
-    .addCase(addNewSubscription.fulfilled, (state, action) => {
-      state.subscriptionsList = action.payload.subscriptionsData;
-      state.message = action.payload.message;
-    })
-    .addCase(addNewSubscription.rejected, (state, action) => {
-       state.error = action.payload 
-        ? {status: action.payload.status, error: action.payload.statusText}
-        : {status: 500, error: 'Неизвестная ошибка'};
-      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
-    })
-
-    .addCase(updateSubscription.pending, state => {
-      state.error = null;
-    })
-    .addCase(updateSubscription.fulfilled, (state, action) => {
-      state.subscriptionsList = action.payload.subscriptionsData;
-      state.message = action.payload.message;
-    })
-    .addCase(updateSubscription.rejected, (state, action) => {
-       state.error = action.payload 
-        ? {status: action.payload.status, error: action.payload.statusText}
-        : {status: 500, error: 'Неизвестная ошибка'};
-      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
-    })
+    asyncThunks.forEach(thunk => {
+      builder
+      .addCase(thunk.pending, state => {
+        state.loading = thunk === getSubscriptions;
+        state.error = null;
+      })
+      .addCase(thunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.subscriptionsList = action.payload.subscriptionsData;
+        state.message = action.payload.message;
+      })
+      .addCase(thunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload 
+          ? {status: action.payload.status, error: action.payload.statusText}
+          : {status: 500, error: 'Неизвестная ошибка'};
+        state.message = action.payload?.data?.error || 'Неизвестная ошибка';
+      });
+    });
     
-    .addCase(deleteSubscription.pending, state => {
-      state.error = null;
-    })
-    .addCase(deleteSubscription.fulfilled, (state, action) => {
-      state.subscriptionsList = action.payload.subscriptionsData;
-      state.message = action.payload.message;
-    })
-    .addCase(deleteSubscription.rejected, (state, action) => {
-       state.error = action.payload 
-        ? {status: action.payload.status, error: action.payload.statusText}
-        : {status: 500, error: 'Неизвестная ошибка'};
-      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
-    })
   },
 })
 
-export const { resetData } = subscriptionsSlice.actions;
+export const { resetDataSubscription } = subscriptionsSlice.actions;
 export default subscriptionsSlice.reducer;

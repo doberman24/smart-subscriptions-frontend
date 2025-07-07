@@ -6,7 +6,7 @@ import { categoryOptions } from '@/constants/options';
 
 const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal}) => {
 
-    const {id, name, amount, nextPaymentDate, recurrence, paidStatus, category, activityStatus} = cardSub;
+    const {id, name, amount, nextPaymentDate, recurrence, paidStatus, paidDate, category, activityStatus} = cardSub;
 
     const titleHeader = useRef(null);
     const [clickOnCard, setClickOnCard] = useState('');
@@ -15,11 +15,9 @@ const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal})
     const formatBillingDate = page === 'dashboard' ? 
         nextBillingDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'short'}) :
         nextBillingDate.toLocaleDateString('ru-RU');
-    let lastBillingDate = new Date (nextBillingDate)
-    lastBillingDate.setMonth(nextBillingDate.getMonth() - 1);
-    
+
     nextBillingDate = nextBillingDate.toISOString().split('T')[0];
-    lastBillingDate = lastBillingDate.toISOString().split('T')[0];
+    const lastBillingDate = paidDate.split('T')[0];
 
     const categoryCard = categoryOptions.find(item => item.label === category);
 
@@ -49,6 +47,7 @@ const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal})
             ${styles[statusPayColor]}`}
             onMouseDown={() => setClickOnCard('clickCard')}
             onMouseUp={() => setClickOnCard('')}
+            onClick={() => onChangeShowModal(id)}
         >
             <div className={styles.statusCard} style={{visibility: !activityStatus && 'hidden'}}>{statusPay}</div>
             <div className={`${styles.statusSubscription} ${activityStatus ? styles.activeStatus : styles.disactiveStatus}`}>{statusSubscription}</div>

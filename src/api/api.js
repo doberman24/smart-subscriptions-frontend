@@ -109,6 +109,18 @@ export class Api {
     }
 
 
+    //Данные аналитики
+    async getAnalyticsData(token, filteredData) {
+        const response = await axios({
+            method: 'post',
+            url: `${import.meta.env.VITE_API_URL}/analytics`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            ...(filteredData && {data: filteredData}),
+        });
+        return response;
+    };
 
     async getReviewsData() {
         try {
