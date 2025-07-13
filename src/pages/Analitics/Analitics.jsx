@@ -42,9 +42,10 @@ const Analitics = () => {
   if (loading || !summaryData.filters || !analiticData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
+  console.log(summaryData);
 
   const handleFilterChange = (label) => {
-    dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}))
+    dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
   }
 
   const {
@@ -79,10 +80,10 @@ const Analitics = () => {
       </div>
       <div className={styles.expensesBlock}>
         <div className={styles.expenses}>
-          <h3>Общие расходы<br /><span className={styles.mainExpenses}>{overview.totalSpent} ₽</span></h3>
+          <h3>Общие расходы<br /><span className={styles.mainExpenses}>{summaryData.overview.totalPayments} ₽</span></h3>
         </div>
         <div className={styles.expenses}>
-          <h3>Активные подписки<br /><span className={styles.mainExpenses}>{overview.activeSubscriptions}</span></h3>
+          <h3>Активные подписки<br /><span className={styles.mainExpenses}>{summaryData.overview.activeSub}</span></h3>
         </div>
         <div className={styles.expenses}>
           <h3>Средний расход за месяц<br /><span className={styles.mainExpenses}>{overview.averageMonthly} ₽</span></h3>
