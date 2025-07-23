@@ -42,7 +42,7 @@ const Analitics = () => {
   if (loading || !summaryData.filters || !analiticData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
-  console.log(summaryData);
+  // console.log(summaryData);
 
   const handleFilterChange = (label) => {
     dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
@@ -57,6 +57,8 @@ const Analitics = () => {
     recurringPayments,
     recommendations
   } = analiticData;
+
+  // console.log(topSubscriptions);
 
   return (
     <div className={styles.analiticsPage}>
@@ -86,7 +88,7 @@ const Analitics = () => {
           <h3>Активные подписки<br /><span className={styles.mainExpenses}>{summaryData.overview.activeSub}</span></h3>
         </div>
         <div className={styles.expenses}>
-          <h3>Средний расход за месяц<br /><span className={styles.mainExpenses}>{overview.averageMonthly} ₽</span></h3>
+          <h3>Средний расход за месяц<br /><span className={styles.mainExpenses}>{summaryData.overview.averageMonth} ₽</span></h3>
         </div>
       </div>
       <div className={styles.graphsBlock}>
@@ -105,13 +107,13 @@ const Analitics = () => {
       </div>
       <div className={styles.cardsBlock}>
         <h2>Top 5 самых дорогих подписок</h2>
-        {topSubscriptions.map(card => (
+        {summaryData.topSubscriptions.map(card => (
           <AnaliticsCard key={card.id} cardSub={card} />
         ))}
       </div>
       <div className={styles.cardsBlock}>
         <h2>Повторяющияся расходы</h2>
-        {recurringPayments.map(card => (
+        {summaryData.recurringPayments.map(card => (
           <AnaliticsCard key={card.id} cardSub={card} />
         ))}
       </div>

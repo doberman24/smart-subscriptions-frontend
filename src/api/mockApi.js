@@ -394,33 +394,33 @@ export const analiticsApi = {
             "recurringPayments": [
                 {
                     "id": "sub_001",
-                    "titleSub": "Netflix",
-                    "interval": "ежемесячно",
-                    "nextPayment": "2025-05-01"
+                    "name": "Netflix",
+                    "recurrence": "ежемесячно",
+                    "nextPaymentDate": "2025-05-01"
                 },
                 {
                     "id": "sub_002",
-                    "titleSub": "ЖКХ: вода, свет",
-                    "interval": "ежемесячно",
-                    "nextPayment": "2025-05-05"
+                    "name": "ЖКХ: вода, свет",
+                    "recurrence": "ежемесячно",
+                    "nextPaymentDate": "2025-05-05"
                 },
                 {
                     "id": "sub_003",
-                    "titleSub": "Coursera Plus",
-                    "interval": "раз в год",
-                    "nextPayment": "2026-03-15"
+                    "name": "Coursera Plus",
+                    "recurrence": "раз в год",
+                    "nextPaymentDate": "2026-03-15"
                 },
                 {
                     "id": "sub_004",
-                    "titleSub": "Spotify",
-                    "interval": "ежемесячно",
-                    "nextPayment": "2025-04-28"
+                    "name": "Spotify",
+                    "recurrence": "ежемесячно",
+                    "nextPaymentDate": "2025-04-28"
                 },
                 {
                     "id": "sub_005",
-                    "titleSub": "Google Drive",
-                    "interval": "ежемесячно",
-                    "nextPayment": "2025-04-20"
+                    "name": "Google Drive",
+                    "recurrence": "ежемесячно",
+                    "nextPaymentDate": "2025-04-20"
                 }
             ],
             "recommendations": [
