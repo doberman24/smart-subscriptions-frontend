@@ -5,7 +5,7 @@ const Graph = ({spendingOverTime}) => {
 
   const formatSpending = spendingOverTime.map(item => ({
     ...item,
-    date: new Date(item.date).toLocaleDateString('RU-ru',{
+    date: new Date(item.datePayment).toLocaleDateString('RU-ru',{
       day: 'numeric',
       month: 'short',
     })
@@ -42,7 +42,7 @@ const Graph = ({spendingOverTime}) => {
         />
         <Line 
           type='monotone' 
-          dataKey='amount' 
+          dataKey='amountPayment' 
           stroke='#4f46e5'
           strokeLinecap='round' 
           strokeWidth={2}

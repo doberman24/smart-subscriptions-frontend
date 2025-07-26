@@ -1,15 +1,15 @@
 export const categoryOptions = [
-  { label: 'entertainment', value: 'Медиа и развлечения' },
-  { label: 'devtools', value: 'Разработка и облачные сервисы' },
-  { label: 'utilities', value: 'Коммунальные и бытовые услуги' },
-  { label: 'mobile', value: 'Связь и мобильная связь' },
-  { label: 'education', value: 'Образование и курсы' },
-  { label: 'health', value: 'Здоровье и фитнес' },
-  { label: 'transport', value: 'Транспорт' },
-  { label: 'shopping', value: 'Шопинг и подписки на товары' },
-  { label: 'finance', value: 'Финансы' },
-  { label: 'pets', value: 'Домашние животные' },
-  { label: 'family', value: 'Семья и дети' },
+  { label: 'entertainment', value: 'Медиа и развлечения', color: '#4f46e5' },
+  { label: 'devtools', value: 'Разработка и облачные сервисы', color: '#10b981' },
+  { label: 'utilities', value: 'Коммунальные и бытовые услуги', color: '#f59e0b' },
+  { label: 'mobile', value: 'Связь и мобильная связь', color: '#ef4444' },
+  { label: 'education', value: 'Образование и курсы', color: '#6366f1' },
+  { label: 'health', value: 'Здоровье и фитнес', color: '#14b8a6' },
+  { label: 'transport', value: 'Транспорт', color: '#e0e3ee' },
+  { label: 'shopping', value: 'Шопинг и подписки на товары', color: '#8b5cf6' },
+  { label: 'finance', value: 'Финансы', color: '#ec4899' },
+  { label: 'pets', value: 'Домашние животные', color: '#f97316' },
+  { label: 'family', value: 'Семья и дети', color: '#22d3ee' },
 ];
 
 export const recurrenceOptions = [

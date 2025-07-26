@@ -42,7 +42,6 @@ const Analitics = () => {
   if (loading || !summaryData.filters || !analiticData) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
-  // console.log(summaryData);
 
   const handleFilterChange = (label) => {
     dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
@@ -58,7 +57,7 @@ const Analitics = () => {
     recommendations
   } = analiticData;
 
-  // console.log(topSubscriptions);
+  // console.log(summaryData);
 
   return (
     <div className={styles.analiticsPage}>
@@ -95,13 +94,13 @@ const Analitics = () => {
         <div className={styles.timeGraph}>
           <h2>Динамика расходов</h2>
           <div className={styles.graph}>
-            <Graph spendingOverTime={spendingOverTime} />
+            <Graph spendingOverTime={summaryData.spendingOverTime} />
           </div>
         </div>
         <div className={styles.timeGraph}>
           <h2>Распределение по категориям</h2>
           <div className={styles.diagramm}>
-            <Diagramm diagrammData={categoryBreakdown} typeDiagram={'category'} />
+            <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/>
           </div>
         </div>
       </div>
