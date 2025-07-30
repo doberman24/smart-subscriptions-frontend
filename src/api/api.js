@@ -1,13 +1,10 @@
 import axios from "axios";
 
-import { reviewsApi, userApi, summaryApi, subscriptionsApi, analiticsApi } from "./mockApi";
+import { reviewsApi } from "./mockApi";
 
 export class Api {
     constructor() {
         this.reviewsApi = reviewsApi;
-        this.userApi = userApi;
-        this.subscriptionsApi = subscriptionsApi;
-        this.summaryApi = summaryApi;
     };
 
 
@@ -26,7 +23,7 @@ export class Api {
     };
 
 
-    //Данные ползователя
+    //Данные пользователя
     async getData(token) {
         const response = await axios({
             method: 'get',
@@ -122,6 +119,19 @@ export class Api {
         return response;
     };
 
+
+    //Общие данные для главной страницы
+    async getSummary(token) {
+        const response = await axios({
+            method: 'get',
+            url: `${import.meta.env.VITE_API_URL}/dashboard`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response;
+    };    
+
     async getReviewsData() {
         try {
             return await this.reviewsApi.getReviews();
@@ -130,19 +140,6 @@ export class Api {
             return [];
         }
     };
-
-    async getSummaryData() {
-        return await this.summaryApi.getSummaryInfo();
-    };
-
-    async getAnaliticsData() {
-        try {
-            return await analiticsApi.getAnalitics();
-        } catch (error) {
-            console.error('Ошибка загрузки отзывов', error);
-            return {};
-        }
-    }
 }
 
 export default new Api();

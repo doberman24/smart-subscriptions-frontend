@@ -1,7 +1,6 @@
 import { Cell, Legend, Pie, PieChart, Tooltip, ResponsiveContainer } from "recharts";
 import styles from './Diagramm.module.css';
-import { categoryOptions } from "@/constants/options";
-
+import { categoryOptions, activeOptions } from "@/constants/options";
 
 const Diagramm = ({diagrammData, typeDiagram}) => {
 
@@ -11,7 +10,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
         <Pie 
           data={diagrammData} 
           dataKey='amount' 
-          nameKey={typeDiagram === 'category' ? 'category' : 'title'} 
+          nameKey='category' 
           cx='50%' 
           cy='50%' 
           outerRadius="100%" 
@@ -22,7 +21,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
           margin={{top: 40, right: 50, left: 0, bottom: 20}}
         >
           {diagrammData.map((entry, index) => {
-            const element = categoryOptions.find(item => item.label === entry.category);
+            const element = typeDiagram === 'category' ? categoryOptions.find(item => item.label === entry.category) : activeOptions.find(item => item.label === entry.category);
             return (
             <Cell 
               key={`cell-${index}`} 
@@ -36,7 +35,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
           isAnimationActive={false}
           content={(tooltip) => {
             if (tooltip.payload && tooltip.payload[0]) {
-            const category = categoryOptions.find(item => item.label === tooltip.payload[0].name);
+            const category = typeDiagram === 'category' ? categoryOptions.find(item => item.label === tooltip.payload[0].name) : activeOptions.find(item => item.label === tooltip.payload[0].name);
               return (
                 <div className={styles.tooltip}>
                   <h6>{category.value}</h6>
@@ -62,7 +61,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
                   <span
                     className={styles.legendTitle}
                   >
-                    {categoryOptions.find(item => item.label === entry.value).value}
+                    {typeDiagram === 'category' ? categoryOptions.find(item => item.label === entry.value).value : activeOptions.find(item => item.label === entry.value).value}
                   </span>
                 </div>
               ))}

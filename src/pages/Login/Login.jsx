@@ -42,7 +42,7 @@ const Login = () => {
     dispatch(cleanToken());
     const data = await dispatch(getToken({formValue, activeTab}));
     if (getToken.fulfilled.match(data)) {
-      navigate('/subscriptions', {replace: true});
+      navigate('/dashboard', {replace: true});
     }
     if (getToken.rejected.match(data)) {
       dispatch(toggleModal({isInfoModal: true}));

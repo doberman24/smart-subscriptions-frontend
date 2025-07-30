@@ -2,45 +2,56 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/api/api";
 
 const initialState = {
-    subscriptions: null,
-    analytics: null,
     loading: false,
     error: null,
+    summaryData: {},
+    message: null
 }
 
-export const fetchSummary = createAsyncThunk(
-    'summaryInfo/fetch',
-    async (_, { rejectWithValue }) => {
-        try {
-            const data = await api.getSummaryData();
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
+export const getSummaryInfo = createAsyncThunk(
+  'analitics/getSummaryInfo',
+  async (token, { rejectWithValue }) => {
+    try {
+      const dashboard = await api.getSummary(token);
+      return dashboard.data;
+    } catch (error) {
+      return rejectWithValue({
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
     }
+  } 
 );
 
 const summarySlice = createSlice({
     name: 'summaryInfo',
     initialState,
-    reducers: {},
+    reducers: {
+        resetDataDashboard: (state) => {
+            Object.assign(state, initialState)
+        }
+    },
     extraReducers: builder => {
         builder
-            .addCase(fetchSummary.pending, state => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(fetchSummary.fulfilled, (state, action) => {
-                state.loading = false;
-                state.user = action.payload.user;
-                state.subscriptions = action.payload.subscriptions;
-                state.analytics = action.payload.analytics;
-            })
-            .addCase(fetchSummary.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            });
+        .addCase(getSummaryInfo.pending, state => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getSummaryInfo.fulfilled, (state, action) => {
+            state.loading = false;
+            state.summaryData = action.payload.summaryData;
+            state.message = action.payload.message;
+        })
+        .addCase(getSummaryInfo.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload 
+            ? {status: action.payload.status, error: action.payload.statusText}
+            : {status: 500, error: 'Неизвестная ошибка'};
+            state.message = action.payload?.data?.error || 'Неизвестная ошибка';
+        })
     },
 });
 
+export const {resetDataDashboard} = summarySlice.actions;
 export default summarySlice.reducer;

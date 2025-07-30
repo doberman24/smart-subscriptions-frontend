@@ -63,3 +63,8 @@ export const reminderDaysBeforeOptions = [
   { value: 6 },
   { value: 7 },
 ];
+
+export const activeOptions = [
+  {label: 'active', value: 'Активные подписки', color: '#4f46e5'},
+  {label: 'deactive', value: 'Неактивные подписки', color: '#e0e3ee'},
+];

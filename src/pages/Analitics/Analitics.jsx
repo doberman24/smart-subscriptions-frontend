@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './Analitics.module.css'
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
-import api from '@/api/api';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import Graph from '@/components/ui/Diagramm/Graph';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
@@ -14,8 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Analitics = () => {
-
-  const [analiticData, setAnaliticData] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,34 +27,17 @@ const Analitics = () => {
     }, [error, dispatch]);
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await api.getAnaliticsData();
-      setAnaliticData(data);
-    };
-    getData();
     dispatch(getAnalytics({token, filter: null}));
   }, [dispatch])
 
 
-  if (loading || !summaryData.filters || !analiticData) {
+  if (loading || !summaryData.filters) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
   const handleFilterChange = (label) => {
     dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
   }
-
-  const {
-    filters, 
-    overview, 
-    spendingOverTime, 
-    categoryBreakdown, 
-    topSubscriptions, 
-    recurringPayments,
-    recommendations
-  } = analiticData;
-
-  // console.log(summaryData);
 
   return (
     <div className={styles.analiticsPage}>
@@ -119,7 +99,7 @@ const Analitics = () => {
       <div className={styles.cardsBlock}>
         <h2>Рекомендации</h2>
         <div className={styles.recommendations}>
-          {recommendations.map(({id, header, message, type}) => (
+          {summaryData.recommendations.map(({id, header, message, type}) => (
             <div className={styles.recommendate} key={id}>
               <div className={`${styles.flag} ${styles[type]}`}></div>
               <h5 className={styles.recommHead}>{header}</h5>
