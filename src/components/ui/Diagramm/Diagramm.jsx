@@ -39,7 +39,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
               return (
                 <div className={styles.tooltip}>
                   <h6>{category.value}</h6>
-                  <p>{tooltip.payload[0].value}₽</p>
+                  <p>{`${tooltip.payload[0].value} ${typeDiagram === 'category' ? '₽' : ''}`}</p>
                 </div>
               );
             }

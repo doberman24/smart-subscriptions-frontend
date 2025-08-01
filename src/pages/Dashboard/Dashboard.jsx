@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './Dashboard.module.css';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
@@ -10,11 +10,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  const [typeDiagram, setTypeDiagram] = useState('category');
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {summaryData, loading, error} = useSelector(state => state.summaryInfo);
+  const {summaryData, message, loading, error} = useSelector(state => state.summaryInfo);
   const {token} = useSelector(state => state.token);
  
   
@@ -29,18 +27,19 @@ const Dashboard = () => {
     dispatch(getSummaryInfo(token));
   }, [dispatch])
 
-  if (loading || !summaryData.topLatestSubscriptions) {
+  if (loading || !message) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
   const paymentDate = new Date(summaryData.overview.nextPayment);
   const nextPayment = paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'});
 
-  const diagrammData = typeDiagram === 'category' ? summaryData.categoryBreakdown : summaryData.activeBreakdown;
-
   return (
     <div className={styles.dashboardPage}>
-      <h1>Дашборд</h1>
+      <div className={styles.headerBlock}>
+        <h1>Дашборд</h1>
+        <h2>{new Date().toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})}</h2>
+      </div>
       <div className={styles.mainStatistics}>
         <div className={styles.statistic}>
           <h3>У вас есть<br /><span className={styles.mainData}>{summaryData.overview.activeSub}</span><br /><span className={styles.marker}>активных</span> подписок</h3>
@@ -62,16 +61,12 @@ const Dashboard = () => {
         <div className={styles.diagrammBlock}>
           <h2>График расходов</h2>
           <div className={styles.diagramm}>
-            <div className={styles.sortBy}>
-              <div onClick={() => setTypeDiagram('category')} className={`${styles.tabs} ${styles.tab} ${typeDiagram === 'category' ? styles.active : ''}`}>Категории</div>
-              <div onClick={() => setTypeDiagram('active')} className={`${styles.tabs} ${styles.tab} ${typeDiagram === 'active' ? styles.active : ''}`}>Статус активности</div>
-            </div>
-            <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
+            <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/>
           </div>
         </div>
       </div>
       <div>
-        <ButtonElement className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+        <ButtonElement onClick={() => navigate('/subscriptions')} className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
       </div>
     </div>
   )

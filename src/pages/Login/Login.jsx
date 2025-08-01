@@ -16,7 +16,7 @@ const Login = () => {
   const { message } = useSelector(state => state.token);
   const isModal = useSelector(state => state.showModal);
 
-  const [activeTab, setActiveTab] = useState(tab);
+  const [activeTab, setActiveTab] = useState(tab || 'login');
   const [formValue, setFormValue] = useState({
     login: '',
     email: '',

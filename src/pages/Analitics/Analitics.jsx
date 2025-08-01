@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Analitics.module.css'
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import loadingStyles from '@/components/ui/Loading.module.css';
@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Analitics = () => {
+
+  const [typeDiagram, setTypeDiagram] = useState('category');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,13 +33,15 @@ const Analitics = () => {
   }, [dispatch])
 
 
-  if (loading || !summaryData.filters) {
+  if (loading || !message) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
   const handleFilterChange = (label) => {
     dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
   }
+
+  const diagrammData = typeDiagram === 'category' ? summaryData.categoryBreakdown : summaryData.activeBreakdown;
 
   return (
     <div className={styles.analiticsPage}>
@@ -80,7 +84,11 @@ const Analitics = () => {
         <div className={styles.timeGraph}>
           <h2>Распределение по категориям</h2>
           <div className={styles.diagramm}>
-            <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/>
+            <div className={styles.tabs}>
+              <div onClick={() => setTypeDiagram('category')} className={`${styles.tab} ${typeDiagram === 'category' ? styles.active : styles.inactive}`}>Категории</div>
+              <div onClick={() => setTypeDiagram('active')} className={`${styles.tab} ${typeDiagram === 'active' ? styles.active : styles.inactive}`}>Статус активности</div>
+            </div>
+            <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
           </div>
         </div>
       </div>

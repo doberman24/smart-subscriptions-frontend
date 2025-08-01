@@ -8,11 +8,17 @@
     padding: 40px 0 110px;
 }
 
-.dashboardPage h1 {
-    margin: 0 0 40px;
+.headerBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.headerBlock h1 {
+    margin: 0;
     font-size: 1.8rem;
     font-weight: 600;
-    color: #1e1e2f;
 }
 
 .mainStatistics {
@@ -55,7 +61,8 @@
     margin: 2rem 0;
 }
 
-.subscriptionsBlock h2 {
+.subscriptionsBlock h2,
+.headerBlock h2 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0;
@@ -85,44 +92,5 @@
     box-shadow:  0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
     height: 100%;
     border: 1px solid #e5e7eb;
-    padding: 0 10px 10px;
-}
-
-.sortBy {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.tabs {
-    text-align: center;
     padding: 10px;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-}
-.tabs:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-.tabs:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
-
-.tab {
-    cursor: pointer;
-    background: #fafafa;
-    box-shadow: inset 2px -2px 6px rgba(0, 0, 0, 0.04);
-    color: #6c6f81;
-    border: 1px solid #e5e7eb;
-}
-
-.tab.active {
-    color: #4f46e5;
-    cursor: auto;
-    background: transparent;
-    box-shadow: none;
-    z-index: 1;
-    position: relative;
-    border: none;
 }
