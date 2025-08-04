@@ -27,7 +27,7 @@ const Dashboard = () => {
     dispatch(getSummaryInfo(token));
   }, [dispatch])
 
-  if (loading || !message) {
+  if (loading || !summaryData.overview) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 

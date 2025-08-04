@@ -6,13 +6,14 @@ import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
-import AddSubscriptionModal from '@/components/ModalContent/AddSubscriptionModal';
+import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import { toggleModal } from '@/redux/showModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
-import { getSubscriptions, addNewSubscription, deleteSubscription, updateSubscription, resetDataSubscription } from '@/redux/subscriptions';
+import { getSubscriptions, deleteSubscription, resetDataSubscription } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
+import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
 
 const Subscriptions = () => {
 
@@ -21,14 +22,15 @@ const Subscriptions = () => {
   const {subscriptionsList, loading, message, error} = useSelector(state => state.subscriptions);
   const isModal = useSelector(state => state.showModal);
   const {token} = useSelector(state => state.token);
-  const [infoTypeModal, setInfoTypeModal] = useState('');
   const [idCard, setIdCard] = useState(null);
-
   const [findName, setFindName] = useState('');
   const [sortCategory, setSortCategory] = useState({label: 'all', value: 'Все'});
   const [sortCoast, setSortCoast] = useState(sortSubscriptionsOptions[0]);
   const [sortPrice, setSortPrice] = useState({from: '', to: ''});
   const [sortSubscriptions, setSortSubscriptions] = useState(subscriptionsList);
+
+  const [infoTypeModal, setInfoTypeModal] = useState('');
+  const {onHandleSub} = useHandleSubscription({setInfoTypeModal});
 
   useEffect(() => {
     dispatch(getSubscriptions(token));
@@ -63,17 +65,13 @@ const Subscriptions = () => {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
 
-  const onCreateSubscription = async (formData) => {
-    const result = await dispatch(addNewSubscription({token, formData}));
-    if (addNewSubscription.fulfilled.match(result)) {
-      setInfoTypeModal('info');
-      setTimeout(() => showClickModal('isInfoModal'), 101);
-    }
+   const hanleSubscription = async (formData, action) => {
+    await onHandleSub(token, formData, action)
   }
 
   const showAddModal = () => {
     setIdCard(null);
-    showClickModal('addSubscriptionModal')
+    showClickModal('handleSubscriptionModal')
   };
 
   const onDeleteShowModal = (id) => {
@@ -87,15 +85,7 @@ const Subscriptions = () => {
 
   const onChangeShowModal = (id) => {
     setIdCard(id);
-    showClickModal('addSubscriptionModal');
-  }
-
-  const onChangeSubscription = async (formData) => {
-    const result = await dispatch(updateSubscription({token, formData}));
-    if (updateSubscription.fulfilled.match(result)) {
-      setInfoTypeModal('info');
-      setTimeout(() => showClickModal('isInfoModal'), 101);
-    }
+    showClickModal('handleSubscriptionModal');
   }
 
   const showClickModal = (actionModal) => {
@@ -104,10 +94,9 @@ const Subscriptions = () => {
 
   return (
     <div className={styles.subscriptionsPage}>
-      {isModal.addSubscriptionModal && 
-        <AddSubscriptionModal 
-          onCreateSubscription={onCreateSubscription} 
-          onChangeSubscription={onChangeSubscription}
+      {isModal.handleSubscriptionModal && 
+        <HandleSubscriptionModal 
+          onHandleSub={hanleSubscription} 
           data={idCard && subscriptionsList.find(item => item.id === idCard)}
       />}
       {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal}/>}

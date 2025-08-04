@@ -26,11 +26,11 @@ export const getSubscriptions = createAsyncThunk(
   } 
 );
 
-export const addNewSubscription = createAsyncThunk(
+export const oneHandleSubscription = createAsyncThunk(
   'subscriptions/addSubscriptions',
-  async ({formData, token}, { rejectWithValue }) => {
+  async ({formData, token, action}, { rejectWithValue }) => {
     try {
-      const subscriptions = await api.createSubscription(token, formData);
+      const subscriptions = await api.handleSubscription(token, formData, action);
       return subscriptions.data;
     } catch (error) {
       return rejectWithValue(handleError(error));
@@ -50,18 +50,6 @@ export const deleteSubscription = createAsyncThunk(
   } 
 );
 
-export const updateSubscription = createAsyncThunk(
-  'subscriptions/updateSubscription',
- async ({formData, token}, { rejectWithValue }) => {
-    try {
-      const subscriptions = await api.updateSubscriptionData(token, formData);
-      return subscriptions.data;
-    } catch (error) {
-      return rejectWithValue(handleError(error));
-    }
-  } 
-);
-
 const subscriptionsSlice = createSlice({
   name: 'subscriptions',
   initialState,
@@ -73,8 +61,7 @@ const subscriptionsSlice = createSlice({
   extraReducers: builder => {
     const asyncThunks = [
       getSubscriptions,
-      addNewSubscription,
-      updateSubscription,
+      oneHandleSubscription,
       deleteSubscription,
     ];
 

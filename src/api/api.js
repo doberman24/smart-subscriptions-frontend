@@ -58,11 +58,11 @@ export class Api {
         return response.data;
     };
 
-    //Данные подисок
-    async createSubscription(token, formValue) {
+    //Уппавление подримками подисок
+    async handleSubscription(token, formValue, action) {
         const response = await axios({
-            method: 'post',
-            url: `${import.meta.env.VITE_API_URL}/subscriptions`,
+            method: action ? 'put' : 'post',
+            url: `${import.meta.env.VITE_API_URL}/subscriptions/${action ? formValue.id : ''}`,
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -93,19 +93,6 @@ export class Api {
         return response;
     };
 
-    async updateSubscriptionData(token, formValue) {
-        const response = await axios({
-            method: 'put',
-            url: `${import.meta.env.VITE_API_URL}/subscriptions/${formValue.id}`,
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-            data: formValue,
-        });
-        return response;
-    }
-
-
     //Данные аналитики
     async getAnalyticsData(token, filteredData) {
         const response = await axios({
@@ -118,7 +105,6 @@ export class Api {
         });
         return response;
     };
-
 
     //Общие данные для главной страницы
     async getSummary(token) {

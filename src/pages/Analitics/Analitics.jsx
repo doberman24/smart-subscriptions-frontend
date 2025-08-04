@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 const Analitics = () => {
 
   const [typeDiagram, setTypeDiagram] = useState('category');
+  const [typeDiagrammData, setTypeDiagrammData] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,10 +31,15 @@ const Analitics = () => {
 
   useEffect(() => {
     dispatch(getAnalytics({token, filter: null}));
-  }, [dispatch])
+    if (summaryData.filters?.category === 'all') {
+      setTypeDiagrammData('all');
+    } else {
+      setTypeDiagrammData('');
+    }
+  }, [summaryData.filters?.category, dispatch])
 
 
-  if (loading || !message) {
+  if (loading || !summaryData.topSubscriptions) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 
@@ -41,7 +47,13 @@ const Analitics = () => {
     dispatch(getAnalytics({token, filter: {...summaryData.filters, ...label}}));
   }
 
-  const diagrammData = typeDiagram === 'category' ? summaryData.categoryBreakdown : summaryData.activeBreakdown;
+  let diagrammData = [];
+  if (typeDiagram === 'category') {
+    diagrammData = typeDiagrammData === 'all' ? summaryData.diagramm?.categoryBreakdown : summaryData.diagramm?.oneCategorySybscriptions;
+  } else {
+    diagrammData = summaryData.diagramm?.activeBreakdown;
+  }
+  // const diagrammData = typeDiagram === 'category' ? summaryData.diagramm?.categoryBreakdown : summaryData.diagramm?.activeBreakdown;
 
   return (
     <div className={styles.analiticsPage}>
@@ -85,8 +97,18 @@ const Analitics = () => {
           <h2>Распределение по категориям</h2>
           <div className={styles.diagramm}>
             <div className={styles.tabs}>
-              <div onClick={() => setTypeDiagram('category')} className={`${styles.tab} ${typeDiagram === 'category' ? styles.active : styles.inactive}`}>Категории</div>
-              <div onClick={() => setTypeDiagram('active')} className={`${styles.tab} ${typeDiagram === 'active' ? styles.active : styles.inactive}`}>Статус активности</div>
+              <div 
+                onClick={() => setTypeDiagram('category')} 
+                className={`${styles.tab} ${typeDiagram === 'category' ? styles.active : styles.inactive}`}
+              >
+                {typeDiagrammData ? 'Категории' : 'Подписки'}
+              </div>
+              <div 
+                onClick={() => setTypeDiagram('active')} 
+                className={`${styles.tab} ${typeDiagram === 'active' ? styles.active : styles.inactive}`}
+              >
+                Статус активности
+              </div>
             </div>
             <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
           </div>
