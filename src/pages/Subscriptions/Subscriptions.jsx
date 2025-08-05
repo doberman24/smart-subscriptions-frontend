@@ -7,18 +7,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
-import { toggleModal } from '@/redux/showModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
 import { getSubscriptions, deleteSubscription, resetDataSubscription } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
+import { useModals } from '@/components/ModalContent/useModals';
 
 const Subscriptions = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {subscriptionsList, loading, message, error} = useSelector(state => state.subscriptions);
   const isModal = useSelector(state => state.showModal);
   const {token} = useSelector(state => state.token);
@@ -31,10 +32,11 @@ const Subscriptions = () => {
 
   const [infoTypeModal, setInfoTypeModal] = useState('');
   const {onHandleSub} = useHandleSubscription({setInfoTypeModal});
+  const {onDeleteShowModal, onChangeShowModal, showAddModal} = useModals({setIdCard});
 
   useEffect(() => {
     dispatch(getSubscriptions(token));
-  }, [token, dispatch]);
+  }, [token, dispatch, location]);
 
 
   useEffect(() => {
@@ -65,31 +67,12 @@ const Subscriptions = () => {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
 
-   const hanleSubscription = async (formData, action) => {
-    await onHandleSub(token, formData, action)
-  }
-
-  const showAddModal = () => {
-    setIdCard(null);
-    showClickModal('handleSubscriptionModal')
-  };
-
-  const onDeleteShowModal = (id) => {
-    setIdCard(id);
-    showClickModal('isDeleteSubscriptionModal');
+  const hanleSubscription = async (formData, action) => {
+    await onHandleSub(token, formData, action);
   }
 
   const onDeleteSubscription = async () => {
     dispatch(deleteSubscription({token, idCard}));
-  }
-
-  const onChangeShowModal = (id) => {
-    setIdCard(id);
-    showClickModal('handleSubscriptionModal');
-  }
-
-  const showClickModal = (actionModal) => {
-    dispatch(toggleModal({[actionModal]: true}));
   }
 
   return (

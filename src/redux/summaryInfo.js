@@ -10,7 +10,7 @@ const initialState = {
 
 export const getSummaryInfo = createAsyncThunk(
   'analitics/getSummaryInfo',
-  async (token, { rejectWithValue }) => {
+  async ({token}, { rejectWithValue }) => {
     try {
       const dashboard = await api.getSummary(token);
       return dashboard.data;
@@ -34,8 +34,10 @@ const summarySlice = createSlice({
     },
     extraReducers: builder => {
         builder
-        .addCase(getSummaryInfo.pending, state => {
-            state.loading = true;
+        .addCase(getSummaryInfo.pending, (state, action) => {
+            if (!action.meta.arg?.silent) {
+              state.loading = true;
+            }
             state.error = null;
         })
         .addCase(getSummaryInfo.fulfilled, (state, action) => {
