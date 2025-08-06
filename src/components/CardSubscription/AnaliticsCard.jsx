@@ -4,9 +4,9 @@ import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import { categoryOptions, recurrenceOptions } from '@/constants/options';
 import { useRef, useState } from 'react';
 
-const AnaliticsCard = ({cardSub}) => {
+const AnaliticsCard = ({cardSub, onDetailsShowModal}) => {
 
-  let {name, amount, category, recurrence, nextPaymentDate} = cardSub;
+  let {id, name, amount, category, recurrence, nextPaymentDate} = cardSub;
   if (nextPaymentDate) {
     nextPaymentDate = new Date(nextPaymentDate).toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'});
   }
@@ -15,14 +15,16 @@ const AnaliticsCard = ({cardSub}) => {
   const recurrenceCard = recurrenceOptions.find(item => item.label === recurrence);
 
   const [clickOnCard, setClickOnCard] = useState('');
-  const changeCard = (e) => {
+  const detailsSubscription = (e, idCard) => {
     e.stopPropagation();
+    onDetailsShowModal(idCard);
   }
 
   return (
     <div className={`${styles.analitics} ${styles.card} ${clickOnCard && styles.clickCard}`}
       onMouseDown={() => setClickOnCard('clickCard')}
       onMouseUp={() => setClickOnCard('')}
+      onClick={() => onDetailsShowModal(id)}
     >
       <div className={styles.icon}>
         <SubscriptionIcon name={name} size={40} />
@@ -34,7 +36,7 @@ const AnaliticsCard = ({cardSub}) => {
           <h4 className={styles.date}><span>Следующий платеж:</span><br />{nextPaymentDate}</h4>
         }
       <div className={styles.buttonsBlock}>
-          <ButtonElement onMouseDown={changeCard} className={'buttonsCard purpleButton addButton'}>Подробнее</ButtonElement>
+          <ButtonElement onMouseDown={(e) => detailsSubscription(e, id)} className={'buttonsCard purpleButton addButton'}>Подробнее</ButtonElement>
       </div>
     </div>
   )

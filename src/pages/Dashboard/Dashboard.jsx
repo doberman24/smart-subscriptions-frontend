@@ -5,7 +5,7 @@ import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSummaryInfo, resetDataDashboard } from '@/redux/summaryInfo';
+import { getSummaryInfo } from '@/redux/summaryInfo';
 import { useNavigate } from 'react-router-dom';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
@@ -32,7 +32,6 @@ const Dashboard = () => {
   
   useEffect(() => {
       if (error?.status) {
-        dispatch(resetDataDashboard());
         navigate('/login', {state: {fromApp: true}});
       }
     }, [error, dispatch]);
@@ -57,8 +56,6 @@ const Dashboard = () => {
     dispatch(deleteSubscription({token, idCard}));
     dispatch(getSummaryInfo({token, silent: true}));
   }
-
-  
 
   return (
     <div className={styles.dashboardPage}>

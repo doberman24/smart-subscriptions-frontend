@@ -3,13 +3,14 @@ import api from "@/api/api";
 
 const initialState = {
   summaryData: {},
+  details: {},
   loading: false,
   error: null,
   message: null
 };
 
 export const getAnalytics = createAsyncThunk(
-  'analitics/getAnaliticData',
+  'analytics/getAnalyticsData',
   async ({token, filter}, { rejectWithValue }) => {
     try {
       const analytics = await api.getAnalyticsData(token, filter);
@@ -22,6 +23,22 @@ export const getAnalytics = createAsyncThunk(
       });
     }
   } 
+);
+
+export const getAnalyticsSubscription = createAsyncThunk(
+  'analytics/getSubscription',
+  async ({token, id}, { rejectWithValue }) => {
+    try {
+      const info = await api.getInfoSubscription(token, id);
+      return info.data;
+    } catch (error) {
+      return rejectWithValue({
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
+    }
+  }
 );
 
 const analyticsSlice = createSlice({
@@ -44,6 +61,23 @@ const analyticsSlice = createSlice({
       state.message = action.payload.message;
     })
     .addCase(getAnalytics.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload 
+        ? {status: action.payload.status, error: action.payload.statusText}
+        : {status: 500, error: 'Неизвестная ошибка'};
+      state.message = action.payload?.data?.error || 'Неизвестная ошибка';
+    })
+
+    .addCase(getAnalyticsSubscription.pending, state => {
+      state.loading = false;
+      state.error = null;
+    })
+    .addCase(getAnalyticsSubscription.fulfilled, (state, action) => {
+      state.loading = false;
+      state.details = action.payload;
+      state.message = action.payload.message;
+    })
+    .addCase(getAnalyticsSubscription.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload 
         ? {status: action.payload.status, error: action.payload.statusText}

@@ -10,6 +10,7 @@ const showModalSlice = createSlice({
         isChangePass: false,
         handleSubscriptionModal: false,
         isDeleteSubscriptionModal: false,
+        isTopModal: false,
     },
     reducers: {
         toggleModal: (state, action) => {
@@ -20,6 +21,7 @@ const showModalSlice = createSlice({
             state.isChangePass = action.payload.isChangePass;
             state.handleSubscriptionModal = action.payload.handleSubscriptionModal;
             state.isDeleteSubscriptionModal = action.payload.isDeleteSubscriptionModal;
+            state.isTopModal = action.payload.isTopModal;
         }
     }
 });

@@ -1,7 +1,7 @@
 import { toggleModal } from '@/redux/showModal';
 import { useDispatch } from 'react-redux';
 
-export const useModals = ({ setIdCard }) => {
+export const useModals = ({ setIdCard = null}) => {
   const dispatch = useDispatch();
   
   const showAddModal = () => {
@@ -23,5 +23,5 @@ export const useModals = ({ setIdCard }) => {
     dispatch(toggleModal({[actionModal]: true}));
   }
   
-  return { onDeleteShowModal, onChangeShowModal, showAddModal };
+  return { onDeleteShowModal, onChangeShowModal, showAddModal, showClickModal };
 }

@@ -7,24 +7,27 @@ import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import AnaliticsCard from '@/components/CardSubscription/AnaliticsCard';
 import { categoryOptions, sortDateRangeAnaliticsOptions } from '@/constants/options';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAnalytics } from '@/redux/analytics';
-import { resetDataAnalitics } from '@/redux/analytics';
+import { getAnalytics, getAnalyticsSubscription } from '@/redux/analytics';
 import { useNavigate } from 'react-router-dom';
+import TopDataModal from '@/components/ModalContent/TopDataModal';
+import { useModals } from '@/components/ModalContent/useModals';
 
 
 const Analitics = () => {
 
   const [typeDiagram, setTypeDiagram] = useState('category');
   const [typeDiagrammData, setTypeDiagrammData] = useState('');
+  const isModal = useSelector(state => state.showModal);
+  const {showClickModal} = useModals({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {loading, summaryData, message, error} = useSelector(state => state.analitycsData);
+  const {loading, summaryData, message, error, details} = useSelector(state => state.analitycsData);
   const {token} = useSelector(state => state.token);
 
   useEffect(() => {
       if (error?.status) {
-        dispatch(resetDataAnalitics());
+        showClickModal('');
         navigate('/login', {state: {fromApp: true}});
       }
     }, [error, dispatch]);
@@ -53,10 +56,15 @@ const Analitics = () => {
   } else {
     diagrammData = summaryData.diagramm?.activeBreakdown;
   }
-  // const diagrammData = typeDiagram === 'category' ? summaryData.diagramm?.categoryBreakdown : summaryData.diagramm?.activeBreakdown;
+
+  const onDetailsShowModal = (top, id) => {
+    showClickModal('isTopModal');
+    dispatch(getAnalyticsSubscription({token, id}));
+  }
 
   return (
     <div className={styles.analiticsPage}>
+      {isModal.isTopModal && <TopDataModal message={details.details} typeInfo={'info'}/>}
       <div className={styles.headerBlock}>
         <h1>Аналитика</h1>
         <div className={styles.filtersBlock}>
@@ -117,13 +125,21 @@ const Analitics = () => {
       <div className={styles.cardsBlock}>
         <h2>Top 5 самых дорогих подписок</h2>
         {summaryData.topSubscriptions.map(card => (
-          <AnaliticsCard key={card.id} cardSub={card} />
+          <AnaliticsCard 
+            key={card.id} 
+            cardSub={card} 
+            onDetailsShowModal={(id) => onDetailsShowModal('top', id)}
+          />
         ))}
       </div>
       <div className={styles.cardsBlock}>
         <h2>Повторяющияся расходы</h2>
         {summaryData.recurringPayments.map(card => (
-          <AnaliticsCard key={card.id} cardSub={card} />
+          <AnaliticsCard 
+            key={card.id} 
+            cardSub={card} 
+            onDetailsShowModal={(id) => onDetailsShowModal('recur', id)}
+          />
         ))}
       </div>
       <div className={styles.cardsBlock}>

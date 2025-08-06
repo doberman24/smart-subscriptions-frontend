@@ -7,7 +7,6 @@ import ToggleSwitch from '@/components/ui/toggleSwitch/ToggleSwitch';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { resetData } from '@/redux/user';
 import { toggleModal } from '@/redux/showModal';
 import DeleteUserModal from '@/components/ModalContent/DeleteUserModal';
 import ExitAccountModal from '@/components/ModalContent/ExitAccountModal';
@@ -40,7 +39,6 @@ const Settings = () => {
 
   useEffect(() => {
     if (error) {
-      dispatch(resetData()); 
       navigate('/login', {state: {fromApp: true}});
     }
     if (user) {
@@ -55,7 +53,6 @@ const Settings = () => {
 
 
   const lastPassDate = security && security.lastPasswordChange ? new Date(security.lastPasswordChange).toLocaleTimeString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}) : 'Не менялся';
-  // console.log(security.lastPasswordChange);
 
   const onSaveChange = async () => {
     const newUserData = {...userData, ...toggleCheck};
@@ -72,8 +69,6 @@ const Settings = () => {
       setTimeout(() => showClickModal('isInfoModal'), 100);
     }
     if (saveUserData.rejected.match(result)) {
-      console.log(error);
-      dispatch(resetData());
       navigate('/login', {state: {fromApp: true}});
     }
   };
@@ -84,13 +79,11 @@ const Settings = () => {
       setInfoTypeModal('info');
       setTimeout(() => showClickModal('isInfoModal'), 100);
     }
-    console.log(result)
   }
 
   const showClickModal = (actionModal) => {
     dispatch(toggleModal({[actionModal]: true}));
   }
-
 
   return (
     <div className={styles.settingsPage}>

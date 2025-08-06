@@ -58,7 +58,7 @@ export class Api {
         return response.data;
     };
 
-    //Уппавление подримками подисок
+    //Управление подписками
     async handleSubscription(token, formValue, action) {
         const response = await axios({
             method: action ? 'put' : 'post',
@@ -116,7 +116,19 @@ export class Api {
             },
         });
         return response;
-    };    
+    };
+
+    //Аналитика выбранной подписки
+    async getInfoSubscription(token, id) {
+        const response = await axios({
+            method: 'get',
+            url: `${import.meta.env.VITE_API_URL}/analytics/${id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        return response;
+    };
 
     async getReviewsData() {
         try {

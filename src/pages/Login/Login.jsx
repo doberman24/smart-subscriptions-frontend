@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanToken, getToken } from '@/redux/getToken';
+import { resetDataAnalitics } from '@/redux/analytics';
+import { resetDataDashboard } from '@/redux/summaryInfo';
+import { resetDataSubscription } from '@/redux/subscriptions';
+import { resetData } from '@/redux/user';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import { toggleModal } from '@/redux/showModal';
 
@@ -28,7 +32,11 @@ const Login = () => {
 
   useEffect(() => {
     if (location.state?.fromApp){
-      dispatch(cleanToken());
+      dispatch(cleanToken());      
+      dispatch(resetDataAnalitics());
+      dispatch(resetDataDashboard());
+      dispatch(resetData()); 
+      dispatch(resetDataSubscription()); 
     }
   },[]);
 

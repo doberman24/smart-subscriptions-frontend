@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
-import { getSubscriptions, deleteSubscription, resetDataSubscription } from '@/redux/subscriptions';
+import { getSubscriptions, deleteSubscription } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,6 @@ const Subscriptions = () => {
 
   useEffect(() => {
     if (error?.status) {
-      dispatch(resetDataSubscription()); 
       navigate('/login', {state: {fromApp: true}});
     }
   }, [error, dispatch]);
