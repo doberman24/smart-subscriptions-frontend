@@ -17,6 +17,7 @@ const Analitics = () => {
 
   const [typeDiagram, setTypeDiagram] = useState('category');
   const [typeDiagrammData, setTypeDiagrammData] = useState('');
+  const [detailsType, setDetailsType] = useState('');
   const isModal = useSelector(state => state.showModal);
   const {showClickModal} = useModals({});
 
@@ -57,14 +58,15 @@ const Analitics = () => {
     diagrammData = summaryData.diagramm?.activeBreakdown;
   }
 
-  const onDetailsShowModal = (top, id) => {
+  const onDetailsShowModal = (type, id) => {
+    setDetailsType(type);
     showClickModal('isTopModal');
     dispatch(getAnalyticsSubscription({token, id}));
   }
 
   return (
     <div className={styles.analiticsPage}>
-      {isModal.isTopModal && <TopDataModal message={details.details} typeInfo={'info'}/>}
+      {isModal.isTopModal && <TopDataModal detailsType={detailsType} message={details} typeInfo={'info'}/>}
       <div className={styles.headerBlock}>
         <h1>Аналитика</h1>
         <div className={styles.filtersBlock}>

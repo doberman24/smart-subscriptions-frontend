@@ -46,7 +46,10 @@ const analyticsSlice = createSlice({
   initialState,
   reducers: {
     resetDataAnalitics: (state) => {
-      Object.assign(state, initialState)
+      Object.assign(state, initialState);
+    },
+    resetDetails: (state) => {
+      state.details = {};
     }
   },
   extraReducers: builder => {
@@ -87,5 +90,5 @@ const analyticsSlice = createSlice({
   },
 });
 
-export const {resetDataAnalitics} = analyticsSlice.actions;
+export const {resetDataAnalitics, resetDetails} = analyticsSlice.actions;
 export default analyticsSlice.reducer;

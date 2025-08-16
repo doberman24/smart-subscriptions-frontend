@@ -33,7 +33,7 @@ export const sortSubscriptionsOptions = [
   { label: 'no', value: 'Нет' },
   { label: 'cost', value: 'Стоимость' },
   { label: 'nextPaymentDay', value: 'Дата следующего списания' },
-  { label: 'lastPaymentDay', value: 'Дата прошлого списания' },
+  // { label: 'lastPaymentDay', value: 'Дата прошлого списания' },
 ];
 
 

@@ -9,10 +9,10 @@ const LendingFooter = () => {
       <div className={styles.footer}>
         <div className={styles.content}>
             <img src={logo} height="40px" alt="logo" />
-            <div className={styles.socials}>
+            {/* <div className={styles.socials}>
                 <Link to='/#'><FaVk /></Link>
                 <Link to='/#'><FaTelegramPlane /></Link>
-            </div>
+            </div> */}
             <p>© 2024 SmartSubscription. All rights reserved.</p>
         </div>
       </div>

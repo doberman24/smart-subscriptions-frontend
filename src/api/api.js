@@ -119,7 +119,7 @@ export class Api {
     };
 
     //Аналитика выбранной подписки
-    async getInfoSubscription(token, id) {
+    async getInfoSubscription(token, id, filters) {
         const response = await axios({
             method: 'get',
             url: `${import.meta.env.VITE_API_URL}/analytics/${id}`,

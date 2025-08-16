@@ -15,7 +15,7 @@
 }
 
 .modal {
-    width: min(90vw, 480px);
+    min-width: min(90vw, 480px);
     background-color: #fff;
     border-radius: 12px;
     padding: 24px;
