@@ -7,12 +7,13 @@ import { useCloseModal } from './useCloseModal';
 import { MdInfoOutline } from 'react-icons/md';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
-const InfoModal = ({message, typeInfo}) => {
+const InfoModal = ({message, typeInfo, onSupport = null}) => {
     const dispatch = useDispatch();
 
     const {vision, close} = useCloseModal();
     const closeModal = () => {
         close(() => dispatch(toggleModal(false)));
+        if (onSupport) onSupport(false);
     }
 
     return (

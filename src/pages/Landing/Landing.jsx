@@ -2,30 +2,15 @@ import LendingHeader from '@/components/LendingHeader/LendingHeader';
 import LendingFooter from '@/components/LendingFooter/LendingFooter';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import styles from './Landing.module.css';
-import loadingStyles from '@/components/ui/Loading.module.css';
 import graph from '@/assets/icons/graph.svg';
 import notification from '@/assets/icons/notification.svg';
 import diagramm from '@/assets/icons/diagramm.svg';
-import plug from '@/assets/img/plug.png';
+import demo from '@/assets/img/demo.gif';
 import Feedback from '@/components/Feedback/Feedback';
-import api from '@/api/api';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import  { reviews } from '@/constants/reviews';
 
 const Landing = () => {
-  const [reviews, setReviews] = useState(null);
-
-  useEffect(() => {
-    const loadReviews = async () => {
-      const data = await api.getReviewsData();
-      setReviews(data);
-    }
-    loadReviews();
-  }, []);
-
-  if (!reviews) {
-    return <div className={loadingStyles.loading}>Загрузка...</div>
-  }
 
   return (
     
@@ -62,7 +47,7 @@ const Landing = () => {
         </ul>
 
         <div className={styles.example}>
-          <img src={plug} height='720px' width='1000px' alt="example" />
+          <img src={demo} width='1000px' alt="demo" />
         </div>
 
         <div className={styles.feedbackBlock}>

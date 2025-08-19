@@ -1,13 +1,6 @@
 import axios from "axios";
 
-import { reviewsApi } from "./mockApi";
-
 export class Api {
-    constructor() {
-        this.reviewsApi = reviewsApi;
-    };
-
-
     //Авторизация и регистрация
     async authorization(formValue, activeTab) {
         const authUrl = activeTab === 'reg' ? '/auth/register' : '/auth/login';
@@ -128,15 +121,6 @@ export class Api {
             },
         });
         return response;
-    };
-
-    async getReviewsData() {
-        try {
-            return await this.reviewsApi.getReviews();
-        } catch (error) {
-            console.error('Ошибка загрузки отзывов', error);
-            return [];
-        }
     };
 }
 

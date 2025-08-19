@@ -2,14 +2,15 @@ import styles from './Footer.module.css';
 import logo from '@/assets/img/logo.svg';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaTelegramPlane } from 'react-icons/fa';
+import { FaTelegramPlane, FaVk } from 'react-icons/fa';
 import { FaAt } from 'react-icons/fa6';
 import { toggleModal } from '@/redux/showModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
+import { useState } from 'react';
 
 
 const Footer = () => {
-
+  const [mailContact, setMailContact] = useState(false);
   const isModal = useSelector(state => state.showModal);
   const dispatch = useDispatch();
   const message = ( 
@@ -18,6 +19,15 @@ const Footer = () => {
     </>
   );
 
+  const openModal = () => {
+    setMailContact(true);
+    dispatch(toggleModal({'isInfoModal': true}))
+  }
+
+  const onSupport = (value) => {
+    setMailContact(value);
+  }
+
   const {loading} = useSelector(state => state.user);
   if (loading) {
       return null;
@@ -25,13 +35,14 @@ const Footer = () => {
 
   return (
     <div className={styles.footerContainer}>
-      {isModal.isInfoModal && <InfoModal message={message} typeInfo={'info'}/>}
+      {isModal.isInfoModal && mailContact && <InfoModal message={message} typeInfo={'info'} onSupport={onSupport}/>}
       <div className={styles.footer}>
         <div className={styles.content}>
             <img src={logo} height="40px" alt="logo" />
             <div className={styles.socials}>
-              <button onClick={() => dispatch(toggleModal({'isInfoModal': true}))}><FaAt /></button>
-              {/* <button ><FaTelegramPlane /></button> */}
+              {/* <button><FaTelegramPlane /></button>
+              <button><FaVk /></button>               */}
+              <button onClick={openModal}><FaAt /></button>
             </div>
             <div className={styles.links}>
               <Link className={styles.link} to='/dashboard'>Дашборд</Link>
