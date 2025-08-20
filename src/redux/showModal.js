@@ -11,6 +11,7 @@ const showModalSlice = createSlice({
         handleSubscriptionModal: false,
         isDeleteSubscriptionModal: false,
         isTopModal: false,
+        isContactInfo: false,
     },
     reducers: {
         toggleModal: (state, action) => {
@@ -22,6 +23,7 @@ const showModalSlice = createSlice({
             state.handleSubscriptionModal = action.payload.handleSubscriptionModal;
             state.isDeleteSubscriptionModal = action.payload.isDeleteSubscriptionModal;
             state.isTopModal = action.payload.isTopModal;
+            state.isContactInfo = action.payload.isContactInfo;
         }
     }
 });

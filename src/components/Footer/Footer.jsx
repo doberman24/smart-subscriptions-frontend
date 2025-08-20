@@ -21,7 +21,7 @@ const Footer = () => {
 
   const openModal = () => {
     setMailContact(true);
-    dispatch(toggleModal({'isInfoModal': true}))
+    dispatch(toggleModal({'isContactInfo': true}))
   }
 
   const onSupport = (value) => {
@@ -35,7 +35,7 @@ const Footer = () => {
 
   return (
     <div className={styles.footerContainer}>
-      {isModal.isInfoModal && mailContact && <InfoModal message={message} typeInfo={'info'} onSupport={onSupport}/>}
+      {isModal.isContactInfo && mailContact && <InfoModal message={message} typeInfo={'info'} onSupport={onSupport}/>}
       <div className={styles.footer}>
         <div className={styles.content}>
             <img src={logo} height="40px" alt="logo" />

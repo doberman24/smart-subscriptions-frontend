@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
-import { deleteSubscription } from '@/redux/subscriptions';
 import { useModals } from '@/components/ModalContent/useModals';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
+import { useDeleteSubscription } from '@/components/utilites/useDeleteSubscription';
 
 const Dashboard = () => {
 
@@ -28,6 +28,7 @@ const Dashboard = () => {
   const isModal = useSelector(state => state.showModal);
   const [idCard, setIdCard] = useState(null);
   const {onDeleteShowModal, onChangeShowModal, showAddModal} = useModals({setIdCard});
+  const {onDelSub} = useDeleteSubscription({setInfoTypeModal});
  
   
   useEffect(() => {
@@ -53,8 +54,8 @@ const Dashboard = () => {
   }
 
   const onDeleteSubscription = async () => {
-    dispatch(deleteSubscription({token, idCard}));
-    dispatch(getSummaryInfo({token, silent: true}));
+    await onDelSub(token, idCard);
+    dispatch(getSummaryInfo({token, silent: true}));    
   }
 
   return (

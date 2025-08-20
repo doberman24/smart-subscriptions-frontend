@@ -121,7 +121,7 @@ const Settings = () => {
           />
         </label>
       </div>
-      <div className={styles.notifyBlock}>
+      <div className={`${styles.notifyBlock} ${styles.disabled}`} title='Данный раздел находиться в разработке'>
         <h2>Уведомления</h2>
         <div className={styles.toggles}>
           <div className={styles.mainToggle}>

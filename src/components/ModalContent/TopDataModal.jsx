@@ -17,12 +17,6 @@ const TopDataModal = ({detailsType, message, typeInfo}) => {
     message = null;
   }, []);
 
-  useEffect(() => {
-    if(message && Object.keys(message).length > 0) {
-      console.log(message.details);
-    }
-  }, [message]);
-
   const {vision, close} = useCloseModal();
   const closeModal = () => {
     setTimeout(() => dispatch(resetDetails()), 101);

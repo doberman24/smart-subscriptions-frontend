@@ -91,6 +91,23 @@
     margin-bottom: 2rem;
     gap: 20px;
 }
+.notifyBlock.disabled {
+    opacity: 0.4;
+    position: relative;
+    pointer-events: none;
+}
+.notifyBlock.disabled::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: 'Раздел находится в разработке';
+    font-size: 3rem;
+}
 
 .notify {
     display: flex;

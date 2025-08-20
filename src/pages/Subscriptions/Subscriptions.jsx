@@ -8,12 +8,13 @@ import { useEffect, useState } from 'react';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import { categoryOptions, sortSubscriptionsOptions } from '@/constants/options';
-import { getSubscriptions, deleteSubscription } from '@/redux/subscriptions';
+import { getSubscriptions } from '@/redux/subscriptions';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import { useNavigate } from 'react-router-dom';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
 import { useModals } from '@/components/ModalContent/useModals';
+import { useDeleteSubscription } from '@/components/utilites/useDeleteSubscription';
 
 const Subscriptions = () => {
 
@@ -32,6 +33,7 @@ const Subscriptions = () => {
 
   const [infoTypeModal, setInfoTypeModal] = useState('');
   const {onHandleSub} = useHandleSubscription({setInfoTypeModal});
+  const {onDelSub} = useDeleteSubscription({setInfoTypeModal});
   const {onDeleteShowModal, onChangeShowModal, showAddModal} = useModals({setIdCard});
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const Subscriptions = () => {
   }
 
   const onDeleteSubscription = async () => {
-    dispatch(deleteSubscription({token, idCard}));
+    await onDelSub(token, idCard);
   }
 
   return (

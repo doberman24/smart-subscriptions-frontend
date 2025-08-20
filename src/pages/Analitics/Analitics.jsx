@@ -146,7 +146,7 @@ const Analitics = () => {
       </div>
       <div className={styles.cardsBlock}>
         <h2>Рекомендации</h2>
-        <div className={styles.recommendations}>
+        <div className={`${styles.recommendations} ${styles.disabled}`}>
           {summaryData.recommendations.map(({id, header, message, type}) => (
             <div className={styles.recommendate} key={id}>
               <div className={`${styles.flag} ${styles[type]}`}></div>
