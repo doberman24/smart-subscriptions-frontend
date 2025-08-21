@@ -46,7 +46,7 @@ const Dashboard = () => {
   }
 
   const paymentDate = new Date(summaryData.overview.nextPayment);
-  const nextPayment = paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'});
+  const nextPayment = summaryData.overview.nextPayment ? paymentDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'numeric'}) : 'нет данных';
 
   const hanleSubscription = async (formData, action) => {
     await onHandleSub(token, formData, action)
@@ -79,13 +79,13 @@ const Dashboard = () => {
           <h3><span className={styles.mainData}>{summaryData.overview.monthlySpending}₽<br /></span> было <span className={styles.marker}>потрачено</span> в этом месяце</h3>
         </div>
         <div className={styles.statistic}>
-          <h3>Следующий <span className={styles.marker}>платеж<br /></span> <span className={styles.mainData}>{nextPayment}</span></h3>
+          <h3>Следующий <span className={styles.marker}>платеж<br /></span> <span className={`${styles.mainData} ${nextPayment === 'нет данных' && styles.noNextPaid}`}>{nextPayment}</span></h3>
         </div>
       </div>
       <div className={styles.subscriptionsBlock}>
         <div className={styles.lastSubscriptions}>
           <h2>Ваши подписки</h2>
-          {summaryData.topLatestSubscriptions.map((card) => (
+          {summaryData.topLatestSubscriptions.length ? summaryData.topLatestSubscriptions.map((card) => (
             <CardSubscription 
               key={card.id} 
               cardSub={card} 
@@ -93,13 +93,21 @@ const Dashboard = () => {
               onDeleteShowModal={onDeleteShowModal}
               onChangeShowModal={onChangeShowModal}
             />
-          ))}
+          )) : 
+          <div className={styles.empty}>
+            <h3>Здесь пока пусто</h3>
+            <p>Добавьте подписку, чтобы начать</p>
+          </div>}
         </div>
         <div className={styles.diagrammBlock}>
           <h2>График расходов</h2>
-          <div className={styles.diagramm}>
+          {summaryData.topLatestSubscriptions.length ? <div className={styles.diagramm}>
             <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/>
-          </div>
+          </div> :
+          <div className={styles.empty}>
+            <h3>Нет данных для отображения</h3>
+            <p>Добавьте новую подписку</p>
+          </div>}
         </div>
       </div>
       <div>

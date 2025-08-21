@@ -7,10 +7,26 @@ import notification from '@/assets/icons/notification.svg';
 import diagramm from '@/assets/icons/diagramm.svg';
 import demo from '@/assets/img/demo.gif';
 import Feedback from '@/components/Feedback/Feedback';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import  { reviews } from '@/constants/reviews';
+import { useDispatch } from 'react-redux';
+import { getToken } from '@/redux/getToken';
 
 const Landing = () => {
+  const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+  const getDemo = async () => {
+    const userData = {email: 'demo_user', password: '3Vcf#z2qY^YtEn_'};
+    const data = await dispatch(getToken({formValue: userData, activeTab: 'login'}));
+    if (getToken.fulfilled.match(data)) {
+      navigate('/dashboard', {replace: true});
+    }
+    if (getToken.rejected.match(data)) {
+      navigate('/login', {state: {fromApp: true}});
+    }
+  }
 
   return (
     
@@ -25,9 +41,9 @@ const Landing = () => {
             <h3>Управляйте всеми своими подписками в одном месте. Получайте напоминания о предстоящих платежах.</h3>
           </div>
           <div className={styles.mainButton}>
-            <Link to='/dashboard'>
-              <ButtonElement className={'mainButton pinkButton'}>Попробовать без регистрации</ButtonElement>
-            </Link>
+            {/* <Link to='/dashboard'> */}
+              <ButtonElement onClick={getDemo} className={'mainButton pinkButton'}>Попробовать без регистрации</ButtonElement>
+            {/* </Link> */}
           </div>
         </div>
 

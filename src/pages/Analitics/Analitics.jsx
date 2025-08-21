@@ -99,13 +99,17 @@ const Analitics = () => {
       <div className={styles.graphsBlock}>
         <div className={styles.timeGraph}>
           <h2>Динамика расходов</h2>
-          <div className={styles.graph}>
+          {summaryData.spendingOverTime.length ? <div className={styles.graph}>
             <Graph spendingOverTime={summaryData.spendingOverTime} />
-          </div>
+          </div> :
+          <div className={styles.empty}>
+            <h3>Нет данных для отображения</h3>
+            <p>Добавьте новую подписку</p>
+          </div>}
         </div>
         <div className={styles.timeGraph}>
           <h2>Распределение по категориям</h2>
-          <div className={styles.diagramm}>
+          {summaryData.diagramm?.categoryBreakdown?.length ? <div className={styles.diagramm}>
             <div className={styles.tabs}>
               <div 
                 onClick={() => setTypeDiagram('category')} 
@@ -121,28 +125,40 @@ const Analitics = () => {
               </div>
             </div>
             <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
-          </div>
+          </div> :
+          <div className={styles.empty}>
+            <h3>Нет данных для отображения</h3>
+            <p>Добавьте новую подписку</p>
+          </div>}
         </div>
       </div>
       <div className={styles.cardsBlock}>
         <h2>Top 5 самых дорогих подписок</h2>
-        {summaryData.topSubscriptions.map(card => (
+        {summaryData.topSubscriptions.length ? summaryData.topSubscriptions.map(card => (
           <AnaliticsCard 
             key={card.id} 
             cardSub={card} 
             onDetailsShowModal={(id) => onDetailsShowModal('top', id)}
           />
-        ))}
+        )) : 
+          <div className={styles.empty}>
+            <h3>Здесь пока пусто</h3>
+            <p>Добавьте подписку, чтобы начать</p>
+          </div>}
       </div>
       <div className={styles.cardsBlock}>
         <h2>Повторяющияся расходы</h2>
-        {summaryData.recurringPayments.map(card => (
+        {summaryData.recurringPayments.length ? summaryData.recurringPayments.map(card => (
           <AnaliticsCard 
             key={card.id} 
             cardSub={card} 
             onDetailsShowModal={(id) => onDetailsShowModal('recur', id)}
           />
-        ))}
+        )) : 
+          <div className={styles.empty}>
+            <h3>Здесь пока пусто</h3>
+            <p>Добавьте подписку, чтобы начать</p>
+          </div>}
       </div>
       <div className={styles.cardsBlock}>
         <h2>Рекомендации</h2>
