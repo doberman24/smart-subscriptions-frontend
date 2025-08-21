@@ -15,8 +15,8 @@ const DeleteSubscriptionModal = ({onDeleteSubscription}) => {
     }
         
     const deleteSubscription = async () => {
-        onDeleteSubscription();
-        dispatch(toggleModal(false));
+        await onDeleteSubscription();
+        close(() => dispatch(toggleModal(false)));    
     }
 
     return (

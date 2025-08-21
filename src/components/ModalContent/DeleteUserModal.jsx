@@ -23,9 +23,13 @@ const DeleteUserModal = () => {
         
     const deleteUser = async () => {
         const deletedData = await api.deleteUserData(token);
-        console.log(deletedData);
-        dispatch(toggleModal(false));
-        navigate('/login', {state: {fromApp: true}}); 
+        if (deletedData?.message) {
+            setTimeout(() => dispatch(toggleModal({isInfoModal: true})), 102);
+            close(() => dispatch(toggleModal(false)));
+        } else {
+            dispatch(toggleModal(false))
+            navigate('/login', {state: {fromApp: true}}); 
+        }
     }
 
     return (
