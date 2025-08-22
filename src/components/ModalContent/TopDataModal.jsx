@@ -19,7 +19,9 @@ const TopDataModal = ({detailsType, message, typeInfo}) => {
 
   const {vision, close} = useCloseModal();
   const closeModal = () => {
-    setTimeout(() => dispatch(resetDetails()), 101);
+    if (typeof window !== "undefined") {
+      setTimeout(() => dispatch(resetDetails()), 101);
+    }
     close(() => dispatch(toggleModal(false)));
   }
 

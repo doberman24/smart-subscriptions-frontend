@@ -66,7 +66,9 @@ const Settings = () => {
     const result = await dispatch(saveUserData({userData: modifiedUserData, token}));
     if (saveUserData.fulfilled.match(result)) {
       setInfoTypeModal('info');
-      setTimeout(() => showClickModal('isInfoModal'), 100);
+      if (typeof window !== "undefined") {
+        setTimeout(() => showClickModal('isInfoModal'), 100);
+      }
     }
     if (saveUserData.rejected.match(result)) {
       navigate('/login', {state: {fromApp: true}});
@@ -77,7 +79,9 @@ const Settings = () => {
     const result = await dispatch(saveUserData({userData: formValue, token}));
     if (saveUserData.fulfilled.match(result)) {
       setInfoTypeModal('info');
-      setTimeout(() => showClickModal('isInfoModal'), 100);
+      if (typeof window !== "undefined") {
+        setTimeout(() => showClickModal('isInfoModal'), 100);
+      }
     }
   }
 

@@ -4,11 +4,17 @@ import './index.css'
 import App from '@/App/App'
 import { Provider } from 'react-redux'
 import { store } from '@/redux/store'
+import { HelmetProvider } from '@vuer-ai/react-helmet-async'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <StrictMode>
-      <App />
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </StrictMode>
   </Provider>,
 )

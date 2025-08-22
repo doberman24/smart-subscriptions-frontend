@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Analitics from '@/pages/Analitics/Analitics';
 import Dashboard from '@/pages/Dashboard/Dashboard';
@@ -12,7 +12,7 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy/PrivacyPolicy';
 
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <main className='container'>
         <Routes>
           <Route path='/' element={<Landing />} />
@@ -26,7 +26,7 @@ function App() {
           <Route path='/politics' element={<PrivacyPolicy />} />
           </Routes>
       </main>
-    </BrowserRouter>
+    // </BrowserRouter>
   )
 }
 

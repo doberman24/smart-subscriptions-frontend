@@ -24,7 +24,9 @@ const DeleteUserModal = () => {
     const deleteUser = async () => {
         const deletedData = await api.deleteUserData(token);
         if (deletedData?.message) {
-            setTimeout(() => dispatch(toggleModal({isInfoModal: true})), 102);
+           if (typeof window !== "undefined") {
+                setTimeout(() => dispatch(toggleModal({ isInfoModal: true })), 102);
+            }
             close(() => dispatch(toggleModal(false)));
         } else {
             dispatch(toggleModal(false))

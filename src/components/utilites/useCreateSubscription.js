@@ -11,7 +11,9 @@ export const useHandleSubscription = ({ setInfoTypeModal }) => {
 
     if (oneHandleSubscription.fulfilled.match(result)) {
       if (setInfoTypeModal) setInfoTypeModal('info');
-      setTimeout(() => dispatch(toggleModal({isInfoModal: true})), 102);
+      if (typeof window !== "undefined") {
+        setTimeout(() => dispatch(toggleModal({ isInfoModal: true })), 102);
+      }
     }
     return result;
   };

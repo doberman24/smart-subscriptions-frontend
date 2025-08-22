@@ -2,12 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/api/api";
 
 const loadTokenFromStorage = () => {
+  if (typeof window === "undefined") return "";
   const savedToken = localStorage.getItem('token');
   // console.log(savedToken);
   return savedToken ? savedToken : '';
 }
 
 const saveTokenToStorage = (token) => {
+  if (typeof window === "undefined") return "";
   localStorage.setItem('token', token);
 }
 
