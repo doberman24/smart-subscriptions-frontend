@@ -115,4 +115,94 @@
   100%     { transform: translateX(-2050px); }
 }
 
-  
+
+@media (max-width: 440px) {
+    .mainBlock {
+        width: 100%;
+        padding: 16px;
+        margin: 24px 0;
+    }
+    .mainHeader {
+        font-size: 1.8rem;
+    }
+    .slogan {
+        font-size: 0.9rem;
+    }
+
+    .privillege {
+        flex-wrap: wrap;
+        padding: 0 16px;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .singlePrivillege {
+        width: 45%;
+        margin: 0;
+        padding: 12px;
+    }
+    .singlePrivillege span {
+        font-size: 0.8rem;
+    }
+
+    .example {
+        width: calc(100% - 30px);
+        margin: 40px auto;
+    }
+
+    .example img {
+        width: calc(100% - 30px);
+    }
+
+    .feedbackBlock {
+        width: calc(100% - 36px);
+        margin: 0 0 40px 18px;
+    }
+    .feedbackBlock h4 {
+        font-size: 1.1rem;
+    }
+
+    .feedback {
+        gap: 32px;
+        animation: setoff 30s linear infinite;
+    }
+
+    @keyframes setoff {
+        0%      { transform: translateX(0); }
+        16.667%  { transform: translateX(0); }
+        20%      { transform: translateX(calc(-100% - 32px)); } 
+
+        36.667%  { transform: translateX(calc(-100% - 32px)); }
+        40%      { transform: translateX(calc(-200% - 64px)); }
+
+        56.667%  { transform: translateX(calc(-200% - 64px)); }
+        60%      { transform: translateX(calc(-300% - 96px)); }
+
+        76.667%  { transform: translateX(calc(-300% - 96px)); }
+        80%      { transform: translateX(calc(-400% - 128px)); }
+
+        96.667%  { transform: translateX(calc(-400% - 128px)); }
+        100%     { transform: translateX(calc(-500% - 160px)); }
+    }
+
+
+
+    
+
+    @media (max-width: 359px) {
+        .mainHeader {
+            font-size: 1.3rem;
+        }
+        .slogan {
+            font-size: 0.7rem;
+        }
+
+        .singlePrivillege {
+            flex-direction: column;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+    }
+
+}

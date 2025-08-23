@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /login
-Disallow: /dashboard
-Disallow: /subscriptions
-Disallow: /analitics
-Disallow: /settings
-Sitemap: https://smart-subscriptions.ru/sitemap.xml

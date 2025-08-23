@@ -38,3 +38,28 @@
   font-size: 0.875rem;
   color: #6c6f81;
 }
+
+
+@media (max-width: 440px) {
+  .singleFeedback {
+    min-width: 100%;
+  }
+
+  .userNameFeed {
+    font-size: 0.8rem;
+  }
+
+  .textBlock {
+    font-size: 0.8rem;
+  }
+
+  .rating {
+    font-size: 1.2rem;
+    gap: 2px;
+  }
+
+  .publicDate {
+    font-size: 0.6rem;
+  }
+
+}

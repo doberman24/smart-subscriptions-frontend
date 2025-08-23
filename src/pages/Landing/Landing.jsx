@@ -42,9 +42,9 @@ const Landing = () => {
           <div className={styles.mainBlock}>
             <h1 className={styles.mainHeader}>Умные подписки</h1>
             <div  className={styles.slogan}>
-              <h3>Пользуетесь ли Вы всеми теми подписками, которые ежемесячно оплачиваете?</h3>
+              <h3>Вы уверены, что пользуетесь всеми подписками, за которые ежемесячно платите?</h3>
               <div className={styles.separator}></div>
-              <h3>Управляйте всеми своими подписками в одном месте. Получайте напоминания о предстоящих платежах.</h3>
+              <h3>Соберите их в одном месте, контролируйте расходы и получайте напоминания о предстоящих платежах.</h3>
             </div>
             <div className={styles.mainButton}>
               <ButtonElement onClick={getDemo} className={'mainButton pinkButton'}>Попробовать без регистрации</ButtonElement>
