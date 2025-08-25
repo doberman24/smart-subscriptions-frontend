@@ -44,12 +44,27 @@ const Footer = () => {
               <button><FaVk /></button>               */}
               <button onClick={openModal}><FaAt /></button>
             </div>
-            <div className={styles.links}>
-              <Link className={styles.link} to='/dashboard'>Дашборд</Link>
-              <Link className={styles.link} to='/subscriptions'>Подписки</Link>
-              <Link className={styles.link} to='/analitics'>Аналитика</Link>
-              <Link className={styles.link} to='/settings'>Настройки</Link>
-              <Link className={styles.link} to='/politics'>Политика конфиденциальности</Link>
+            <div className={styles.nav}>
+              <Link className={styles.link} to='/dashboard'>
+                <div className={styles.dashboard}></div>
+                <p>Дашборд</p>
+              </Link>
+              <Link className={styles.link} to='/subscriptions'>
+                <div className={styles.subscriptions}></div>
+                <p>Подписки</p>
+              </Link>
+              <Link className={styles.link} to='/analitics'>
+                <div className={styles.analitics}></div>
+                <p>Аналитика</p>
+              </Link>
+              <Link className={styles.link} to='/settings'>
+                <div className={styles.settings}></div>
+                <p>Настройки</p>
+              </Link>
+              <Link className={styles.link} to='/politics'>
+                <div className={styles.politics}></div>
+                <p>Политика конфиденциальности</p>
+              </Link>
             </div>
         </div>
       </div>

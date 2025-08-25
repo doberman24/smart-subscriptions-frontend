@@ -21,6 +21,10 @@
     font-weight: 600;
 }
 
+.headerBlock button {
+    width: fit-content;
+}
+
 .filtersBlock {
     display: flex;
     gap: 16px;

@@ -46,7 +46,7 @@
     transform: scale(0.92);
 }
 
-.links {
+.nav {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: left;
@@ -72,4 +72,114 @@
 .link:active {
     color: #1e1e2f;
     font-weight: 600;
+}
+
+
+
+@media (max-width: 440px) {
+    .footerContainer {
+        position: relative;
+        width: 100%;
+    }
+
+    .footer {
+        max-width: 100%;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .content img {
+        display: none;
+    }
+
+    .socials {
+        display: none;
+    } 
+
+    .nav {
+        width: 100%;
+        display: flex;
+        font-size: 14px;
+        justify-content: space-between;
+    }
+
+    .link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 10px;
+        color: #6c6f81;
+        border-radius: 8px;
+        transition: all 0.1s ease;
+        overflow: hidden;
+    }
+    .link p {
+        display: none;
+    }
+    .link:hover {
+        color: #4f46e5;
+        text-decoration: none;
+    }
+    .link .settings {
+        width: 24px;
+        height: 24px;
+        background-image: url('@/assets/icons/menu/settings.svg');
+        background-size: auto 24px;
+        background-repeat: no-repeat;
+    }
+    .link:hover .settings {
+        background-image: url('@/assets/icons/menu/settings_1.svg');
+    }
+    .link:active .settings {
+        background-image: url('@/assets/icons/menu/settings_2.svg');
+    }
+
+    .link .analitics {
+        width: 29px;
+        height: 24px;
+        background-image: url('@/assets/icons/menu/analitics.svg');
+        background-size: auto 24px;
+        background-repeat: no-repeat;
+    }
+    .link:hover .analitics {
+        background-image: url('@/assets/icons/menu/analitics_1.svg');
+    }
+    .link:active .analitics {
+        background-image: url('@/assets/icons/menu/analitics_2.svg');
+    }
+
+    .link .subscriptions {
+        width: 19px;
+        height: 24px;
+        background-image: url('@/assets/icons/menu/subscription.svg');
+        background-size: auto 24px;
+        background-repeat: no-repeat;
+    }
+    .link:hover .subscriptions {
+        background-image: url('@/assets/icons/menu/subscription_1.svg');
+    }
+    .link:active .subscriptions {
+        background-image: url('@/assets/icons/menu/subscription_2.svg');
+    }
+
+    .link .dashboard {
+        width: 32px;
+        height: 25px;
+        background-image: url('@/assets/icons/menu/dashboard.svg');
+        background-size: auto 24px;
+        background-repeat: no-repeat;
+    }
+    .link:hover .dashboard {
+        background-image: url('@/assets/icons/menu/dashboard_1.svg');
+    }
+    .link:active .dashboard {
+        background-image: url('@/assets/icons/menu/dashboard_2.svg');
+    }
+
+    .link:last-child {
+        display: none;
+    }
 }

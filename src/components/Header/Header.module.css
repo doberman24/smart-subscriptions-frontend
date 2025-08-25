@@ -115,3 +115,38 @@
 .icon:active .dashboard {
     background-image: url('@/assets/icons/menu/dashboard_2.svg');
 }
+
+
+
+
+@media (max-width: 440px) {
+    .headerContainer {
+        height: 100%;
+    }
+    .headerContainer .mainLogo {
+        display: none;
+    }
+
+    .header {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        font-family: "Montserrat", sans-serif;
+        color: #1e1e2f;
+        padding: 15px;
+    }
+    .header h2 {
+        font-size: 1.1rem;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .nav {
+        display: none;
+        gap: 10px;
+    }
+    
+}
+
+@media (max-width: 359px) {
+}

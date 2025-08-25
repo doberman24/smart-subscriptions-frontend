@@ -16,7 +16,7 @@ const Diagramm = ({diagrammData, typeDiagram}) => {
     
   
   return (
-    <ResponsiveContainer width={390} height="100%">
+    <ResponsiveContainer width="100%" height="100%">
       <PieChart>
         <Pie 
           data={diagrammData} 

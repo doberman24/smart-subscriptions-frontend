@@ -102,6 +102,10 @@
     padding: 20px;
 }
 
+.addBlockButton {
+    width: fit-content;
+}
+
 .empty {
     display: flex;
     flex-direction: column;
@@ -123,4 +127,78 @@
     font-size: 14px;
     font-weight: 400;
     color: #6c6f81;
+}
+
+
+
+@media (max-width: 440px) {
+    .dashboardPage {
+        padding: 40px 10px;
+    }
+    .headerBlock h1 {
+        font-size: 1.5rem;
+    }
+    .headerBlock h2 {
+        font-size: 1rem;
+    }
+
+    .mainStatistics {
+        gap: 8px;
+    }
+
+    .statistic {
+        width: 100%;
+        padding: 5px;
+    }
+    .mainData {
+        font-size: 1.3rem;
+    }
+    .statistic h3 {
+        font-size: 0.65rem;
+    }
+
+    .subscriptionsBlock h2,
+    .headerBlock h2 {
+        font-size: 1.1rem;
+    }
+
+    .subscriptionsBlock {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.5rem;
+    }
+
+    .lastSubscriptions {
+        min-width: 100%;
+    }
+
+    .diagrammBlock {
+        min-width: 100%;
+    }
+
+    .diagramm {
+        width: 100%;
+        padding: 5px ;
+    }
+
+    .addBlockButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 359px) {
+    .headerBlock {
+        margin-bottom: 20px;
+    }
+
+    .headerBlock h1 {
+        font-size: 1.2rem;
+    }
+    .headerBlock h2 {
+        font-size: 0.8rem;
+    }
+    
+    .statistic h3 {
+        font-size: 0.5rem;
+    }
 }

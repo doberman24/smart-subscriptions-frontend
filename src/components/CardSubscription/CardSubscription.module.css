@@ -258,3 +258,61 @@
     font-size: 14px;
     color: #6c6f81; 
 }
+
+
+
+
+@media (max-width: 440px) {
+
+    /* Стили дашборда */
+
+    .dashboard .icon {
+        padding: 5px 10px 5px 0;
+    }
+
+    .dashboard .category {
+        grid-column: 2 / 4;
+        margin-bottom: 10px;
+        font-size: 11px;
+    }
+
+    .dashboard .pay {
+        grid-row: 1 / 3;
+        flex-direction: column-reverse;
+        gap: 8px;
+        margin: 0;
+        justify-self: end;
+        align-self: start;
+    }
+
+    .dashboard .titleSub {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 0.8rem;
+    }
+
+    .dashboard .statusSubscription {
+        grid-column: 1;
+        font-size: 7px;
+    }
+
+    .dashboard .buttonsBlock {
+        justify-self: end;
+        grid-column: 2 / 4;
+        grid-row: 4;
+    }
+
+    .dashboard .amount {
+        font-size: 1rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 359px) {
+    .dashboard .buttonsBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}

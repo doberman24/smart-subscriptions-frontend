@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
-        <Link to='/dashboard'><img src={logo} height='40px' alt="logo" /></Link>
+        <Link className={styles.mainLogo} to='/dashboard'><img src={logo} height='40px' alt="logo" /></Link>
         <h2>Привет, <span className={styles.name}>{user.name}</span>!</h2>
         <nav className={styles.nav}>
           <Link className={styles.icon} to='/dashboard'>
