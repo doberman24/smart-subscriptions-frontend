@@ -62,7 +62,7 @@ const HandleSubscriptionModal = ({onHandleSub, data = null}) => {
       <div className={styles.contentBlock}>
         <div className={styles.headModal}>
           <AiOutlineQuestionCircle className={`${styles.iconQuestion} ${styles.icon}`} />
-          <h3>{`${data ? 'Внесение изменений в подписку' : 'Создание подписки'}`}</h3>
+          <h3>{`${data ? 'Изменить подписку' : 'Создание подписки'}`}</h3>
         </div>
         <form className={styles.formBlock} onSubmit={(e) => handleSubscription(e, formValue)}>
           <label>

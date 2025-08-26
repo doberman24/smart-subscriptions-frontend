@@ -15,7 +15,8 @@
 }
 
 .modal {
-    min-width: min(90vw, 480px);
+    min-width: min(90vw, 510px);
+    max-width: 90vw;
     background-color: #fff;
     border-radius: 12px;
     padding: 24px;
@@ -36,4 +37,15 @@
 .visionModal .modal {
     transform: scale(1);
     transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+
+@media (max-width: 440px) {
+    .modal {
+        padding: 20px 10px;
+    }
+
+    .dashboardPage {
+        padding: 40px 10px;
+    }
 }

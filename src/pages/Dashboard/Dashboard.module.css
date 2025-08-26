@@ -122,6 +122,7 @@
     font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
+    text-align: center;
 }
 .empty p {
     font-size: 14px;
@@ -170,6 +171,7 @@
 
     .lastSubscriptions {
         min-width: 100%;
+        min-height: 0;
     }
 
     .diagrammBlock {
@@ -184,6 +186,15 @@
     .addBlockButton {
         width: 100%;
     }
+
+    .diagrammBlock {
+        min-height: 260px;
+    }
+
+    .empty {
+        height: 260px;
+    }
+
 }
 
 @media (max-width: 359px) {

@@ -40,7 +40,7 @@
     font-weight: 600;
     font-size: 1rem;
     width: 100%;
-    height: fit-content;
+    /* height: fit-content; */
     box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
@@ -141,6 +141,13 @@
         font-size: 11px;
         padding: 2px 6px;
     }
+
+    .addButton,
+    .delButton,
+    .exitButton {
+        font-size: 0.9rem;
+        flex: 1;
+    }
 }
 
 
@@ -150,7 +157,8 @@
         font-size: 0.85rem;
     }
 
-    /* .addButton {
-        width: 400px;
-    } */
+    .modalButton {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
 }
