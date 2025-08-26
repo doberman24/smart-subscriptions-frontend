@@ -109,3 +109,85 @@
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 24px;
 }
+
+
+
+@media (max-width: 440px) {
+    .subscriptionsPage {
+        padding: 40px 10px;
+        width: 100%;
+    }
+
+    .headerBlock {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .headerBlock h1 {
+        font-size: 1.5rem;
+    }
+    .headerBlock button {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .filtersBlock {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
+    .itemBlock {
+        width: 100%;
+    }
+
+    .sortFilter {
+        width: 100%;
+    }
+
+    .categoryFilter {
+        width: 100%;
+    }
+
+    .searchFilter {
+        width: 100%;
+    }
+
+    .rangeFilter {
+        width: 100%;
+    }
+    .rangeFilter label {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .rangeFilter input {
+        margin-left: 5px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+
+    .cardsBlock {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+}
+
+
+@media (max-width: 359px) {
+    .headerBlock {
+        margin-bottom: 20px;
+    }
+
+    .headerBlock h1 {
+        font-size: 1.2rem;
+    }
+    
+    .headerBlock button {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+}

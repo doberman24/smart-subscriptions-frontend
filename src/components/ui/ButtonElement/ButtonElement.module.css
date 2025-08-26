@@ -138,7 +138,7 @@
     }
 
     .buttonsCard {
-        font-size: 11px;
+        font-size: 0.9rem;
         padding: 2px 6px;
     }
 
@@ -160,5 +160,16 @@
     .modalButton {
         padding: 5px 12px;
         font-size: 0.8rem;
+    }
+
+    .buttonsCard {
+        font-size: 11px;
+    }
+
+    .addButton,
+    .delButton,
+    .exitButton {
+        font-size: 11px;
+        flex: 1;
     }
 }
