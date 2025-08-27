@@ -132,11 +132,7 @@
     }
 
     .filtersBlock {
-        display: flex;
         flex-wrap: wrap;
-        gap: 16px;
-        justify-content: space-between;
-        margin-bottom: 2rem;
     }
 
     .itemBlock {
@@ -185,7 +181,7 @@
     .headerBlock h1 {
         font-size: 1.2rem;
     }
-    
+
     .headerBlock button {
         width: 100%;
         font-size: 0.9rem;

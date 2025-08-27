@@ -138,14 +138,14 @@
     }
 
     .buttonsCard {
-        font-size: 0.9rem;
-        padding: 2px 6px;
+        font-size: 0.8rem;
+        padding: 4px 9px;
     }
 
     .addButton,
     .delButton,
     .exitButton {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         flex: 1;
     }
 }

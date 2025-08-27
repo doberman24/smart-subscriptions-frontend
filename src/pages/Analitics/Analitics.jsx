@@ -97,39 +97,48 @@ const Analitics = () => {
         </div>
       </div>
       <div className={styles.graphsBlock}>
-        <div className={styles.timeGraph}>
+        <div className={styles.graphContainer}>
           <h2>Динамика расходов</h2>
-          {summaryData.spendingOverTime.length ? <div className={styles.graph}>
-            <Graph spendingOverTime={summaryData.spendingOverTime} />
-          </div> :
-          <div className={styles.empty}>
-            <h3>Нет данных для отображения</h3>
-            <p>Добавьте новую подписку</p>
-          </div>}
-        </div>
-        <div className={styles.timeGraph}>
-          <h2>Распределение по категориям</h2>
-          {summaryData.diagramm?.categoryBreakdown?.length ? <div className={styles.diagramm}>
-            <div className={styles.tabs}>
-              <div 
-                onClick={() => setTypeDiagram('category')} 
-                className={`${styles.tab} ${typeDiagram === 'category' ? styles.active : styles.inactive}`}
-              >
-                {typeDiagrammData ? 'Категории' : 'Подписки'}
-              </div>
-              <div 
-                onClick={() => setTypeDiagram('active')} 
-                className={`${styles.tab} ${typeDiagram === 'active' ? styles.active : styles.inactive}`}
-              >
-                Статус активности
-              </div>
+          <div className={styles.timeGraphBlock}>
+            <div className={styles.timeGraph}>
+              {summaryData.spendingOverTime.length ? <div className={styles.graph}>
+                <Graph spendingOverTime={summaryData.spendingOverTime} />
+              </div> :
+              <div className={styles.empty}>
+                <h3>Нет данных для отображения</h3>
+                <p>Добавьте новую подписку</p>
+              </div>}
             </div>
-            <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
-          </div> :
-          <div className={styles.empty}>
-            <h3>Нет данных для отображения</h3>
-            <p>Добавьте новую подписку</p>
-          </div>}
+          </div>
+        </div>
+
+        <div className={styles.diagrammContainer}>
+          <h2>Распределение по категориям</h2>
+          <div className={styles.diagrammBlock}>
+
+              {summaryData.diagramm?.categoryBreakdown?.length ? <div className={styles.diagramm}>
+                <div className={styles.tabs}>
+                  <div 
+                    onClick={() => setTypeDiagram('category')} 
+                    className={`${styles.tab} ${typeDiagram === 'category' ? styles.active : styles.inactive}`}
+                  >
+                    {typeDiagrammData ? 'Категории' : 'Подписки'}
+                  </div>
+                  <div 
+                    onClick={() => setTypeDiagram('active')} 
+                    className={`${styles.tab} ${typeDiagram === 'active' ? styles.active : styles.inactive}`}
+                  >
+                    Статус активности
+                  </div>
+                </div>
+                <Diagramm diagrammData={diagrammData} typeDiagram={typeDiagram}/>
+              </div> :
+              <div className={styles.empty}>
+                <h3>Нет данных для отображения</h3>
+                <p>Добавьте новую подписку</p>
+              </div>}
+            
+          </div>
         </div>
       </div>
       <div className={styles.cardsBlock}>

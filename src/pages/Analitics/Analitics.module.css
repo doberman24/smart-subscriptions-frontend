@@ -69,8 +69,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 40px;
-    /* height: 450px; */
-    margin-bottom: 50px;
+
 }
 
 .graphsBlock h2,
@@ -80,13 +79,26 @@
     margin-bottom: 24px;
     margin-top: 0;
 }
+.timeGraphBlock,
+.diagrammBlock {
+    width: 100%;
+}
+
 .timeGraph {
     height: 520px;
+}
+.diagrammGraph,
+.diagrammContainer {
+    height: 100%;
     min-width: 432px;
+}
+.diagrammBlock {
+    height: 520px;
 }
 
 .graph {
     background-color: #fff;
+    width: 726px;
     height: 100%;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
@@ -240,9 +252,128 @@
     font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
+    text-align: center;
 }
 .empty p {
     font-size: 14px;
     font-weight: 400;
     color: #6c6f81;
+}
+
+
+@media (max-width: 440px) {
+    .analiticsPage {
+        padding: 40px 10px;
+        width: 100%;
+    }
+    .analiticsPage h2 {
+        font-size: 1.1rem;
+    }
+
+    .headerBlock {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .headerBlock h1 {
+        font-size: 1.5rem;
+    }
+    .headerBlock .filtersBlock {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .expensesBlock {
+        gap: 8px;
+    }
+
+    .expenses {
+        width: 100%;
+        padding: 5px;
+    }
+    .expenses h3 span {
+        font-size: 1.3rem;
+    }
+    .expenses h3 {
+        font-size: 0.7rem;
+    }
+
+    .graphsBlock {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .graphContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .diagrammContainer {
+        min-width: 100%;
+    }
+
+    .timeGraphBlock {
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-left: -10px;
+        padding-right: 10px;
+        width: calc(100% + 20px);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .timeGraphBlock::-webkit-scrollbar {
+        display: none;
+    }
+
+    .timeGraph {
+        width: fit-content;
+        padding-left: 10px;
+    }
+
+    .diagramm {
+        padding: 5px;
+    }
+
+    .recommHead {
+        font-size: 0.8rem;
+    }
+
+    .recommendations {
+        padding: 10px;
+    }
+
+    .recommendations.disabled::before {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 359px) {
+    .headerBlock h1 {
+        font-size: 1.2rem;
+    }
+
+    .analiticsPage h2 {
+        font-size: 0.8rem;
+    }
+    
+    .expenses h3 span {
+        font-size: 0.9rem;
+    }
+    .expenses h3 {
+        font-size: 0.55rem;
+    }
+
+    .tabs {
+        font-size: 0.8rem;
+    }
+
+    .recommHead {
+        font-size: 0.7rem;
+    }
+
+    .recommendations {
+        padding: 5px;
+    }
 }

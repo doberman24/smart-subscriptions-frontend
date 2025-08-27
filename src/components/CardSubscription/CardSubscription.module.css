@@ -263,10 +263,45 @@
 
 @media (max-width: 440px) {
 
-    
+    /* Стили карт в аналитике */
 
-    
+    .analitics {
+        padding: 10px 15px;
+        grid-template-columns: min-content repeat(2, 1fr);
+        height: 100px;
+    }
 
+    .analitics .icon {
+        grid-row: 1 / 3;
+        margin-right: 15px;
+    }
+    .analitics .icon div {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .analitics .titleSub {
+        font-size: 14px;
+    }
+
+    .analitics .amount {
+        font-size: 16px;
+        justify-self: start;
+    }
+
+    .analitics .category {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .analitics .date {
+        font-size: 0.65rem;
+        justify-self: start;
+    }
+
+    .interval {
+        text-align: center;
+    }
 
 
     /* Стили дашборда */
@@ -286,6 +321,7 @@
         grid-column: 2 / 4;
         margin-bottom: 10px;
         font-size: 11px;
+        /* 13 */
     }
 
     .dashboard .amount {
@@ -307,6 +343,7 @@
     .dashboard .statusSubscription {
         grid-column: 1;
         font-size: 7px;
+         /* 10 */
     }
 
     .dashboard .buttonsBlock {
@@ -314,29 +351,42 @@
         grid-column: 2 / 4;
         grid-row: 4;
     }
-
-
-    .subscriptions .titleSub {
-        
-    }
-
-    .subscriptions .category {
-        /* 13 */
-    }
-
-    .subscriptions .statusCard {
-        /* 12px */
-    }
-
-    .subscriptions .statusSubscription {
-        /* 10 */
-    }
-
-
 }
 
 @media (max-width: 359px) {
+
+    .analitics .icon {
+        grid-row: 1;
+    }
+    .analitics .icon div {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .analitics .titleSub {
+        font-size: 11px;
+    }
+
+    .analitics .amount {
+        grid-column: 1 / 3;
+        font-size: 12px;
+    }
+
+    .analitics .category {
+        font-size: 8px;
+    }
+
+    .analitics .interval {
+        font-size: 11px;
+    }
+
+    .analitics .date {
+        grid-column: 1 / 3;
+        font-size: 0.6rem;
+    }
+
     
+
     .dashboard .buttonsBlock {
         display: flex;
         flex-direction: column;
