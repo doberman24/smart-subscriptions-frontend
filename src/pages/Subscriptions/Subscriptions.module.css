@@ -116,6 +116,7 @@
     .subscriptionsPage {
         padding: 40px 10px;
         width: 100%;
+        margin-bottom: 66px;
     }
 
     .headerBlock {
@@ -173,7 +174,7 @@
 }
 
 
-@media (max-width: 359px) {
+@media (max-width: 340px) {
     .headerBlock {
         margin-bottom: 20px;
     }

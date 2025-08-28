@@ -86,7 +86,7 @@ nav a:hover {
 
 
 
-    @media (max-width: 359px) {
+    @media (max-width: 340px) {
         .header img {
             height: 55px;
         }

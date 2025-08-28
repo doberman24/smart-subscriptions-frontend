@@ -178,5 +178,133 @@
     border-top: 1px solid #e0e3ee;
     display: flex;
     justify-content: flex-end;
-    gap: 24px
+    gap: 24px;
+    width: fit-content;
+    align-self: flex-end;
+}
+
+
+
+
+@media (max-width: 440px) {
+    .settingsPage {
+        padding: 40px 10px;
+        margin-bottom: 66px;
+    }
+    
+    .settingsPage h1 {
+        font-size: 1.5rem;
+    }
+
+    .settingsPage h2 {
+        font-size: 1.2rem;
+    }
+
+    .userPhoto {
+        justify-self: center;
+    }
+
+    .userProfile,
+    .securityBlock,
+    .notifyBlock {
+        padding: 12px 12px 16px;
+    }
+
+    .userProfile label {
+        max-width: 100%;
+    }
+
+    .toggles {
+        font-size: 0.95rem;
+    }
+
+    .emailToggle,
+    .smsToggle {
+        font-size: 0.95rem;
+    }
+
+    .selectParams {
+        gap: 16px;
+    }
+
+    .selectParams h6 {
+        font-size: 0.8rem;
+    }
+    .selectParams span {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .notifyBlock.disabled::before {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .passChange {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .lastDate {
+        font-size: 0.8rem;
+        max-width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .buttonsBlock {
+        display: flex;
+        /* justify-content: flex-end; */
+        gap: 10px;
+        width: 100%;
+        align-self: center;
+    }
+    .buttonsBlock button {
+        padding: 10px 18px;
+    }
+
+}
+
+@media (max-width: 340px) {
+    
+    .settingsPage h1 {
+        font-size: 1.2rem;
+    }
+
+    .settingsPage h2 {
+        font-size: 1rem;
+    }
+
+    .userProfile label {
+        font-size: 0.9rem;
+    }
+    .userProfile input {
+        font-size: 0.8rem;
+    }
+
+    .notifyBlock.disabled::before {
+        font-size: 2rem;
+    }
+
+    .toggles {
+        font-size: 0.8rem;
+    }
+
+    .emailToggle,
+    .smsToggle {
+        font-size: 0.8rem;
+    }
+
+    .selectParams {
+        gap: 8px;
+    }
+    .selectParams h6 {
+        font-size: 0.7rem;
+    }
+
+    .buttonsBlock button {
+        border-radius: 8px;
+        padding: 7px 12px;
+    }
 }

@@ -135,6 +135,7 @@
 @media (max-width: 440px) {
     .dashboardPage {
         padding: 40px 10px;
+        margin-bottom: 66px;
     }
     .headerBlock h1 {
         font-size: 1.5rem;
@@ -197,7 +198,7 @@
 
 }
 
-@media (max-width: 359px) {
+@media (max-width: 340px) {
     .headerBlock {
         margin-bottom: 20px;
     }

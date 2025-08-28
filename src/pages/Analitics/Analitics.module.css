@@ -265,6 +265,7 @@
     .analiticsPage {
         padding: 40px 10px;
         width: 100%;
+        margin-bottom: 66px;
     }
     .analiticsPage h2 {
         font-size: 1.1rem;
@@ -349,7 +350,7 @@
     }
 }
 
-@media (max-width: 359px) {
+@media (max-width: 340px) {
     .headerBlock h1 {
         font-size: 1.2rem;
     }

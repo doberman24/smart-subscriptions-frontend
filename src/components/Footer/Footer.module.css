@@ -78,7 +78,7 @@
 
 @media (max-width: 440px) {
     .footerContainer {
-        position: relative;
+        position: fixed;
         width: 100%;
     }
 

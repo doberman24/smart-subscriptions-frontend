@@ -39,7 +39,7 @@
     border-radius: 8px;
     font-weight: 600;
     font-size: 1rem;
-    width: 100%;
+    /* width: 100%; */
     /* height: fit-content; */
     box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
@@ -151,7 +151,7 @@
 }
 
 
-@media (max-width: 359px) {
+@media (max-width: 340px) {
     .mainButton {
         padding: 16px 10px;
         font-size: 0.85rem;

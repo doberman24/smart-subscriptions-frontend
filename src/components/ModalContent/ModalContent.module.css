@@ -410,7 +410,7 @@ div.disabled {
 
 }
 
-@media (max-width: 359px) {
+@media (max-width: 340px) {
     .formBlock label,
     .formBlock h6 {
         font-size: 0.7rem;
