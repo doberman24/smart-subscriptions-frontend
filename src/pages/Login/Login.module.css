@@ -124,3 +124,55 @@
 .emailLabel {
     z-index: 1;
 }
+
+
+
+
+@media (max-width: 440px) {
+    .loginPage {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .loginPage h1 {
+        font-size: 1.4rem;
+        margin-top: 20px;
+    }
+
+    .loginPage img {
+        height: 50px !important;
+    }
+
+    .mainForm {
+        width: 100%;
+        padding: 0 15px 15px;
+    }
+
+    .tabs {
+        margin: 12px 0 0;
+    }
+
+    .mainForm button {
+        font-size: 1rem;
+    }
+
+}
+
+
+@media (max-width: 340px) {
+    .mainForm {
+        border-radius: 12px;
+    }
+
+    .tab {
+        font-size: 0.9rem;
+    }
+
+    .mainForm input {
+        font-size: 0.8rem;
+    }
+
+    .mainForm button {
+        font-size: 0.8rem;
+    }
+}

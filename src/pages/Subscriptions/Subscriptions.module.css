@@ -25,6 +25,13 @@
     width: fit-content;
 }
 
+.headerBlock button span {
+    position: relative;
+    font-size: 2rem;
+    line-height: 16px;
+    top: 5px;
+}
+
 .filtersBlock {
     display: flex;
     gap: 16px;
@@ -186,5 +193,11 @@
     .headerBlock button {
         width: 100%;
         font-size: 0.9rem;
+    }
+    .headerBlock button span {
+        position: relative;
+        font-size: 1.7rem;
+        line-height: 16px;
+        top: 4px;
     }
 }

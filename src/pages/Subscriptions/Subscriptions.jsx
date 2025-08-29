@@ -87,7 +87,7 @@ const Subscriptions = () => {
       {isModal.isDeleteSubscriptionModal && <DeleteSubscriptionModal onDeleteSubscription={onDeleteSubscription}/>}
       <div className={styles.headerBlock}>
       <h1>Мои подписки</h1>
-        <ButtonElement onClick={showAddModal} className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+        <ButtonElement onClick={showAddModal} className={'addButton purpleButton'}><span className={styles.plus}>+</span> Добавить подписку</ButtonElement>
       </div>
       <div className={styles.filtersBlock}>
         <div className={styles.itemBlock}>

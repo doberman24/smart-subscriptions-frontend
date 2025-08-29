@@ -106,6 +106,13 @@
     width: fit-content;
 }
 
+.addBlockButton button span {
+    position: relative;
+    font-size: 2rem;
+    line-height: 16px;
+    top: 5px;
+}
+
 .empty {
     display: flex;
     flex-direction: column;
@@ -177,19 +184,21 @@
 
     .diagrammBlock {
         min-width: 100%;
+        min-height: 260px;
     }
 
     .diagramm {
         width: 100%;
         padding: 5px ;
+        height: 450px;
     }
 
     .addBlockButton {
         width: 100%;
     }
 
-    .diagrammBlock {
-        min-height: 260px;
+    .addBlockButton button {
+        font-size: 1.2rem;
     }
 
     .empty {
@@ -212,5 +221,16 @@
     
     .statistic h3 {
         font-size: 0.5rem;
+    }
+
+    .addBlockButton button {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    .addBlockButton button span {
+        position: relative;
+        font-size: 1.7rem;
+        line-height: 16px;
+        top: 4px;
     }
 }

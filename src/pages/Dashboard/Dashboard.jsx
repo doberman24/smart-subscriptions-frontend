@@ -111,7 +111,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.addBlockButton}>
-        <ButtonElement onClick={showAddModal} className={'addButton purpleButton'}>🞣 Добавить подписку</ButtonElement>
+        <ButtonElement onClick={showAddModal} className={'addButton purpleButton'}><span className={styles.plus}>+</span> Добавить подписку</ButtonElement>
       </div>
     </div>
   )
