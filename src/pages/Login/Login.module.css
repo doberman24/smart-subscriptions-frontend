@@ -100,29 +100,58 @@
 
 
 .mainForm .confirmPass,
-.mainForm .loginLabel {
+.mainForm .emailLabel {
+    z-index: -1;
     height: 0;
     opacity: 0;
     transform: translateY(-8px);
     transition: all 0.25s ease-out;
 }
-.mainForm .loginLabel {
+.mainForm .emailLabel {
     margin-top: 0;
     transform: translateY(8px);
 }
 .mainForm .activeField {
+    z-index: 0;
     height: 83px;
     opacity: 1;
     transform: translateY(0);
     transition: all 0.25s ease-in;
 }
-.loginLabel.activeField {
+.emailLabel.activeField {
     height: 63px;
     margin-top: 18px;
 }
 
-.emailLabel {
+.loginLabel {
     z-index: 1;
+}
+
+.passLabel input,
+.confirmPass input {
+    padding-right: 50px;
+}
+
+.mainForm .pass {
+    position: relative;
+}
+.pass .eyes {
+    width: 50px;
+    position: absolute;
+    right: 0;
+    margin: 9px auto;
+    bottom: 0;
+    font-size: 19px;
+    height: 19px;
+    text-align: center;
+    z-index: 1;
+    color: #6c6f81;
+}
+
+.resetPass {
+    color: #6c6f81;
+    cursor: pointer;
+    align-self: flex-end;
 }
 
 

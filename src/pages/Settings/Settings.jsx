@@ -67,7 +67,7 @@ const Settings = () => {
     if (saveUserData.fulfilled.match(result)) {
       setInfoTypeModal('info');
       if (typeof window !== "undefined") {
-        setTimeout(() => showClickModal('isInfoModal'), 100);
+        setTimeout(() => showClickModal('isInfoModal'), 115);
       }
     }
     if (saveUserData.rejected.match(result)) {
@@ -80,7 +80,7 @@ const Settings = () => {
     if (saveUserData.fulfilled.match(result)) {
       setInfoTypeModal('info');
       if (typeof window !== "undefined") {
-        setTimeout(() => showClickModal('isInfoModal'), 100);
+        setTimeout(() => showClickModal('isInfoModal'), 115);
       }
     }
   }

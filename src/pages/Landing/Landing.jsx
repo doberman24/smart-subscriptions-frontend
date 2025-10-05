@@ -19,7 +19,7 @@ const Landing = () => {
 
 
   const getDemo = async () => {
-    const userData = {email: 'demo_user', password: '3Vcf#z2qY^YtEn_'};
+    const userData = {login: 'demo_user', password: '3Vcf#z2qY^YtEn_'};
     const data = await dispatch(getToken({formValue: userData, activeTab: 'login'}));
     if (getToken.fulfilled.match(data)) {
       navigate('/dashboard', {replace: true});

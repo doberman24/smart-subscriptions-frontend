@@ -25,7 +25,7 @@ const DeleteUserModal = () => {
         const deletedData = await api.deleteUserData(token);
         if (deletedData?.message) {
            if (typeof window !== "undefined") {
-                setTimeout(() => dispatch(toggleModal({ isInfoModal: true })), 102);
+                setTimeout(() => dispatch(toggleModal({ isInfoModal: true })), 115);
             }
             close(() => dispatch(toggleModal(false)));
         } else {

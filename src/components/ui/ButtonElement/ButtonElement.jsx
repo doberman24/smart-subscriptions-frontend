@@ -1,6 +1,6 @@
 import styles from './ButtonElement.module.css'
 
-const ButtonElement = ({children, onMouseDown, onClick, className = '', type = ''}) => {
+const ButtonElement = ({children, onMouseDown, onClick, className = '', type = '', disabled = false}) => {
   const newClassName = className.split(' ').map(item => styles[item]).filter(Boolean).join(' ');
 
   return (
@@ -9,6 +9,7 @@ const ButtonElement = ({children, onMouseDown, onClick, className = '', type = '
       onMouseDown={onMouseDown} 
       className={`${styles.button} ${newClassName}`}
       type={type}
+      disabled={disabled}
     >
       {children}
     </button>

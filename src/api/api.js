@@ -1,6 +1,14 @@
 import axios from "axios";
 
 export class Api {
+    async verifyEmailUser(mailToken) {
+            const veryfy = await axios({
+            method: 'get',
+            url: `${import.meta.env.VITE_API_URL}/verify-email?mailToken=${mailToken}`,
+        });
+        return veryfy;
+    }
+
     //Авторизация и регистрация
     async authorization(formValue, activeTab) {
         const authUrl = activeTab === 'reg' ? '/auth/register' : '/auth/login';
