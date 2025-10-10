@@ -15,6 +15,7 @@ import Error400 from '@/pages/ErrorsPages/Error400';
 import Error401 from '@/pages/ErrorsPages/Error401';
 import Error403 from '@/pages/ErrorsPages/Error403';
 import InfoVerifyEmail from '@/pages/VerifyEmail/InfoVeryfyEmail';
+import ForgotPassword from '@/pages/Login/ForgotPassword';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/politics' element={<PrivacyPolicy />} />
         <Route path='/verify-email' element={<VerifyEmail />} />
+        <Route path='/reset-password' element={<ForgotPassword />} />
         <Route path='/info-verify' element={<InfoVerifyEmail />} />
         <Route path='/400' element={<Error400 />} />
         <Route path='/401' element={<Error401 />} />

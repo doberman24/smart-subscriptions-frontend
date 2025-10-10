@@ -10,10 +10,12 @@ import { resetDataDashboard } from '@/redux/summaryInfo';
 import { resetDataSubscription } from '@/redux/subscriptions';
 import { resetData } from '@/redux/user';
 import InfoModal from '@/components/ModalContent/InfoModal';
-import { toggleModal } from '@/redux/showModal';
+import { useModals } from '@/components/ModalContent/useModals';
 import { Helmet } from '@vuer-ai/react-helmet-async';
-import { FaEye, FaEyeDropper } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import { FaEyeLowVision } from 'react-icons/fa6';
+import LosePassModal from '@/components/ModalContent/LosePassModal';
+import api from '@/api/api';
 
 const Login = () => {
   const location = useLocation();
@@ -32,8 +34,11 @@ const Login = () => {
   })
 
   const [infoTypeModal, setInfoTypeModal] = useState('');
+  const {showClickModal} = useModals({});
   const [passVision, setPassVision] = useState(false);
   const [passConfirmVision, setPassConfirmVision] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
 
   useEffect(() => {
     if (location.state?.fromApp){
@@ -44,6 +49,10 @@ const Login = () => {
       dispatch(resetDataSubscription()); 
     }
   },[]);
+
+  useEffect(() => {
+    setModalMessage(message);
+  }, [message]);
 
   const clickTab = (currentTab) => {
     setActiveTab(currentTab);
@@ -65,7 +74,7 @@ const Login = () => {
       }
     }
     if (getToken.rejected.match(data)) {
-      dispatch(toggleModal({isInfoModal: true}));
+      showClickModal('isInfoModal');
       setInfoTypeModal('error');
     }
   }
@@ -77,6 +86,18 @@ const Login = () => {
     });
   }
 
+ const onResetPassword = async (formValue) => {
+    const result = await api.sendRecover(formValue);
+    const resultMessage = result.messageRecovery;
+    const resultError = result.response?.data?.error;
+    setModalMessage(resultMessage || resultError || 'Неизвестная ошибка');
+    // console.log(result);
+    setInfoTypeModal(resultMessage ? 'info' : 'error');
+    if (typeof window !== "undefined") {
+      setTimeout(() => showClickModal('isInfoModal'), 115);
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -85,7 +106,8 @@ const Login = () => {
       </Helmet>
 
       <div className={styles.loginPage}>
-        {isModal.isInfoModal && <InfoModal message={message} typeInfo={infoTypeModal} />}
+        {isModal.isLosePass && <LosePassModal onResetPassword={onResetPassword} />}
+        {isModal.isInfoModal && <InfoModal message={modalMessage} typeInfo={infoTypeModal} />}
         <Link to='/'><img src={logo} height='60px' alt='logo' /></Link>
         <h1 className={styles.login}>Добро пожаловать!</h1>
         <form className={styles.mainForm} onSubmit={(e) => handleSubmit(e, activeTab)}>
@@ -150,7 +172,7 @@ const Login = () => {
               </div>
             </div>
           </label>
-          {activeTab === 'login' && <div className={styles.resetPass}>Забыли пароль?</div>}
+          {activeTab === 'login' && <div onClick={() => showClickModal('isLosePass')} className={styles.resetPass}>Забыли пароль?</div>}
           <label className={styles.button}>
             <ButtonElement className={'addButton'}>{activeTab === 'reg' ? 'Зарегистрироваться' : 'Войти'}</ButtonElement>
           </label>

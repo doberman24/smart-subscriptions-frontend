@@ -58,6 +58,22 @@
     padding: 0 40px 40px;
     /* gap: 18px; */
 }
+.forgotPass .mainForm {
+    padding-top: 40px;
+}
+
+.forgotPass h1 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.forgotPass p {
+    max-width: 450px;
+    text-align: center;
+    margin: 20px auto 10px;
+    color: #6c6f81;
+    font-size: 1.1rem;
+}
 
 .mainForm label {
     display: flex;
@@ -129,7 +145,7 @@
 
 .passLabel input,
 .confirmPass input {
-    padding-right: 50px;
+    padding-right: 30px;
 }
 
 .mainForm .pass {
@@ -202,6 +218,10 @@
     }
 
     .mainForm button {
+        font-size: 0.8rem;
+    }
+ 
+    .forgotPass p {
         font-size: 0.8rem;
     }
 }

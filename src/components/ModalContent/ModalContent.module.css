@@ -47,7 +47,7 @@
     border-top: 1px solid #e5e7eb;
     border-bottom: 1px solid #e5e7eb;
     padding: 16px 0;
-    width: 100%;
+    max-width: 470px;
 }
 
 .buttonsBlock {
@@ -115,6 +115,20 @@
     align-self: center;
 }
 
+.formBlock .description,
+.formBlock .tip {
+    max-width: 470px;
+    border: none;
+    color: #6c6f81;
+    line-height: 1.5;
+    padding: 0;
+}
+
+.formBlock .tip {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
 .dropdownLabel input {
     border: none;
     margin: 0;
@@ -157,6 +171,7 @@ div.disabled {
     filter: grayscale(0.2);
     transition: opacity 0.3s ease, filter 0.3s ease;
 }
+
 
 
 /* Молдалка подробностей подписки в топе аналитики  */
@@ -331,6 +346,10 @@ div.disabled {
 
 
 @media (max-width: 440px) {
+    .headModal h3 {
+        padding: 8px 30px;
+    }
+
     .formBlock label,
     .formBlock h6 {
         font-size: 0.9rem;
@@ -343,6 +362,13 @@ div.disabled {
 
     .formBlock input {
         font-size: 0.9rem;
+    }
+
+    .formBlock .description {
+        font-size: 0.75rem;
+    }
+    .formBlock .tip {
+        font-size: 0.65rem;
     }
 
     .buttonsBlock {

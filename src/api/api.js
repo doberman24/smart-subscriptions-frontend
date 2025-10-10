@@ -2,11 +2,81 @@ import axios from "axios";
 
 export class Api {
     async verifyEmailUser(mailToken) {
-            const veryfy = await axios({
+        const veryfy = await axios({
             method: 'get',
             url: `${import.meta.env.VITE_API_URL}/verify-email?mailToken=${mailToken}`,
         });
         return veryfy;
+    }
+
+    //Проверка токена при переходе по ссылке на почте при сбросе пароля
+    async checkTokenForgotPass(mailToken) {
+        try {
+            const response =  await axios({
+                method: 'get',
+                url: `${import.meta.env.VITE_API_URL}/forgot-password?mailToken=${mailToken}`,
+            });
+            return {
+                data: response.data,
+                error: null,
+            };
+        } catch (error) {
+            console.log(error.response?.status);
+            return {
+                data: null,
+                error: error.response?.data,
+                status: error.response?.status,
+            };
+        }
+    }
+
+    //Сброс пароля
+    async resetPassword({password, confirmPass}, token) {
+        try {
+            const response =  await axios({
+                method: 'post',
+                url: `${import.meta.env.VITE_API_URL}/reset-password`,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: {
+                    password: password, 
+                    confirmPass: confirmPass, 
+                    token: token,
+                },
+            });
+            return {
+                data: response.data,
+                error: null,
+            };
+        } catch (error) {
+            console.log(error.response?.status);
+            return {
+                data: null,
+                error: error.response?.data,
+                status: error.response?.status,
+            };
+        }
+    }
+
+
+    //Поиск аккаунта и отправка на почту письма восстановления пароля
+    async sendRecover(login) {
+        try {
+            const response =  await axios({
+                method: 'post',
+                url: `${import.meta.env.VITE_API_URL}/send-recover`,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: login,
+            });
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error;
+
+        }
     }
 
     //Авторизация и регистрация

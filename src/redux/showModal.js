@@ -8,6 +8,7 @@ const showModalSlice = createSlice({
         isSaveModal: false,
         isInfoModal: false,
         isChangePass: false,
+        isLosePass: false,
         handleSubscriptionModal: false,
         isDeleteSubscriptionModal: false,
         isTopModal: false,
@@ -20,6 +21,7 @@ const showModalSlice = createSlice({
             state.isSaveModal = action.payload.isSaveModal;
             state.isInfoModal = action.payload.isInfoModal;
             state.isChangePass = action.payload.isChangePass;
+            state.isLosePass = action.payload.isLosePass;
             state.handleSubscriptionModal = action.payload.handleSubscriptionModal;
             state.isDeleteSubscriptionModal = action.payload.isDeleteSubscriptionModal;
             state.isTopModal = action.payload.isTopModal;
