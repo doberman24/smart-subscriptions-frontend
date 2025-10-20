@@ -95,10 +95,10 @@ export class Api {
 
 
     //Данные пользователя
-    async getData(token) {
+    async getData(token, localTz) {
         const response = await axios({
             method: 'get',
-            url: `${import.meta.env.VITE_API_URL}/settings`,
+            url: `${import.meta.env.VITE_API_URL}/settings${localTz ? '?localTz=' + localTz : ''}`,
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

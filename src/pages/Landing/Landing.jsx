@@ -9,14 +9,20 @@ import demo from '@/assets/img/demo.gif';
 import Feedback from '@/components/Feedback/Feedback';
 import { useNavigate } from 'react-router-dom';
 import  { reviews } from '@/constants/reviews';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from '@/redux/getToken';
 import { Helmet } from '@vuer-ai/react-helmet-async';
+import { useEffect } from 'react';
 
 const Landing = () => {
   const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const {token} = useSelector(state => state.token);
+
+  useEffect(() => {
+    if (token) navigate('/dashboard', {replace: true}); 
+  }, [])
 
   const getDemo = async () => {
     const userData = {login: 'demo_user', password: '3Vcf#z2qY^YtEn_'};

@@ -13,7 +13,12 @@ const Header = () => {
   const {token} = useSelector(state => state.token);
 
   useEffect(() => {
-    dispatch(getUser(token));
+    const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const savedTz = localStorage.getItem('tz');
+
+    dispatch(getUser({token, localTz: localTz !== savedTz && localTz}));
+    localStorage.setItem('tz', localTz);
+
   }, [token, dispatch]);
 
   if (loading || !user) {

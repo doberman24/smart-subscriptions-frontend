@@ -10,9 +10,9 @@ const initialState = {
 
 export const getUser = createAsyncThunk(
   'user/getUserData',
-  async (token, { rejectWithValue }) => {
+  async ({token, localTz}, { rejectWithValue }) => {
     try {
-      const user = await api.getData(token);
+      const user = await api.getData(token, localTz);
       return user.data;
     } catch (error) {
       return rejectWithValue({

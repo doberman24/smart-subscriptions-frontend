@@ -33,7 +33,7 @@ const Settings = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    dispatch(getUser(token));
+    dispatch(getUser({token, localTz: false}));
 
   }, [token, dispatch]);
 
