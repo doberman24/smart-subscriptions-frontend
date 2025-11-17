@@ -125,7 +125,7 @@ const Settings = () => {
           />
         </label>
       </div>
-      <div className={`${styles.notifyBlock} ${styles.disabled}`} title='Данный раздел находиться в разработке'>
+      <div className={styles.notifyBlock}>
         <h2>Уведомления</h2>
         <div className={styles.toggles}>
           <div className={styles.mainToggle}>
@@ -137,19 +137,31 @@ const Settings = () => {
           </div>
         </div>
         <div className={`${styles.notify} ${toggleCheck.reminders ? '' : styles.disabled}`}>
-          <div className={styles.toggleNotify}>
+          <div className={`${styles.toggleNotify} ${styles.disabled}`}>
             <div className={styles.emailToggle} >
               <ToggleSwitch 
                 label={'На email'} 
                 checked={toggleCheck.emailReminders} 
-                onChange={() => setToggleCheck(item => ({...item, emailReminders: !item.emailReminders}))} 
+                onChange={() => setToggleCheck(item => (
+                  {
+                    ...item, 
+                    emailReminders: !item.emailReminders, 
+                    smsReminders: (item.emailReminders && !item.smsReminders) ? true : item.smsReminders
+                  }
+                ))} 
               />
             </div>
             <div className={styles.smsToggle}>
               <ToggleSwitch 
                 label={'По SMS'} 
                 checked={toggleCheck.smsReminders} 
-                onChange={() => setToggleCheck(item => ({...item, smsReminders: !item.smsReminders}))} 
+                onChange={() => setToggleCheck(item => (
+                  {
+                    ...item, 
+                    smsReminders: !item.smsReminders, 
+                    emailReminders: (item.smsReminders && !item.emailReminders) ? true : item.emailReminders
+                  }
+                ))} 
               />
             </div>
           </div>

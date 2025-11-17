@@ -1,6 +1,6 @@
 import logo from '@/assets/img/logo.svg';
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '@/redux/user';
@@ -8,6 +8,7 @@ import { getUser } from '@/redux/user';
 const Header = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {user} = useSelector(state => state.user.userData);
   const {loading} = useSelector(state => state.user);
   const {token} = useSelector(state => state.token);
@@ -20,6 +21,10 @@ const Header = () => {
     localStorage.setItem('tz', localTz);
 
   }, [token, dispatch]);
+
+  useEffect(() => {
+    if(user && !user.emailVerified) navigate('/login', {state: {fromApp: true}});
+  }, [user]);
 
   if (loading || !user) {
     return null;

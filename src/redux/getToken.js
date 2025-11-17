@@ -48,6 +48,7 @@ const getTokenSlice = createSlice({
       saveTokenToStorage(state.token, state.resendToken);
       state.message = null;
       state.error = null;
+      localStorage.setItem('tz', '');
     }
   },
 
