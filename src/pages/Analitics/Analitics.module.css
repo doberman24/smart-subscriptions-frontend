@@ -27,6 +27,10 @@
     grid-template-columns: 2fr 3fr;
     gap: 12px;
 }
+.filtersBlock input {
+    margin: 8px 12px;
+}
+
 
 .expensesBlock {
     display: flex;

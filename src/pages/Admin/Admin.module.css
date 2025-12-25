@@ -1,0 +1,183 @@
+.adminPage {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    color: #2c2c3e;
+    padding: 40px 0 110px;
+}
+
+.headerBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.headerBlock h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.headerBlock .adminLogin {
+    font-weight: 600;
+}
+
+.mainBlock {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.mainBlock h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+
+.dataBlock {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 2fr 3fr 3fr;
+}
+
+.usersBlock,
+.valuesBlock {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+    padding: 24px 24px 32px;
+    margin-bottom: 2rem;
+}
+.usersBlock {
+    grid-column: 1;
+}
+.valuesBlock {
+    grid-column: 2 / 4;
+}
+
+.userList {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 20px 0;
+    gap: 5px;
+}
+
+.user {
+    list-style: none;
+    padding: 3px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.user:hover {
+    background-color: #e0e7ff;
+}
+.selectUser {
+    background-color: #e0e7ff;
+    padding: 3px 20px;
+    font-weight: 600;
+}
+
+.valuesList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column dense;
+    grid-template-rows: repeat(9, auto);
+    min-height: 300px;
+    padding: 0;
+    margin: 20px 0;
+    gap: 5px 60px;
+    align-content: end;
+}
+
+.userValue {
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.nameValue {
+    padding-right: 20px;
+    color: #1e1e2f;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 2.0;
+}
+
+.valuesBlock h6 {
+    white-space: nowrap;
+    display: flex;
+    font-size: 0.9rem;
+    font-weight: 600;
+    align-items: center;
+    gap: 20px;
+    padding-right: 40px;
+}
+
+.valuesBlock p {
+    font-weight: 400;
+    color: #1e1e2f;
+    /* font-size: 0.9rem; */
+}
+p.selectValue {
+    color: #4f46e5;
+    font-weight: 600;
+}
+.valuesBlock input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    color: #1e1e2f;
+    border: #d1d5db solid 1px;
+    padding: 4px 8px;
+    gap: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    height: 30px;
+}
+.valuesBlock input:not(.dropdownLabel input) {
+    border-radius: 8px;
+}
+.valuesBlock input:focus {
+    border: #6366f1 solid 1px;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+.valuesBlock input:hover {
+    border-color: #9ca3af;
+}
+.valuesBlock input::placeholder {
+    font-weight: 400;
+    color: #b5b5b6;
+}
+
+
+.dropdownLabel {
+    width: 100%;
+    height: 30px;
+}
+.dropdownLabel input {
+    border: none;
+    margin: 4px 8px;
+    padding: 0;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    outline: none;
+}
+.dropdownLabel input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

@@ -16,6 +16,7 @@ import Error401 from '@/pages/ErrorsPages/Error401';
 import Error403 from '@/pages/ErrorsPages/Error403';
 import InfoVerifyEmail from '@/pages/VerifyEmail/InfoVeryfyEmail';
 import ForgotPassword from '@/pages/Login/ForgotPassword';
+import Admin from '@/pages/Admin/Admin';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path='/403' element={<Error403 />} />
         <Route path='/500' element={<Error500 />} />
         <Route path='*' element={<Error404 />} />
+        <Route path='smart-admin' element={<Admin />} />
       </Routes>
     </main>
   )

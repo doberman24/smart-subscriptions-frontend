@@ -12,7 +12,7 @@
   align-items: center;
   border: #d1d5db solid 1px;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding-right: 12px;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 .inputDropdown:hover {
@@ -51,7 +51,7 @@
 }
 
 .showList {
-  max-height: fit-content;
+  max-height: 400px;
   opacity: 1;
   overflow: auto;
   transform: translateY(0);

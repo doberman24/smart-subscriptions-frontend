@@ -21,6 +21,8 @@ const Dashboard = () => {
   const {summaryData, message, loading, error} = useSelector(state => state.summaryInfo);
   const messageAction = useSelector(state => state.subscriptions);
   const {token} = useSelector(state => state.token);
+  const {user} = useSelector(state => state.user.userData);
+
   
   const [infoTypeModal, setInfoTypeModal] = useState('');
   const {onHandleSub} = useHandleSubscription({setInfoTypeModal});
@@ -32,16 +34,17 @@ const Dashboard = () => {
  
   
   useEffect(() => {
-      if (error?.status) {
-        navigate('/login', {state: {fromApp: true}});
-      }
-    }, [error, dispatch]);
+    if (error?.status) {
+      navigate('/login', {state: {fromApp: true}});
+    }
+    if (user && user.role === 'admin') navigate('/smart-admin', {replace: true});
+  }, [user, error, dispatch]);
   
   useEffect(() => {
     dispatch(getSummaryInfo({token}));
   }, [dispatch])
 
-  if (loading || !summaryData.overview) {
+  if (loading || !summaryData.overview || !user) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 

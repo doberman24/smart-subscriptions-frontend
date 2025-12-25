@@ -24,6 +24,8 @@ const Subscriptions = () => {
   const {subscriptionsList, loading, message, error} = useSelector(state => state.subscriptions);
   const isModal = useSelector(state => state.showModal);
   const {token} = useSelector(state => state.token);
+  const {user} = useSelector(state => state.user.userData);
+
   const [idCard, setIdCard] = useState(null);
   const [findName, setFindName] = useState('');
   const [sortCategory, setSortCategory] = useState({label: 'all', value: 'Все'});
@@ -45,7 +47,8 @@ const Subscriptions = () => {
     if (error?.status) {
       navigate('/login', {state: {fromApp: true}});
     }
-  }, [error, dispatch]);
+    if (user && user.role === 'admin') navigate('/smart-admin', {replace: true});
+  }, [user, error, dispatch]);
 
   useEffect(() => {
     if (!subscriptionsList) return;
@@ -64,7 +67,7 @@ const Subscriptions = () => {
     setSortSubscriptions(filtered);
   }, [findName, sortCategory, sortCoast, sortPrice, subscriptionsList]);
 
-  if(loading || !subscriptionsList) {
+  if(loading || !subscriptionsList || !user) {
     return <div className={loadingStyles.loading}>Загрузка...</div> 
   }
 

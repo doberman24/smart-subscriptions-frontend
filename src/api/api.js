@@ -200,6 +200,55 @@ export class Api {
         });
         return response;
     };
+
+    //Работа с админкой
+    async getAllUsers(token, id = '') {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `${import.meta.env.VITE_API_URL}/smart-admin/${id}`,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+            return {
+                data: response?.data?.response,
+                error: null,
+            };
+        } catch(error) {
+            console.error(error.response);
+            return {
+                data: null,
+                error: error.response?.data,
+                status: error.response?.status,
+            };
+        }
+    }
+
+    async saveUserAdminData(userData, token, id) {
+        try {
+            const response = await axios({
+                method: 'patch',
+                url: `${import.meta.env.VITE_API_URL}/smart-admin/${id}`,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                data: userData,
+            });
+            return {
+                message: response.data.message,
+                data: response?.data?.response,
+                error: null,
+            };
+        } catch(error) {
+            console.error(error.response);
+            return {
+                data: null,
+                error: error.response?.data,
+                status: error.response?.status,
+            };
+        }
+    }
 }
 
 export default new Api();

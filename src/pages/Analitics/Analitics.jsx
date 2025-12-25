@@ -20,6 +20,7 @@ const Analitics = () => {
   const [detailsType, setDetailsType] = useState('');
   const isModal = useSelector(state => state.showModal);
   const {showClickModal} = useModals({});
+  const {user} = useSelector(state => state.user.userData);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,11 +28,12 @@ const Analitics = () => {
   const {token} = useSelector(state => state.token);
 
   useEffect(() => {
-      if (error?.status) {
-        showClickModal('');
-        navigate('/login', {state: {fromApp: true}});
-      }
-    }, [error, dispatch]);
+    if (error?.status) {
+      showClickModal('');
+      navigate('/login', {state: {fromApp: true}});
+    }
+    if (user && user.role === 'admin') navigate('/smart-admin', {replace: true});
+  }, [user, error, dispatch]);
 
   useEffect(() => {
     dispatch(getAnalytics({token, filter: null}));
@@ -43,7 +45,7 @@ const Analitics = () => {
   }, [summaryData.filters?.category, dispatch])
 
 
-  if (loading || !summaryData.topSubscriptions) {
+  if (loading || !summaryData.topSubscriptions || !user) {
     return <div className={loadingStyles.loading}>Загрузка...</div>
   }
 

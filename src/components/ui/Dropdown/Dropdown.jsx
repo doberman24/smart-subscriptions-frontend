@@ -1,26 +1,27 @@
 import { FaAngleDown } from "react-icons/fa6"
 import styles from './Dropdown.module.css'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const DropdownNew = ({list, value = {}, onChange, addDefault = false, placeholder = ''}) => {
-  const [dataList, setDataList] = useState([]);
   const [showList, setShowList] = useState(false);
-  const [inputData, setInputData] = useState(value.value);
+  const [inputData, setInputData] = useState(value.value || '');
   const dropdownElement = useRef(null);
 
+  const dataList = useMemo(() => {
+    return [...list];
+  }, [list]); 
+
   useEffect(() => {
-    setInputData(value.value || '');
+    if (value.value !== undefined) setInputData(value.value || '');
   }, [value])
 
   const selectItem = (item) => {
     setInputData(item.value);
     setShowList(false);
-    onChange?.(item)
+    onChange?.(item);
   }
 
   useEffect(() => {
-    // onChange?.(value);
-    setDataList([...list]);
     const handleClickOut = (e) => {
       if (dropdownElement.current && !dropdownElement.current.contains(e.target)) {
         setShowList(false);
