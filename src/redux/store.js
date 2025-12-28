@@ -5,6 +5,7 @@ import subscriptionsReduser from './subscriptions';
 import summaryReduser from './summaryInfo';
 import showModalReduser from './showModal';
 import analyticsReduser from './analytics'
+import pageReduser from './pages'
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         subscriptions: subscriptionsReduser,
         summaryInfo: summaryReduser,
         showModal: showModalReduser,
-        analitycsData: analyticsReduser
+        analitycsData: analyticsReduser,
+        pages: pageReduser,
     }
 });
 

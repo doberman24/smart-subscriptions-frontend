@@ -14,6 +14,7 @@ import SaveDataModal from '@/components/ModalContent/SaveDataModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
 import ChangePassModal from '@/components/ModalContent/ChangePassModal';
 import { preferredHourOptions, reminderDaysBeforeOptions } from '@/constants/options';
+import { selectPage } from '@/redux/pages';
 
 const Settings = () => {
   const {
@@ -34,7 +35,7 @@ const Settings = () => {
 
   useEffect(() => {
     dispatch(getUser({token, localTz: false}));
-
+    dispatch(selectPage('settings'));
   }, [token, dispatch]);
 
   useEffect(() => {

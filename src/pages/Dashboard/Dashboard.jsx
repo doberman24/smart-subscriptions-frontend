@@ -13,6 +13,7 @@ import InfoModal from '@/components/ModalContent/InfoModal';
 import { useModals } from '@/components/ModalContent/useModals';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
 import { useDeleteSubscription } from '@/components/utilites/useDeleteSubscription';
+import { selectPage } from '@/redux/pages';
 
 const Dashboard = () => {
 
@@ -42,6 +43,7 @@ const Dashboard = () => {
   
   useEffect(() => {
     dispatch(getSummaryInfo({token}));
+    dispatch(selectPage('dashboard'));
   }, [dispatch])
 
   if (loading || !summaryData.overview || !user) {

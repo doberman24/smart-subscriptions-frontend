@@ -18,6 +18,7 @@ const Footer = () => {
       Все вопросы и предложения направляйте на<br /><b>subs-supp@yandex.ru</b>
     </>
   );
+  const {namePage} = useSelector(state => state.pages);
 
   const openModal = () => {
     setMailContact(true);
@@ -45,19 +46,19 @@ const Footer = () => {
               <button onClick={openModal}><FaAt /></button>
             </div>
             <div className={styles.nav}>
-              <Link className={styles.link} to='/dashboard'>
+              <Link className={`${styles.link} ${namePage === 'dashboard' ? styles.activePage : ''}`} to='/dashboard'>
                 <div className={styles.dashboard}></div>
                 <p>Дашборд</p>
               </Link>
-              <Link className={styles.link} to='/subscriptions'>
+              <Link className={`${styles.link} ${namePage === 'subscriptions' ? styles.activePage : ''}`} to='/subscriptions'>
                 <div className={styles.subscriptions}></div>
                 <p>Подписки</p>
               </Link>
-              <Link className={styles.link} to='/analitics'>
+              <Link className={`${styles.link} ${namePage === 'analytics' ? styles.activePage : ''}`} to='/analitics'>
                 <div className={styles.analitics}></div>
                 <p>Аналитика</p>
               </Link>
-              <Link className={styles.link} to='/settings'>
+              <Link className={`${styles.link} ${namePage === 'settings' ? styles.activePage : ''}`} to='/settings'>
                 <div className={styles.settings}></div>
                 <p>Настройки</p>
               </Link>

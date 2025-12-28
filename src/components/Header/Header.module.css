@@ -67,7 +67,8 @@
     background-size: auto 24px;
     background-repeat: no-repeat;
 }
-.icon:hover .settings {
+.icon:hover .settings,
+.activePage .settings {
     background-image: url('@/assets/icons/menu/settings_1.svg');
 }
 .icon:active .settings {
@@ -81,7 +82,8 @@
     background-size: auto 24px;
     background-repeat: no-repeat;
 }
-.icon:hover .analitics {
+.icon:hover .analitics,
+.activePage .analitics {
     background-image: url('@/assets/icons/menu/analitics_1.svg');
 }
 .icon:active .analitics {
@@ -95,7 +97,8 @@
     background-size: auto 24px;
     background-repeat: no-repeat;
 }
-.icon:hover .subscriptions {
+.icon:hover .subscriptions,
+.activePage .subscriptions {
     background-image: url('@/assets/icons/menu/subscription_1.svg');
 }
 .icon:active .subscriptions {
@@ -109,14 +112,22 @@
     background-size: auto 24px;
     background-repeat: no-repeat;
 }
-.icon:hover .dashboard {
+.icon:hover .dashboard,
+.activePage .dashboard {
     background-image: url('@/assets/icons/menu/dashboard_1.svg');
 }
 .icon:active .dashboard {
     background-image: url('@/assets/icons/menu/dashboard_2.svg');
 }
 
-
+.activePage {
+    color: #4f46e5;
+    pointer-events: none;
+}
+.activePage p {
+    border-bottom: #4f46e5 1px solid;
+    padding-bottom: 10px;
+}
 
 
 @media (max-width: 440px) {

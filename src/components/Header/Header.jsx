@@ -12,6 +12,7 @@ const Header = () => {
   const {user} = useSelector(state => state.user.userData);
   const {loading} = useSelector(state => state.user);
   const {token} = useSelector(state => state.token);
+  const {namePage} = useSelector(state => state.pages);
 
   useEffect(() => {
     const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -19,7 +20,6 @@ const Header = () => {
 
     dispatch(getUser({token, localTz: localTz !== savedTz && localTz}));
     localStorage.setItem('tz', localTz);
-
   }, [token, dispatch]);
 
   useEffect(() => {
@@ -36,19 +36,19 @@ const Header = () => {
         <Link className={styles.mainLogo} to='/dashboard'><img src={logo} height='40px' alt="logo" /></Link>
         <h2>Привет, <span className={styles.name}>{user.name}</span>!</h2>
         <nav className={styles.nav}>
-          <Link className={styles.icon} to='/dashboard'>
+          <Link className={`${styles.icon} ${namePage === 'dashboard' ? styles.activePage : ''}`} to='/dashboard'>
             <div className={styles.dashboard}></div>
             <p>Дашборд</p>
           </Link>
-          <Link className={styles.icon} to='/subscriptions'>
+          <Link className={`${styles.icon} ${namePage === 'subscriptions' ? styles.activePage : ''}`} to='/subscriptions'>
             <div className={styles.subscriptions}></div>
             <p>Подписки</p>
           </Link>
-          <Link className={styles.icon} to='/analitics'>
+          <Link className={`${styles.icon} ${namePage === 'analytics' ? styles.activePage : ''}`} to='/analitics'>
             <div className={styles.analitics}></div>
             <p>Аналитика</p>
           </Link>
-          <Link className={styles.icon} to='/settings'>
+          <Link className={`${styles.icon} ${namePage === 'settings' ? styles.activePage : ''}`} to='/settings'>
             <div className={styles.settings}></div>
             <p>Настройки</p>
           </Link>

@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
 import { useModals } from '@/components/ModalContent/useModals';
 import { useDeleteSubscription } from '@/components/utilites/useDeleteSubscription';
+import { selectPage } from '@/redux/pages';
 
 const Subscriptions = () => {
 
@@ -40,6 +41,7 @@ const Subscriptions = () => {
 
   useEffect(() => {
     dispatch(getSubscriptions(token));
+    dispatch(selectPage('subscriptions'));
   }, [token, dispatch, location]);
 
 

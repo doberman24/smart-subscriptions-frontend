@@ -11,6 +11,7 @@ import { getAnalytics, getAnalyticsSubscription } from '@/redux/analytics';
 import { useNavigate } from 'react-router-dom';
 import TopDataModal from '@/components/ModalContent/TopDataModal';
 import { useModals } from '@/components/ModalContent/useModals';
+import { selectPage } from '@/redux/pages';
 
 
 const Analitics = () => {
@@ -33,6 +34,7 @@ const Analitics = () => {
       navigate('/login', {state: {fromApp: true}});
     }
     if (user && user.role === 'admin') navigate('/smart-admin', {replace: true});
+    dispatch(selectPage('analytics'));
   }, [user, error, dispatch]);
 
   useEffect(() => {
