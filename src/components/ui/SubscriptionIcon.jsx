@@ -22,10 +22,10 @@ const SubscriptionIcon = ({name, size = 28}) => {
                 width: size,
                 height: size,
                 color: '#fff',
-                borderRadius: 12,
+                borderRadius: '50%',
                 backgroundColor: stringColor(format),
                 textTransform: 'uppercase',
-                fontSize: '1.8rem',
+                fontSize: size / 1.4,
                 fontWeight: 600,
             }}
         >{name.charAt(0)}</div>

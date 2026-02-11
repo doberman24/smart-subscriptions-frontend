@@ -22,7 +22,7 @@ const Dashboard = () => {
   const {summaryData, message, loading, error} = useSelector(state => state.summaryInfo);
   const messageAction = useSelector(state => state.subscriptions);
   const {token} = useSelector(state => state.token);
-  const {user} = useSelector(state => state.user.userData);
+  const {user, notifications} = useSelector(state => state.user.userData);
 
   
   const [infoTypeModal, setInfoTypeModal] = useState('');
@@ -93,6 +93,7 @@ const Dashboard = () => {
           {summaryData.topLatestSubscriptions.length ? summaryData.topLatestSubscriptions.map((card) => (
             <CardSubscription 
               key={card.id} 
+              notifications={notifications}
               cardSub={card} 
               page={'dashboard'} 
               onDeleteShowModal={onDeleteShowModal}

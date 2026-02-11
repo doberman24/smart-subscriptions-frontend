@@ -4,7 +4,7 @@ import ButtonElement from '@/components/ui/ButtonElement/ButtonElement'
 import { useRef, useState } from 'react';
 import { categoryOptions } from '@/constants/options';
 
-const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal}) => {
+const CardSubscription = ({cardSub, notifications, page, onDeleteShowModal, onChangeShowModal}) => {
 
     const {id, name, amount, nextPaymentDate, recurrence, paidStatus, paidDate, category, activityStatus} = cardSub;
 
@@ -25,7 +25,13 @@ const CardSubscription = ({cardSub, page, onDeleteShowModal, onChangeShowModal})
         const currentDate = new Date().toISOString().split('T')[0];
         if (!activityStatus) return {statusPayColor: 'notActive', statusPay: 'Не определено', statusSubscription: 'Не активно'};
         if (currentDate > nextBilling) return {statusPayColor: 'statusOverdue', statusPay: 'Не оплачено', statusSubscription: 'Активно'};
-        if ((nextBilling === currentDate) && !paidStatus) return {statusPayColor: 'statusPending', statusPay: 'Ожидает оплаты', statusSubscription: 'Активно'};
+
+        if (notifications.reminders) {
+            if ((nextBilling >= currentDate) && !paidStatus) return {statusPayColor: 'statusPending', statusPay: 'Ожидает оплаты', statusSubscription: 'Активно'};    
+        } else {
+            if ((nextBilling === currentDate) && !paidStatus) return {statusPayColor: 'statusPending', statusPay: 'Ожидает оплаты', statusSubscription: 'Активно'};
+        }
+
         if (currentDate < nextBilling || (currentDate >= lastBilling && paidStatus)) return {statusPayColor: 'statusPaid', statusPay: 'Оплачено', statusSubscription: 'Активно'};
         return {statusPayColor: '', statusPay: 'Не определено'};
     }

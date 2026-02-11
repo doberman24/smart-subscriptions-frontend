@@ -1,7 +1,7 @@
 import styles from './Modal.module.css';
 import ReactDOM from 'react-dom';
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { toggleModal } from '@/redux/showModal';
 
 const Modal = ({children, vision, closeModal}) => {
@@ -10,13 +10,13 @@ const Modal = ({children, vision, closeModal}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = 'hidden';
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;  //ширина скроллбара
+    document.body.style.overflow = 'hidden';                    //спрятать скроллбар и отключить прокрутку страницы
     if (scrollbarWidth) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.paddingRight = `${scrollbarWidth}px`; //компенсировать ширину скроллбара
     }
     const appRoot = document.getElementById('root');
-    appRoot.setAttribute('inert', '');
+    appRoot.setAttribute('inert', '');                          //запрет фокуса и кликов внутри #root
 
     const handleClickOut = (e) => {
       if (refModal.current && !refModal.current.contains(e.target))
@@ -25,12 +25,12 @@ const Modal = ({children, vision, closeModal}) => {
     }
     document.addEventListener('mousedown', handleClickOut);
 
-    return () => {
-      document.body.style.overflow = 'auto';
-      if (scrollbarWidth) {
+    return () => {                                              //модалка закрывается и
+      document.body.style.overflow = 'auto';                    //восстанавливает скроллбар
+      if (scrollbarWidth) {                                     //и ширину страницы
         document.body.style.paddingRight = '0';
       }
-      appRoot.removeAttribute('inert');
+      appRoot.removeAttribute('inert');                         //возвращает интерактивность страницы
       document.removeEventListener('mousedown', handleClickOut);
     }
   }, []);

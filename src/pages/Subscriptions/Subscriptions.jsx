@@ -25,7 +25,7 @@ const Subscriptions = () => {
   const {subscriptionsList, loading, message, error} = useSelector(state => state.subscriptions);
   const isModal = useSelector(state => state.showModal);
   const {token} = useSelector(state => state.token);
-  const {user} = useSelector(state => state.user.userData);
+  const {user, notifications} = useSelector(state => state.user.userData);
 
   const [idCard, setIdCard] = useState(null);
   const [findName, setFindName] = useState('');
@@ -144,6 +144,7 @@ const Subscriptions = () => {
           <CardSubscription 
             key={card.id} 
             cardSub={card} 
+            notifications={notifications}
             page={'subscriptions'} 
             onDeleteShowModal={onDeleteShowModal}
             onChangeShowModal={onChangeShowModal}
