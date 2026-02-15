@@ -13,6 +13,7 @@ const showModalSlice = createSlice({
         isDeleteSubscriptionModal: false,
         isTopModal: false,
         isContactInfo: false,
+        isCalendarModal: false,
     },
     reducers: {
         toggleModal: (state, action) => {
@@ -26,6 +27,7 @@ const showModalSlice = createSlice({
             state.isDeleteSubscriptionModal = action.payload.isDeleteSubscriptionModal;
             state.isTopModal = action.payload.isTopModal;
             state.isContactInfo = action.payload.isContactInfo;
+            state.isCalendarModal = action.payload.isCalendarModal;
         }
     }
 });

@@ -82,7 +82,7 @@
     min-width: 728px;
 }
 
-.diagrammBlock {
+.calendarBlock {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,7 +90,7 @@
     min-width: 432px;
 }
 
-.diagramm {
+.monthCalendar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,12 +182,12 @@
         min-height: 0;
     }
 
-    .diagrammBlock {
+    .calendarBlock {
         min-width: 100%;
         min-height: 260px;
     }
 
-    .diagramm {
+    .monthCalendar {
         width: 100%;
         padding: 5px ;
         height: 450px;

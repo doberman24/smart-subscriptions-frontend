@@ -6,7 +6,7 @@ export const useModals = ({ setIdCard = null}) => {
   
   const showAddModal = () => {
     setIdCard(null);
-    showClickModal('handleSubscriptionModal')
+    showClickModal('handleSubscriptionModal');
   };
 
   const onDeleteShowModal = (id) => {
@@ -18,10 +18,15 @@ export const useModals = ({ setIdCard = null}) => {
     setIdCard(id);
     showClickModal('handleSubscriptionModal');
   }
+
+  const onShowCalendarModal = () => {
+    setIdCard(null);
+    showClickModal('isCalendarModal');
+  }
   
   const showClickModal = (actionModal) => {
     dispatch(toggleModal({[actionModal]: true}));
   }
   
-  return { onDeleteShowModal, onChangeShowModal, showAddModal, showClickModal };
+  return { onDeleteShowModal, onChangeShowModal, showAddModal, showClickModal, onShowCalendarModal };
 }

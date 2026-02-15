@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import loadingStyles from '@/components/ui/Loading.module.css';
 import CardSubscription from '@/components/CardSubscription/CardSubscription';
+import CalendarField from "@/components/Calendar/CalendarField/CalendarField";
+import InfoBlock from "@/components/Calendar/CalendarField/InfoBlock";
 import Diagramm from '@/components/ui/Diagramm/Diagramm';
 import ButtonElement from '@/components/ui/ButtonElement/ButtonElement';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import HandleSubscriptionModal from '@/components/ModalContent/HandleSubscriptionModal';
 import DeleteSubscriptionModal from '@/components/ModalContent/DeleteSubscriptionModal';
 import InfoModal from '@/components/ModalContent/InfoModal';
+import CalendarModal from '@/components/ModalContent/CalendarModal/CalendarModal';
 import { useModals } from '@/components/ModalContent/useModals';
 import { useHandleSubscription } from '@/components/utilites/useCreateSubscription';
 import { useDeleteSubscription } from '@/components/utilites/useDeleteSubscription';
@@ -24,13 +27,17 @@ const Dashboard = () => {
   const {token} = useSelector(state => state.token);
   const {user, notifications} = useSelector(state => state.user.userData);
 
+  const [isShowInfo, setIsShowInfo] = useState(false);
+  const [popupPos, setPopupPos] = useState({x: 0, y: 0});
+  const [selectDay, setSelectDay] = useState([]);
+  // console.log(summaryData.sortSubscriptions);
   
   const [infoTypeModal, setInfoTypeModal] = useState('');
   const {onHandleSub} = useHandleSubscription({setInfoTypeModal});
 
   const isModal = useSelector(state => state.showModal);
   const [idCard, setIdCard] = useState(null);
-  const {onDeleteShowModal, onChangeShowModal, showAddModal} = useModals({setIdCard});
+  const {onDeleteShowModal, onChangeShowModal, showAddModal, onShowCalendarModal} = useModals({setIdCard});
   const {onDelSub} = useDeleteSubscription({setInfoTypeModal});
  
   
@@ -63,6 +70,12 @@ const Dashboard = () => {
     dispatch(getSummaryInfo({token, silent: true}));    
   }
 
+  const onShowInfo = (isShow, numDay = [], e = null) => {
+    setPopupPos({x: e?.clientX, y: e?.clientY});
+    setSelectDay(numDay);
+    setIsShowInfo(numDay.length > 0 && isShow);
+  }
+
   return (
     <div className={styles.dashboardPage}>
       {isModal.handleSubscriptionModal && 
@@ -72,6 +85,7 @@ const Dashboard = () => {
       />}
       {isModal.isInfoModal && <InfoModal message={messageAction.message} typeInfo={infoTypeModal}/>}
       {isModal.isDeleteSubscriptionModal && <DeleteSubscriptionModal onDeleteSubscription={onDeleteSubscription}/>}
+      {isModal.isCalendarModal && <CalendarModal dateData={{notifications, sortSubscriptions: summaryData.sortSubscriptions}} onShowInfo={onShowInfo}/>}
       <div className={styles.headerBlock}>
         <h1>Дашборд</h1>
         <h2>{new Date().toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})}</h2>
@@ -105,15 +119,21 @@ const Dashboard = () => {
             <p>Добавьте подписку, чтобы начать</p>
           </div>}
         </div>
-        <div className={styles.diagrammBlock}>
-          <h2>График расходов</h2>
-          {summaryData.topLatestSubscriptions.length ? <div className={styles.diagramm}>
-            <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/>
-          </div> :
+        <div className={styles.calendarBlock}>
+          <h2>Календарь расходов</h2>
+          {/* {summaryData.sortSubscriptions.length ? <div className={styles.monthCalendar}> */}
+            <CalendarField
+              dateData={{notifications, sortSubscriptions: summaryData.sortSubscriptions}}
+              onShowInfo={onShowInfo}
+              onShowCalendarModal={onShowCalendarModal}
+            />
+            {isShowInfo && <InfoBlock popupPos={popupPos} selectDay={selectDay} />}
+            {/* <Diagramm diagrammData={summaryData.categoryBreakdown} typeDiagram={'category'}/> */}
+          {/* </div> :
           <div className={styles.empty}>
             <h3>Нет данных для отображения</h3>
             <p>Добавьте новую подписку</p>
-          </div>}
+          </div>} */}
         </div>
       </div>
       <div className={styles.addBlockButton}>
