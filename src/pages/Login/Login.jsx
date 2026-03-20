@@ -176,6 +176,8 @@ const Login = () => {
           <label className={styles.button}>
             <ButtonElement className={'addButton'}>{activeTab === 'reg' ? 'Зарегистрироваться' : 'Войти'}</ButtonElement>
           </label>
+          <label className={styles.notSpam}><b>•</b>Никакого спама<b>•</b>Никаких оплат<b>•</b></label>
+          <label className={styles.onlyNotify}>Только уведомления о подписках (по желанию)</label>
         </form>
       </div>
     </>

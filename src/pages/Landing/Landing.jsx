@@ -48,13 +48,18 @@ const Landing = () => {
           <div className={styles.mainBlock}>
             <h1 className={styles.mainHeader}>Умные подписки</h1>
             <div  className={styles.slogan}>
-              <h3>Вы уверены, что пользуетесь всеми подписками, за которые ежемесячно платите?</h3>
+              <h3>
+                  Платите за подписки, которыми не пользуетесь?
+                  Деньги списываются автоматически — об этом легко забыть.
+              </h3>
               <div className={styles.separator}></div>
-              <h3>Соберите их в одном месте, контролируйте расходы и получайте напоминания о предстоящих платежах.</h3>
+              <h3>Соберите подписки в одном месте, получайте напоминания до списания и контролируйте расходы.</h3>
             </div>
             <div className={styles.mainButton}>
               <ButtonElement onClick={getDemo} className={'mainButton pinkButton'}>Попробовать без регистрации</ButtonElement>
             </div>
+            <p className={styles.checkDescript}>Проверьте, как это работает на реальном примере</p>
+            <p className={styles.clickDescript}><b>•</b>Без регистрации <b>•</b> Без списаний<b>•</b></p>
           </div>
 
           <ul className={styles.privillege}>

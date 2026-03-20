@@ -13,7 +13,7 @@
     margin: 0 auto;
     align-items: center;
     max-width: 1200px;
-    padding: 100px;
+    padding: 100px 100px 50px;
 }
 
 .mainHeader {
@@ -32,12 +32,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 600px;
+    max-width: 630px;
 }
 .separator {
     margin: 20px;
     border: #3c3cf0  solid 2px;
     width: 200px;
+}
+
+.checkDescript {
+    font-size: 0.9rem;
+    color: #6c6f81;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.clickDescript {
+    color: #6c6f81;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+.clickDescript b {
+    display: block;
+    font-size: 1.6rem;
+    line-height: 0.5;
+    height: 0.9rem;
+}
+
+.mainButton {
+    /* margin-top: 20px; */
+    margin-bottom: 10px;
 }
 
 .privillege {
@@ -86,7 +112,7 @@
     margin-bottom: 20px;
     font-size: 2rem;
     font-weight: 700;
-    color: #6c6f81 ;
+    color: #6c6f81;
 }
 
 .feedback {
@@ -127,6 +153,17 @@
     }
     .slogan {
         font-size: 0.9rem;
+    }
+
+    .checkDescript {
+        font-size: 0.7rem;
+    }
+    .clickDescript {
+        font-size: 0.7rem;
+    }
+    .clickDescript b {
+        font-size: 1.2rem;
+        line-height: 0.7;
     }
 
     .privillege {
@@ -195,6 +232,18 @@
         }
         .slogan {
             font-size: 0.7rem;
+        }
+
+        .checkDescript {
+            font-size: 0.55rem;
+        }
+        .clickDescript {
+            font-size: 0.55rem;
+        }
+        .clickDescript b {
+            font-size: 1.1rem;
+            line-height: 0.5;
+            height: 0.55rem;
         }
 
         .singlePrivillege {
