@@ -20,9 +20,12 @@ const MonthField = ({
   const prepareWeekMesh = (days) => {
     const weekMesh = {'пн': [], 'вт': [], 'ср': [], 'чт': [], 'пт': [], 'сб': [], 'вс': [],};
     const weekdaysNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+    const dayIndexMap = [6, 0, 1, 2, 3, 4, 5];
     
     days.forEach(day => {
-      const weekday = new Date(year, numMonth, day).toLocaleString('ru-RU', {weekday: 'short'});
+      const date = new Date(year, numMonth, day)
+      const weekDayIndex = dayIndexMap[date.getDay()];
+      const weekday = weekdaysNames[weekDayIndex];
       weekMesh[weekday].push(day);
     })
     const firstDay = new Date(year, numMonth, 1).getDay();
